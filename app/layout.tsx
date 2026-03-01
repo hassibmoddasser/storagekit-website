@@ -1,21 +1,15 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import { geistMono, geistSans } from "@/config/fonts";
+import { cn } from "@/utils/cn";
 
 export const metadata: Metadata = {
-  title: "Storage Kit — Debug Faster with Storage Snapshots",
+  title: {
+    default: "Storage Kit — The Missing DevTools Panel for Browser Storage",
+    template: "%s — Storage Kit"
+  },
   description:
-    "A Chrome extension for debugging web storage. Save, restore, and inspect Local storage, Session storage, and Cookies with ease.",
+    "Inspect, edit, and manage Local storage, Session storage, and Cookies in one clean, powerful Chrome DevTools panel.",
   keywords: [
     "chrome extension",
     "web storage",
@@ -38,7 +32,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={cn(
+          geistSans.variable,
+          geistMono.variable,
+          "antialiased"
+        )}
       >
         {children}
       </body>

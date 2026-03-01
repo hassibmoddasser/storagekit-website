@@ -53,7 +53,7 @@ export default function Testimonials() {
   return (
     <section
       id="testimonials"
-      className="border-t border-border py-20 md:py-28"
+      className="border-t border-border/50 py-20 md:py-28"
     >
       <div className="mx-auto max-w-6xl px-6">
         <SectionLabel label="Testimonials" heading="Loved by developers" />

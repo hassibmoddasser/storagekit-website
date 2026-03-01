@@ -42,7 +42,7 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section id="faq" className="border-t border-border py-20 md:py-28">
+    <section id="faq" className="border-t border-border/50 py-20 md:py-28">
       <div className="mx-auto max-w-3xl px-6">
         <SectionLabel label="FAQ" heading="Frequently asked questions" />
 

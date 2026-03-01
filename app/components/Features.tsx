@@ -49,7 +49,7 @@ const features = [
 
 export default function Features() {
   return (
-    <section id="features" className="border-t border-border py-20 md:py-28">
+    <section id="features" className="border-t border-border/50 py-20 md:py-28">
       <div className="mx-auto max-w-6xl px-6">
         <SectionLabel
           label="Features"

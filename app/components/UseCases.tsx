@@ -30,7 +30,7 @@ const useCases = [
 
 export default function UseCases() {
   return (
-    <section id="use-cases" className="border-t border-border py-20 md:py-28">
+    <section id="use-cases" className="border-t border-border/50 py-20 md:py-28">
       <div className="mx-auto max-w-6xl px-6">
         <SectionLabel
           label="Use Cases"

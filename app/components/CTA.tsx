@@ -2,7 +2,7 @@ import { Chrome } from "lucide-react";
 
 export default function CTA() {
   return (
-    <section className="border-t border-border py-20 md:py-28">
+    <section className="border-t border-border/50 py-20 md:py-28">
       <div className="mx-auto max-w-3xl px-6 text-center">
         <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">
           Ready to debug smarter?

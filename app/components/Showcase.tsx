@@ -58,7 +58,7 @@ export default function Showcase() {
   }, [updatePill]);
 
   return (
-    <section className="border-t border-border py-20 md:py-28">
+    <section className="border-t border-border/50 py-20 md:py-28">
       <div className="mx-auto max-w-4xl px-6">
         <SectionLabel label="In Action" heading="See it in action" />
 
