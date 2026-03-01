@@ -6,10 +6,10 @@ import Link from "next/link";
 import { cn } from "@/utils/cn";
 
 const navLinks = [
-  { label: "Features", href: "#features" },
-  { label: "Use Cases", href: "#use-cases" },
-  { label: "Testimonials", href: "#testimonials" },
-  { label: "FAQ", href: "#faq" },
+  { label: "Features", href: "/#features" },
+  { label: "Use Cases", href: "/#use-cases" },
+  { label: "Testimonials", href: "/#testimonials" },
+  { label: "FAQ", href: "/#faq" },
 ];
 
 export default function Header() {

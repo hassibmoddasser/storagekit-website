@@ -36,7 +36,7 @@ export default function Footer() {
           </nav>
         </div>
 
-        <div className="mt-8 border-t border-border pt-6 text-center text-sm text-muted-foreground">
+        <div className="mt-8 border-t border-border/50 pt-6 text-center text-sm text-muted-foreground">
           <p>
             Built by{" "}
             <a

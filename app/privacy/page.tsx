@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
@@ -9,22 +8,10 @@ export const metadata: Metadata = {
 export default function PrivacyPage() {
   return (
     <>
-      <header className="border-b border-border/20">
-        <div className="mx-auto flex h-16 max-w-3xl items-center px-6">
-          <Link
-            href="/"
-            className="flex items-center gap-1 text-lg font-bold tracking-tight"
-          >
-            <span>Storage</span>
-            <span className="text-accent">Kit</span>
-          </Link>
-        </div>
-      </header>
-
-      <main className="mx-auto max-w-3xl px-6 py-16">
-        <article className="prose prose-sm prose-neutral dark:prose-invert max-w-none">
-          <h1>Privacy Policy</h1>
-          <p className="text-sm text-muted-foreground not-prose">
+      <main className="mx-auto max-w-3xl px-6 pt-32 pb-16">
+        <article className="prose prose-base prose-neutral dark:prose-invert max-w-none">
+          <h1 className="mb-0">Privacy Policy</h1>
+          <p className="text-sm text-muted-foreground mt-2">
             Last updated: March 1, 2026
           </p>
 
@@ -93,21 +80,17 @@ export default function PrivacyPage() {
             </li>
           </ul>
 
-          <div>
-            <h2>Changes to This Policy</h2>
-            <p>
-              If this privacy policy is updated, the changes will be reflected
-              on this page with an updated date.
-            </p>
-          </div>
+          <h2>Changes to This Policy</h2>
+          <p>
+            If this privacy policy is updated, the changes will be reflected
+            on this page with an updated date.
+          </p>
 
-          <div>
-            <h2>Contact</h2>
-            <p>
-              If you have questions about this privacy policy, please open an
-              issue on the project&apos;s GitHub repository.
-            </p>
-          </div>
+          <h2>Contact</h2>
+          <p>
+            If you have questions about this privacy policy, please open an
+            issue on the project&apos;s GitHub repository.
+          </p>
         </article>
       </main>
     </>
