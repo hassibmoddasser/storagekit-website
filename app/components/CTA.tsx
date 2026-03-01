@@ -8,7 +8,7 @@ export default function CTA() {
           Ready to debug smarter?
         </h2>
         <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
-          Join developers who use Storage Kit to save time debugging web
+          Join developers who use StorageKit to save time debugging web
           storage. Free, private, and open source.
         </p>
         <div className="mt-8">

@@ -14,7 +14,7 @@ export default function Problem() {
           <p>
             It&apos;s tedious work that interrupts your flow.{" "}
             <span className="font-medium text-foreground">
-              Storage Kit eliminates the friction
+              StorageKit eliminates the friction
             </span>{" "}
             so you can focus on building.
           </p>

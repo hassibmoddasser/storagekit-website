@@ -6,8 +6,8 @@ import Header from "./components/Header";
 
 export const metadata: Metadata = {
   title: {
-    default: "Storage Kit — The Missing DevTools Panel for Browser Storage",
-    template: "%s — Storage Kit"
+    default: "StorageKit — The Missing DevTools Panel for Browser Storage",
+    template: "%s — StorageKit"
   },
   description:
     "Inspect, edit, and manage Local storage, Session storage, and Cookies in one clean, powerful Chrome DevTools panel.",

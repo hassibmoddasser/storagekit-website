@@ -7,19 +7,19 @@ import { cn } from "@/utils/cn";
 
 const faqs = [
   {
-    question: "Is Storage Kit free?",
+    question: "Is StorageKit free?",
     answer:
-      "Yes, Storage Kit is completely free to use. There are no premium tiers, no feature limits, and no hidden costs.",
+      "Yes, StorageKit is completely free to use. There are no premium tiers, no feature limits, and no hidden costs.",
   },
   {
     question: "Does it work on other browsers?",
     answer:
-      "Storage Kit is currently available for Chrome and all Chromium-based browsers (Edge, Brave, Arc, Opera, etc.).",
+      "StorageKit is currently available for Chrome and all Chromium-based browsers (Edge, Brave, Arc, Opera, etc.).",
   },
   {
     question: "Is my data sent anywhere?",
     answer:
-      "No. All data stays entirely in your browser. Storage Kit has no analytics, no tracking, and makes no network requests. Your storage data never leaves your machine.",
+      "No. All data stays entirely in your browser. StorageKit has no analytics, no tracking, and makes no network requests. Your storage data never leaves your machine.",
   },
   {
     question: "How are snapshots stored?",
@@ -29,12 +29,12 @@ const faqs = [
   {
     question: "Can I use it on any website?",
     answer:
-      "Storage Kit works on any regular website. It cannot access restricted pages like chrome:// URLs, the Chrome Web Store, or other extension pages due to browser security policies.",
+      "StorageKit works on any regular website. It cannot access restricted pages like chrome:// URLs, the Chrome Web Store, or other extension pages due to browser security policies.",
   },
   {
     question: "Does it support Firefox or Safari?",
     answer:
-      "Not yet. Storage Kit is currently Chrome-only, but support for other browsers may be added in the future.",
+      "Not yet. StorageKit is currently Chrome-only, but support for other browsers may be added in the future.",
   },
 ];
 

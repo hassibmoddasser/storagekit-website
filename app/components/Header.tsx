@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-import Link from "next/link";
 import { cn } from "@/utils/cn";
+import Logo from "./Logo";
 
 const navLinks = [
   { label: "Features", href: "/#features" },
@@ -33,13 +33,7 @@ export default function Header() {
       )}
     >
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
-        <Link
-          href="/"
-          className="flex items-center gap-1 text-lg font-bold tracking-tight"
-        >
-          <span>Storage</span>
-          <span className="text-accent">Kit</span>
-        </Link>
+        <Logo />
 
         <nav className="hidden items-center gap-8 md:flex">
           {navLinks.map((link) => (

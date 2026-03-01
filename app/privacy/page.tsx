@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description: "Privacy policy for the Storage Kit browser extension.",
+  description: "Privacy policy for the StorageKit browser extension.",
 };
 
 export default function PrivacyPage() {
@@ -17,7 +17,7 @@ export default function PrivacyPage() {
 
           <h2>Overview</h2>
           <p>
-            Storage Kit is a browser extension designed for debugging web
+            StorageKit is a browser extension designed for debugging web
             storage. We are committed to protecting your privacy. This policy
             explains what data the extension accesses and how it is handled.
           </p>
@@ -25,7 +25,7 @@ export default function PrivacyPage() {
           <h2>Data Collection</h2>
           <p>
             <strong>
-              Storage Kit does not collect, transmit, or store any personal
+              StorageKit does not collect, transmit, or store any personal
               data.
             </strong>{" "}
             The extension does not include analytics, tracking scripts, or any
@@ -34,7 +34,7 @@ export default function PrivacyPage() {
 
           <h2>Data Access</h2>
           <p>
-            To function, Storage Kit accesses the following browser storage
+            To function, StorageKit accesses the following browser storage
             types on the active tab:
           </p>
           <ul>
@@ -56,7 +56,7 @@ export default function PrivacyPage() {
 
           <h2>Third-Party Services</h2>
           <p>
-            Storage Kit does not integrate with any third-party services,
+            StorageKit does not integrate with any third-party services,
             APIs, or analytics platforms.
           </p>
 

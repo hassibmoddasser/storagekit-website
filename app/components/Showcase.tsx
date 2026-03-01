@@ -28,7 +28,7 @@ const tabs = [
     icon: FileCode,
     title: "Automatic Value Decoding",
     description:
-      "Storage Kit automatically detects encoded values and shows them decoded. JSON is pretty-printed, JWTs reveal their payload, and Base64 values are decoded inline.",
+      "StorageKit automatically detects encoded values and shows them decoded. JSON is pretty-printed, JWTs reveal their payload, and Base64 values are decoded inline.",
   },
 ];
 

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Logo from "./Logo";
 
 export default function Footer() {
   return (
@@ -6,13 +7,7 @@ export default function Footer() {
       <div className="mx-auto max-w-6xl px-6">
         <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
           <div>
-            <Link
-              href="/"
-              className="flex items-center gap-1 text-lg font-bold tracking-tight"
-            >
-              <span>Storage</span>
-              <span className="text-accent">Kit</span>
-            </Link>
+            <Logo />
             <p className="mt-1 text-sm text-muted-foreground">
               The DevTools panel your browser storage deserves.
             </p>
