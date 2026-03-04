@@ -1,4 +1,7 @@
+"use client";
+
 import { Star } from "lucide-react";
+import Marquee from "react-fast-marquee";
 import SectionLabel from "./section-label";
 
 const testimonials = [
@@ -19,8 +22,7 @@ const testimonials = [
   },
   {
     name: "Monira Karimi",
-    quote:
-      "Much easier to manage browser storage than using DevTools.",
+    quote: "Much easier to manage browser storage than using DevTools.",
   },
   {
     name: "Mujtaba Sadat",
@@ -70,39 +72,37 @@ export default function Testimonials() {
     <section
       id="testimonials"
       className="border-border/50 border-t py-20 md:py-28"
+      style={{ overflowAnchor: "none" }}
     >
       <div className="mx-auto max-w-6xl px-6">
         <SectionLabel label="Testimonials" heading="Loved by developers" />
       </div>
 
       <div className="mt-16 space-y-6">
-        <div className="marquee-row relative overflow-hidden">
-          <div className="from-background pointer-events-none absolute inset-y-0 left-0 z-10 w-20 bg-linear-to-r" />
-          <div className="from-background pointer-events-none absolute inset-y-0 right-0 z-10 w-20 bg-linear-to-l" />
+        <Marquee
+          speed={40}
+          pauseOnHover
+          gradient
+          gradientColor="var(--background)"
+          gradientWidth={80}
+        >
+          {testimonials.map((t) => (
+            <TestimonialCard key={t.name} testimonial={t} />
+          ))}
+        </Marquee>
 
-          <div className="animate-marquee flex w-max">
-            {testimonials.map((t) => (
-              <TestimonialCard key={t.name} testimonial={t} />
-            ))}
-            {testimonials.map((t) => (
-              <TestimonialCard key={`dup-${t.name}`} testimonial={t} />
-            ))}
-          </div>
-        </div>
-
-        <div className="marquee-row relative overflow-hidden">
-          <div className="from-background pointer-events-none absolute inset-y-0 left-0 z-10 w-20 bg-linear-to-r" />
-          <div className="from-background pointer-events-none absolute inset-y-0 right-0 z-10 w-20 bg-linear-to-l" />
-
-          <div className="animate-marquee-reverse flex w-max">
-            {[...testimonials].reverse().map((t) => (
-              <TestimonialCard key={t.name} testimonial={t} />
-            ))}
-            {[...testimonials].reverse().map((t) => (
-              <TestimonialCard key={`dup-${t.name}`} testimonial={t} />
-            ))}
-          </div>
-        </div>
+        <Marquee
+          speed={40}
+          pauseOnHover
+          direction="right"
+          gradient
+          gradientColor="var(--background)"
+          gradientWidth={80}
+        >
+          {[...testimonials].reverse().map((t) => (
+            <TestimonialCard key={t.name} testimonial={t} />
+          ))}
+        </Marquee>
       </div>
     </section>
   );
