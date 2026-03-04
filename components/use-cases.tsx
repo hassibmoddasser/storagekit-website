@@ -44,7 +44,7 @@ export default function UseCases() {
           {useCases.map((useCase) => (
             <div
               key={useCase.title}
-              className="border-border bg-muted/30 hover:border-accent/30 hover:bg-muted/60 flex gap-4 rounded-2xl border p-6 transition-colors"
+              className="card-shine border-border bg-muted/30 hover:bg-muted/60 flex gap-4 rounded-2xl border p-6 transition-colors"
             >
               <div className="bg-accent/10 text-accent flex h-10 w-10 shrink-0 items-center justify-center rounded-xl">
                 <useCase.icon size={20} />

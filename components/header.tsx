@@ -77,7 +77,7 @@ export default function Header() {
             href="https://chrome.google.com/webstore"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-teal-600 text-accent-foreground inline-flex h-9 items-center rounded-lg px-4 text-sm font-medium transition-opacity hover:opacity-90"
+            className="btn-shine bg-teal-600 text-accent-foreground inline-flex h-9 items-center rounded-lg px-4 text-sm font-medium transition-opacity hover:opacity-90"
           >
             Add to Chrome
           </a>
@@ -112,7 +112,7 @@ export default function Header() {
               href="https://chrome.google.com/webstore"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-accent text-accent-foreground inline-flex h-9 items-center justify-center rounded-lg px-4 text-sm font-medium transition-opacity hover:opacity-90"
+              className="btn-shine bg-accent text-accent-foreground inline-flex h-9 items-center justify-center rounded-lg px-4 text-sm font-medium transition-opacity hover:opacity-90"
             >
               Add to Chrome
             </a>

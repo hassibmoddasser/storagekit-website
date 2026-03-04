@@ -64,7 +64,7 @@ export default function Features() {
           {features.map((feature) => (
             <div
               key={feature.title}
-              className="group border-border bg-muted/30 hover:border-accent/30 hover:bg-muted/60 rounded-2xl border p-6 transition-colors"
+              className="card-shine group border-border bg-muted/30 hover:bg-muted/60 rounded-2xl border p-6 transition-colors"
             >
               <div className="bg-accent/10 text-accent group-hover:bg-accent/20 flex h-10 w-10 items-center justify-center rounded-xl transition-colors">
                 <feature.icon size={20} />
