@@ -66,8 +66,8 @@ export default function Hero() {
             <Image
               src={heroImage}
               alt="StorageKit Chrome DevTools panel"
-              width={1200}
-              height={899}
+              width={1560}
+              height={1160}
               priority
               className="w-full h-auto"
             />
