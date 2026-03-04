@@ -1,8 +1,10 @@
 "use client";
 
 import { cn } from "@/utils/cn";
+import Autoplay from "embla-carousel-autoplay";
+import useEmblaCarousel from "embla-carousel-react";
 import { Camera, Eye, FileCode } from "lucide-react";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import SectionLabel from "./section-label";
 
 const tabs = [
@@ -33,105 +35,103 @@ const tabs = [
 ];
 
 export default function Showcase() {
-  const [activeTab, setActiveTab] = useState("inspector");
-  const tabsRef = useRef<Map<string, HTMLButtonElement>>(new Map());
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [pillStyle, setPillStyle] = useState({ left: 0, width: 0 });
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [
+    Autoplay({ delay: 5000, stopOnInteraction: false, stopOnMouseEnter: true }),
+  ]);
+  const [activeIndex, setActiveIndex] = useState(0);
 
-  const updatePill = useCallback(() => {
-    const button = tabsRef.current.get(activeTab);
-    const container = containerRef.current;
-    if (button && container) {
-      const containerRect = container.getBoundingClientRect();
-      const buttonRect = button.getBoundingClientRect();
-      setPillStyle({
-        left: buttonRect.left - containerRect.left,
-        width: buttonRect.width,
-      });
+  const onSelect = useCallback(() => {
+    if (!emblaApi) {
+      return;
     }
-  }, [activeTab]);
+
+    setActiveIndex(emblaApi.selectedScrollSnap());
+  }, [emblaApi]);
 
   useEffect(() => {
-    updatePill();
-    window.addEventListener("resize", updatePill);
-    return () => window.removeEventListener("resize", updatePill);
-  }, [updatePill]);
+    if (!emblaApi) {
+      return;
+    }
+
+    onSelect();
+    emblaApi.on("select", onSelect);
+
+    return () => {
+      emblaApi.off("select", onSelect);
+    };
+  }, [emblaApi, onSelect]);
+
+  const scrollTo = useCallback(
+    (index: number) => emblaApi?.scrollTo(index),
+    [emblaApi],
+  );
 
   return (
     <section className="border-border/50 border-t py-20 md:py-28">
-      <div className="mx-auto max-w-4xl px-6">
+      <div className="mx-auto max-w-5xl px-6">
         <SectionLabel label="In Action" heading="See it in action" />
 
-        <div className="mt-12 flex justify-center">
-          <div
-            ref={containerRef}
-            className="border-border bg-muted/50 relative inline-flex rounded-xl border p-1"
-          >
-            <div
-              className="bg-background absolute top-1 bottom-1 rounded-lg shadow-sm transition-all duration-300 ease-out"
-              style={{ left: pillStyle.left, width: pillStyle.width }}
-            />
-            {tabs.map((tab) => (
-              <button
-                key={tab.id}
-                ref={(el) => {
-                  if (el) tabsRef.current.set(tab.id, el);
-                }}
-                onClick={() => setActiveTab(tab.id)}
-                className={cn(
-                  "relative z-10 inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-colors duration-200",
-                  activeTab === tab.id
-                    ? "text-foreground"
-                    : "text-muted-foreground hover:text-foreground",
-                )}
-              >
-                <tab.icon size={16} />
-                {tab.label}
-              </button>
-            ))}
+        <div className="border-border bg-muted/30 mt-8 overflow-hidden rounded-2xl border">
+          <div ref={emblaRef} className="overflow-hidden">
+            <div className="-ml-6 flex">
+              {tabs.map((tab, index) => (
+                <div
+                  key={tab.id}
+                  className="min-w-0 flex-[0_0_100%] pl-6"
+                >
+                  <div className="grid items-center gap-8 p-6 md:grid-cols-2 md:p-10">
+                    <div
+                      className={cn(
+                        "transition-all delay-100 duration-500",
+                        activeIndex === index
+                          ? "translate-y-0 opacity-100"
+                          : "translate-y-2 opacity-0",
+                      )}
+                    >
+                      <div className="bg-accent/10 mb-4 inline-flex items-center gap-2 rounded-lg px-3 py-1.5 text-xs font-medium">
+                        <tab.icon size={14} className="text-accent" />
+                        <span className="text-accent">{tab.label}</span>
+                      </div>
+                      <h3 className="text-xl font-semibold tracking-tight md:text-2xl">
+                        {tab.title}
+                      </h3>
+                      <p className="text-muted-foreground mt-3 text-sm leading-relaxed md:text-base">
+                        {tab.description}
+                      </p>
+                    </div>
+
+                    <div className="from-muted to-muted/80 text-muted-foreground flex aspect-4/3 items-center justify-center rounded-xl bg-linear-to-br">
+                      <div className="text-center">
+                        <div className="bg-accent/10 mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-xl">
+                          <tab.icon size={24} className="text-accent" />
+                        </div>
+                        <p className="text-sm font-medium">
+                          {tab.label} Screenshot
+                        </p>
+                        <p className="text-muted-foreground mt-1 text-xs">
+                          Replace with actual screenshot
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
-        <div className="relative mt-8">
-          {tabs.map((tab) => (
-            <div
-              key={tab.id}
+        <div className="mt-5 flex justify-center gap-2">
+          {tabs.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => scrollTo(index)}
               className={cn(
-                "text-center transition-all duration-400 ease-in-out",
-                activeTab === tab.id
-                  ? "relative opacity-100"
-                  : "pointer-events-none absolute inset-x-0 top-0 opacity-0",
+                "h-2 rounded-full transition-all duration-300",
+                activeIndex === index
+                  ? "bg-accent w-6"
+                  : "bg-muted-foreground/30 hover:bg-muted-foreground/50 w-2",
               )}
-            >
-              <h3 className="text-lg font-semibold">{tab.title}</h3>
-              <p className="text-muted-foreground mx-auto mt-2 max-w-xl text-sm leading-relaxed">
-                {tab.description}
-              </p>
-            </div>
-          ))}
-        </div>
-
-        <div className="border-border bg-muted/50 relative mt-8 overflow-hidden rounded-2xl border shadow-xl">
-          {tabs.map((tab) => (
-            <div
-              key={tab.id}
-              className={cn(
-                "from-muted to-muted/80 text-muted-foreground flex aspect-video items-center justify-center bg-linear-to-br transition-all duration-400 ease-in-out",
-                activeTab === tab.id
-                  ? "relative opacity-100"
-                  : "pointer-events-none absolute inset-0 opacity-0",
-              )}
-            >
-              <div className="text-center">
-                <div className="bg-accent/10 mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-xl">
-                  <tab.icon size={24} className="text-accent" />
-                </div>
-                <p className="text-sm font-medium">{tab.label} Screenshot</p>
-                <p className="text-muted-foreground mt-1 text-xs">
-                  Replace with actual screenshot
-                </p>
-              </div>
-            </div>
+            />
           ))}
         </div>
       </div>
