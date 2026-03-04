@@ -16,7 +16,7 @@ export default function CTA() {
             href="https://chrome.google.com/webstore"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-accent text-accent-foreground shadow-accent/20 hover:shadow-accent/30 inline-flex h-12 items-center gap-2 rounded-xl px-6 text-base font-medium shadow-lg transition-all hover:opacity-90 hover:shadow-xl"
+            className="bg-teal-600 text-accent-foreground shadow-accent/20 hover:shadow-accent/30 inline-flex h-12 items-center gap-2 rounded-xl px-6 text-base font-medium shadow-lg transition-all hover:opacity-90 hover:shadow-xl"
           >
             <Chrome size={18} />
             Add to Chrome — It&apos;s Free

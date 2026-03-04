@@ -19,18 +19,21 @@ export default function Hero() {
           href="https://chrome.google.com/webstore"
           target="_blank"
           rel="noopener noreferrer"
-          className="shimmer-pill bg-background text-muted-foreground hover:text-foreground inline-flex flex-col items-center gap-1 rounded-full px-5 py-2.5 text-sm transition-colors"
+          className="shimmer-pill bg-background group inline-flex flex-col items-center gap-1 rounded-full px-8 py-2.5 text-sm"
         >
-          <span className="flex items-center gap-0.5">
-            {Array.from({ length: 5 }).map((_, i) => (
-              <Star
-                key={i}
-                size={14}
-                className="fill-amber-400 text-amber-400"
-              />
-            ))}
+          <span className="flex items-center gap-1.5">
+            <span className="flex items-center gap-0.5">
+              {Array.from({ length: 5 }).map((_, i) => (
+                <Star
+                  key={i}
+                  size={14}
+                  className="fill-amber-400 text-amber-400"
+                />
+              ))}
+            </span>
+            <span className="font-medium text-white">5.0</span>
           </span>
-          <span>Rated 5.0 on Chrome Web Store</span>
+          <span className="text-muted-foreground group-hover:text-foreground transition-colors">On the Chrome Web Store</span>
         </a>
 
         <h1 className="mx-auto mt-8 max-w-3xl text-3xl leading-tight font-bold tracking-tight md:text-5xl md:leading-[1.15]">
@@ -48,7 +51,7 @@ export default function Hero() {
             href="https://chrome.google.com/webstore"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-accent text-accent-foreground hover:shadow-accent/25 inline-flex h-11 items-center gap-2 rounded-xl px-6 text-sm font-medium transition-shadow hover:shadow-lg"
+            className="bg-teal-600 text-accent-foreground hover:shadow-accent/25 inline-flex h-11 items-center gap-2 rounded-xl px-6 text-sm font-medium transition-shadow hover:shadow-lg"
           >
             <Chrome size={16} />
             Add to Chrome — It&apos;s Free
