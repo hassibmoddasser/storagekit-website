@@ -1,23 +1,11 @@
-"use client";
+import Image from "next/image";
+import Link from "next/link";
 
 import { Chrome, Star } from "lucide-react";
-import { useCallback } from "react";
+
+import heroImage from "@/assets/screenshots/hero.jpg";
 
 export default function Hero() {
-  const handleSeeFeaturesClick = useCallback(
-    (e: React.MouseEvent<HTMLAnchorElement>) => {
-      const target = document.querySelector("#features");
-
-      if (!target) {
-        return;
-      }
-
-      e.preventDefault();
-      target.scrollIntoView({ behavior: "smooth", block: "start" });
-    },
-    [],
-  );
-
   return (
     <section className="relative overflow-hidden pt-32 pb-20 md:pt-40 md:pb-32">
       <div className="absolute inset-0 -z-10">
@@ -31,7 +19,7 @@ export default function Hero() {
           href="https://chrome.google.com/webstore"
           target="_blank"
           rel="noopener noreferrer"
-          className="shimmer-pill animate-fade-in-up bg-background text-muted-foreground hover:text-foreground inline-flex flex-col items-center gap-1 rounded-full px-5 py-2.5 text-sm transition-colors"
+          className="shimmer-pill bg-background text-muted-foreground hover:text-foreground inline-flex flex-col items-center gap-1 rounded-full px-5 py-2.5 text-sm transition-colors"
         >
           <span className="flex items-center gap-0.5">
             {Array.from({ length: 5 }).map((_, i) => (
@@ -45,17 +33,17 @@ export default function Hero() {
           <span>Rated 5.0 on Chrome Web Store</span>
         </a>
 
-        <h1 className="animate-fade-in-up-delay-1 mx-auto mt-8 max-w-3xl text-3xl leading-tight font-bold tracking-tight md:text-5xl md:leading-[1.15]">
+        <h1 className="mx-auto mt-8 max-w-3xl text-3xl leading-tight font-bold tracking-tight md:text-5xl md:leading-[1.15]">
           The Missing DevTools Panel for{" "}
           <span className="text-accent">Browser Storage</span>
         </h1>
 
-        <p className="animate-fade-in-up-delay-2 text-muted-foreground mx-auto mt-6 max-w-xl text-base leading-relaxed md:text-lg">
+        <p className="text-muted-foreground mx-auto mt-6 max-w-xl text-base leading-relaxed md:text-lg">
           Inspect, edit, and manage Local storage, Session storage, and Cookies
           in one clean, powerful interface.
         </p>
 
-        <div className="animate-fade-in-up-delay-3 mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <a
             href="https://chrome.google.com/webstore"
             target="_blank"
@@ -65,29 +53,24 @@ export default function Hero() {
             <Chrome size={16} />
             Add to Chrome — It&apos;s Free
           </a>
-          <a
-            href="#features"
-            onClick={handleSeeFeaturesClick}
+          <Link
+            href="/#features"
             className="border-border text-foreground hover:bg-muted inline-flex h-11 items-center rounded-xl border px-6 text-sm font-medium transition-colors"
           >
             See Features
-          </a>
+          </Link>
         </div>
 
-        <div className="animate-fade-in-up-delay-3 mt-16">
+        <div className="mt-16">
           <div className="border-border bg-muted/50 mx-auto max-w-4xl overflow-hidden rounded-2xl border shadow-2xl">
-            {/* Placeholder for extension screenshot */}
-            <div className="from-muted to-muted/80 text-muted-foreground flex aspect-video items-center justify-center bg-linear-to-br">
-              <div className="text-center">
-                <div className="bg-accent/10 mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl">
-                  <Chrome size={32} className="text-accent" />
-                </div>
-                <p className="text-sm font-medium">Extension Screenshot</p>
-                <p className="text-muted-foreground mt-1 text-xs">
-                  Replace with actual screenshot
-                </p>
-              </div>
-            </div>
+            <Image
+              src={heroImage}
+              alt="StorageKit Chrome DevTools panel"
+              width={1200}
+              height={899}
+              priority
+              className="w-full h-auto"
+            />
           </div>
         </div>
       </div>

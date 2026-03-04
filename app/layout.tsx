@@ -1,9 +1,11 @@
-import BackToTop from "@/components/back-to-top";
-import Header from "@/components/header";
 import { geistMono, geistSans } from "@/config/fonts";
 import { cn } from "@/utils/cn";
 import type { Metadata } from "next";
 import "./globals.css";
+
+import Header from "@/components/header";
+import Footer from "@/components/footer";
+import BackToTop from "@/components/back-to-top";
 
 export const metadata: Metadata = {
   title: {
@@ -38,7 +40,9 @@ export default function RootLayout({
       >
         <Header />
         {children}
+
         <BackToTop />
+        <Footer />
       </body>
     </html>
   );

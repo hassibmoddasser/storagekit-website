@@ -10,18 +10,15 @@ import UseCases from "@/components/use-cases";
 
 export default function Home() {
   return (
-    <>
-      <main>
-        <Hero />
-        <Problem />
-        <Features />
-        <Showcase />
-        <Testimonials />
-        <UseCases />
-        <FAQ />
-        <CTA />
-      </main>
-      <Footer />
-    </>
+    <main>
+      <Hero />
+      <Problem />
+      <Features />
+      <Showcase />
+      <Testimonials />
+      <UseCases />
+      <FAQ />
+      <CTA />
+    </main>
   );
 }
