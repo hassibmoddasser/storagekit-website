@@ -6,36 +6,46 @@ import SectionLabel from "./section-label";
 
 const testimonials = [
   {
-    name: "Alex Chen",
+    name: "Shafiq Farokhi",
     quote:
-      "Switching between user states used to mean logging out and back in. Now I just restore a snapshot.",
+      "Clean UI, good performance, and very practical features. It improved my workflow a lot.",
   },
   {
-    name: "Sarah Miller",
+    name: "Mohammad Emad Rasooli",
     quote:
-      "The JWT decoding alone is worth installing. No more jumping to external tools.",
+      "Nice extensions for All developers, I use it and it look amazing and useful. Thanks to developer.",
   },
   {
-    name: "James Park",
+    name: "Ab.Raziq Quraishi",
     quote:
-      "I export storage snapshots for bug reports. The dev team can reproduce issues instantly.",
+      "Really handy tool for day-to-day debugging. Saving and restoring snapshots is a huge time-saver.",
   },
   {
-    name: "Priya Sharma",
+    name: "Monira Karimi",
     quote:
-      "Finally, a storage panel that doesn't feel like an afterthought. Clean, fast, and reliable.",
+      "Much easier to manage browser storage than using DevTools.",
   },
   {
-    name: "Marcus Lee",
-    quote:
-      "We onboard new developers with shared snapshots. Saves hours of environment setup.",
+    name: "Mujtaba Sadat",
+    quote: "Very efficient tool.",
   },
   {
-    name: "Elena Torres",
+    name: "Mohammad Hojjat Mahdave",
     quote:
-      "The live inspector is incredibly smooth. I can edit storage values and see results in real time.",
+      "I was tired of going through the DevTools Application tab just to change a single value. A handy tool for inspecting browser storage.",
+  },
+  {
+    name: "Zalmai Yaghoobi",
+    quote:
+      "I've been using Storagekit for a while now, and it has made debugging much easier. With this extension, everything is in one place and clearly organized.",
+  },
+  {
+    name: "Omid Ibrahimy",
+    quote:
+      "I've been dealing more with browser storage lately, and this extension made my life easier. I love how the storage inspection and snapshot come in one place.",
   },
 ];
+
 
 function TestimonialCard({
   testimonial,
@@ -69,7 +79,7 @@ export default function Testimonials() {
         <SectionLabel label="Testimonials" heading="Loved by developers" />
       </div>
 
-      <div className="mt-16">
+      <div className="mt-16 space-y-6">
         <Marquee
           speed={40}
           pauseOnHover
@@ -78,6 +88,19 @@ export default function Testimonials() {
           gradientWidth={80}
         >
           {testimonials.map((t) => (
+            <TestimonialCard key={t.name} testimonial={t} />
+          ))}
+        </Marquee>
+
+        <Marquee
+          speed={40}
+          pauseOnHover
+          direction="right"
+          gradient
+          gradientColor="var(--background)"
+          gradientWidth={80}
+        >
+          {[...testimonials].reverse().map((t) => (
             <TestimonialCard key={t.name} testimonial={t} />
           ))}
         </Marquee>
