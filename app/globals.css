@@ -131,3 +131,41 @@ html {
   offset-rotate: 0deg;
   animation: border-beam-orbit linear infinite;
 }
+
+@property --shimmer-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes shimmer-rotate {
+  to {
+    --shimmer-angle: 360deg;
+  }
+}
+
+.shimmer-pill {
+  position: relative;
+  isolation: isolate;
+}
+
+.shimmer-pill::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  padding: 1px;
+  background: conic-gradient(
+    from var(--shimmer-angle),
+    var(--border) 0%,
+    var(--accent) 15%,
+    var(--border) 30%,
+    var(--border) 100%
+  );
+  animation: shimmer-rotate 3s linear infinite;
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  z-index: -1;
+}

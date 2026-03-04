@@ -1,4 +1,4 @@
-import { Chrome } from "lucide-react";
+import { Chrome, Star } from "lucide-react";
 
 export default function Hero() {
   return (
@@ -14,10 +14,18 @@ export default function Hero() {
           href="https://chrome.google.com/webstore"
           target="_blank"
           rel="noopener noreferrer"
-          className="animate-fade-in-up border-border bg-muted text-muted-foreground hover:border-accent/30 inline-flex items-center gap-1.5 rounded-full border px-4 py-1.5 text-sm transition-colors"
+          className="shimmer-pill animate-fade-in-up bg-background text-muted-foreground hover:text-foreground inline-flex flex-col items-center gap-1 rounded-full px-5 py-2.5 text-sm transition-colors"
         >
-          <span className="text-amber-400">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          Rated 5.0 on Chrome Web Store
+          <span className="flex items-center gap-0.5">
+            {Array.from({ length: 5 }).map((_, i) => (
+              <Star
+                key={i}
+                size={14}
+                className="fill-amber-400 text-amber-400"
+              />
+            ))}
+          </span>
+          <span>Rated 5.0 on Chrome Web Store</span>
         </a>
 
         <h1 className="animate-fade-in-up-delay-1 mx-auto mt-8 max-w-3xl text-3xl leading-tight font-bold tracking-tight md:text-5xl md:leading-[1.15]">
