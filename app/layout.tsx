@@ -2,7 +2,7 @@ import { geistSans, spaceGrotesk } from "@/config/fonts";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/utils/cn";
 import { GoogleAnalytics } from "@next/third-parties/google";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 import BackToTop from "@/components/back-to-top";
@@ -10,6 +10,13 @@ import Footer from "@/components/footer";
 import Header from "@/components/header";
 
 import ThemeProvider from "@/components/providers/theme-provider";
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#09090b" },
+  ],
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
