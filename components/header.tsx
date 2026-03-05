@@ -50,7 +50,7 @@ export default function Header() {
   return (
     <header
       className={cn(
-        "fixed top-0 z-50 w-full border-b transition-all duration-300",
+        "fixed top-0 z-50 w-full border-b pt-[env(safe-area-inset-top)] pl-[env(safe-area-inset-left)] pr-[env(safe-area-inset-right)] transition-all duration-300",
         scrolled
           ? "border-border/50 bg-background/80 backdrop-blur-xl"
           : "border-transparent bg-transparent",
