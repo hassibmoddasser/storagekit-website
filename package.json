@@ -10,6 +10,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@next/third-parties": "^16.1.6",
     "@tailwindcss/typography": "^0.5.19",
     "clsx": "^2.1.1",
     "embla-carousel-autoplay": "^8.6.0",

@@ -1,6 +1,7 @@
 import { geistSans, spaceGrotesk } from "@/config/fonts";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/utils/cn";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import type { Metadata } from "next";
 import "./globals.css";
 
@@ -83,6 +84,10 @@ export default function RootLayout({
       <body
         className={cn(geistSans.variable, spaceGrotesk.variable, "antialiased")}
       >
+        {process.env.GOOGLE_ANALYTICS_MEASUREMENT_ID && (
+          <GoogleAnalytics gaId={process.env.GOOGLE_ANALYTICS_MEASUREMENT_ID} />
+        )}
+
         <ThemeProvider>
           <Header />
           {children}
