@@ -16,7 +16,7 @@ export default function Hero() {
 
       <div className="mx-auto max-w-6xl px-6 text-center">
         <a
-          href="https://chrome.google.com/webstore"
+          href="https://chromewebstore.google.com/detail/lnfhnhfnlkjemkgdcppdlijpdjdmnnjd?utm_source=item-share-cb"
           target="_blank"
           rel="noopener noreferrer"
           className="shimmer-pill bg-background group inline-flex flex-col items-center gap-1 rounded-full px-8 py-2.5 text-sm"
@@ -50,7 +50,7 @@ export default function Hero() {
 
         <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <a
-            href="https://chrome.google.com/webstore"
+            href="https://chromewebstore.google.com/detail/lnfhnhfnlkjemkgdcppdlijpdjdmnnjd?utm_source=item-share-cb"
             target="_blank"
             rel="noopener noreferrer"
             className="btn-shine text-accent-foreground inline-flex items-center gap-2 rounded-lg bg-teal-600 px-3.5 py-2.5 text-sm font-semibold"

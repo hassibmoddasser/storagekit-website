@@ -74,7 +74,7 @@ export default function Header() {
 
         <div className="hidden md:block">
           <a
-            href="https://chrome.google.com/webstore"
+            href="https://chromewebstore.google.com/detail/lnfhnhfnlkjemkgdcppdlijpdjdmnnjd?utm_source=item-share-cb"
             target="_blank"
             rel="noopener noreferrer"
             className="btn-shine text-accent-foreground inline-flex h-9 items-center rounded-lg bg-teal-600 px-4 text-sm font-medium transition-opacity hover:opacity-90"
@@ -109,7 +109,7 @@ export default function Header() {
               </a>
             ))}
             <a
-              href="https://chrome.google.com/webstore"
+              href="https://chromewebstore.google.com/detail/lnfhnhfnlkjemkgdcppdlijpdjdmnnjd?utm_source=item-share-cb"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-shine bg-accent text-accent-foreground inline-flex h-9 items-center justify-center rounded-lg px-4 text-sm font-medium transition-opacity hover:opacity-90"

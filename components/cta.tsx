@@ -15,7 +15,7 @@ export default function CTA() {
             </p>
             <div className="mt-10 flex items-center justify-center gap-6">
               <a
-                href="https://chrome.google.com/webstore"
+                href="https://chromewebstore.google.com/detail/lnfhnhfnlkjemkgdcppdlijpdjdmnnjd?utm_source=item-share-cb"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-shine text-accent-foreground inline-flex items-center gap-2 rounded-lg bg-teal-600 px-4 py-2.5 text-sm font-semibold"

@@ -15,7 +15,7 @@ export default function Footer() {
 
           <nav className="flex items-center gap-6">
             <a
-              href="https://chrome.google.com/webstore"
+              href="https://chromewebstore.google.com/detail/lnfhnhfnlkjemkgdcppdlijpdjdmnnjd?utm_source=item-share-cb"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-foreground text-sm transition-colors"
