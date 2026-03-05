@@ -1,6 +1,10 @@
 export default function Problem() {
   return (
-    <section className="border-border/50 border-t py-20 md:py-28">
+    <section className="relative overflow-hidden bg-muted/40 py-14 md:py-20 rounded-4xl">
+      <div className="absolute inset-0 -z-10">
+        <div className="bg-accent/5 absolute top-1/2 left-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl" />
+      </div>
+
       <div className="mx-auto max-w-3xl px-6 text-center">
         <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">
           Debugging storage shouldn&apos;t slow you down

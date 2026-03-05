@@ -1,4 +1,4 @@
-import { geistMono, geistSans } from "@/config/fonts";
+import { geistSans, spaceGrotesk } from "@/config/fonts";
 import { cn } from "@/utils/cn";
 import type { Metadata } from "next";
 import "./globals.css";
@@ -36,7 +36,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={cn(geistSans.variable, geistMono.variable, "antialiased")}
+        className={cn(geistSans.variable, spaceGrotesk.variable, "antialiased")}
       >
         <Header />
         {children}

@@ -51,14 +51,14 @@ export default function Hero() {
             href="https://chrome.google.com/webstore"
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-shine bg-teal-600 text-accent-foreground inline-flex h-11 items-center gap-2 rounded-xl px-6 text-sm font-medium"
+            className="btn-shine bg-teal-600 text-accent-foreground inline-flex py-2.5 items-center gap-2 rounded-lg px-3.5 text-sm font-semibold"
           >
             <Chrome size={16} />
             Add to Chrome — It&apos;s Free
           </a>
           <Link
             href="/#features"
-            className="btn-shine border-border text-foreground hover:bg-muted inline-flex h-11 items-center rounded-xl border px-6 text-sm font-medium transition-colors"
+            className="btn-shine border-border text-foreground hover:bg-muted inline-flex py-2.5 items-center rounded-lg border px-3.5 text-sm font-semibold transition-colors"
           >
             See Features
           </Link>

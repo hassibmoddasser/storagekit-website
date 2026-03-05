@@ -51,7 +51,7 @@ function TestimonialCard({
   testimonial: (typeof testimonials)[number];
 }) {
   return (
-    <div className="border-border bg-muted/30 mx-3 w-[300px] shrink-0 rounded-xl border p-5">
+    <div className="border-border bg-muted/30 mx-3 w-80 shrink-0 rounded-xl border p-5">
       <div className="flex gap-0.5">
         {Array.from({ length: 5 }).map((_, i) => (
           <Star key={i} size={12} className="fill-accent text-accent" />
@@ -71,7 +71,7 @@ export default function Testimonials() {
   return (
     <section
       id="testimonials"
-      className="border-border/50 border-t py-20 md:py-28"
+      className="py-14 md:py-20"
       style={{ overflowAnchor: "none" }}
     >
       <div className="mx-auto max-w-6xl px-6">

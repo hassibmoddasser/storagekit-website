@@ -3,10 +3,10 @@
 
 :root {
   --background: white;
-  --foreground: var(--color-neutral-900);
-  --muted: var(--color-neutral-100);
-  --muted-foreground: var(--color-neutral-500);
-  --border: var(--color-neutral-200);
+  --foreground: var(--color-zinc-900);
+  --muted: var(--color-zinc-100);
+  --muted-foreground: var(--color-zinc-500);
+  --border: var(--color-zinc-200);
   --accent: var(--color-teal-500);
   --accent-foreground: white;
 }
@@ -20,7 +20,7 @@
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-space-grotesk);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -39,6 +39,10 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-geist-sans), system-ui, sans-serif;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-space-grotesk), system-ui, sans-serif;
 }
 
 @keyframes fade-in-up {

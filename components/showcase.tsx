@@ -1,138 +1,136 @@
-"use client";
-
 import { cn } from "@/utils/cn";
-import Autoplay from "embla-carousel-autoplay";
-import useEmblaCarousel from "embla-carousel-react";
-import { Camera, Eye, FileCode } from "lucide-react";
-import { useCallback, useEffect, useState } from "react";
+import {
+  Camera,
+  Eye,
+  FileCode,
+  FileDown,
+  HardDrive,
+} from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import SectionLabel from "./section-label";
 
-const tabs = [
-  {
-    id: "inspector",
-    label: "Inspector",
-    icon: Eye,
-    title: "Live Storage Inspector",
-    description:
-      "Browse all your storage data in a clean, organized interface. Edit values inline, search across keys, and see changes reflected instantly.",
-  },
-  {
-    id: "snapshots",
-    label: "Snapshots",
-    icon: Camera,
-    title: "Save & Restore States",
-    description:
-      "Capture your entire storage state (Local storage, Session storage, and Cookies) in a single snapshot. Restore it anytime to recreate that exact state.",
-  },
-  {
-    id: "decoding",
-    label: "Decoding",
-    icon: FileCode,
-    title: "Automatic Value Decoding",
-    description:
-      "StorageKit automatically detects encoded values and shows them decoded. JSON is pretty-printed, JWTs reveal their payload, and Base64 values are decoded inline.",
-  },
-];
+interface ShowcaseItem {
+  id: string;
+  label: string;
+  icon: LucideIcon;
+  title: string;
+  description: string;
+}
+
+function LargeCard({
+  item,
+  className,
+}: {
+  item: ShowcaseItem;
+  className?: string;
+}) {
+  const Icon = item.icon;
+  return (
+    <div
+      className={cn(
+        "group card-shine border-border flex flex-col overflow-hidden rounded-lg border transition-colors card-shine bg-muted/30 hover:bg-muted/60",
+        className,
+      )}
+    >
+      <div className="p-8">
+        <div className="bg-accent/10 text-accent flex h-10 w-10 items-center justify-center rounded-lg">
+          <Icon size={20} />
+        </div>
+        <h3 className="mt-3 text-lg font-semibold tracking-tight">
+          {item.title}
+        </h3>
+        <p className="text-muted-foreground mt-2 text-sm leading-relaxed">
+          {item.description}
+        </p>
+      </div>
+    </div>
+  );
+}
+
+function SmallCard({
+  item,
+  className,
+}: {
+  item: ShowcaseItem;
+  className?: string;
+}) {
+  const Icon = item.icon;
+  return (
+    <div
+      className={cn(
+        "group card-shine border-border flex flex-col overflow-hidden rounded-lg border transition-colors card-shine bg-muted/30 hover:bg-muted/60",
+        className,
+      )}
+    >
+      <div className="p-8">
+        <div className="bg-accent/10 text-accent flex h-10 w-10 items-center justify-center rounded-lg">
+          <Icon size={20} />
+        </div>
+        <h3 className="mt-3 text-lg font-semibold tracking-tight">
+          {item.title}
+        </h3>
+        <p className="text-muted-foreground mt-2 text-sm leading-relaxed">
+          {item.description}
+        </p>
+      </div>
+    </div>
+  );
+}
 
 export default function Showcase() {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [
-    Autoplay({ delay: 5000, stopOnInteraction: false, stopOnMouseEnter: true }),
-  ]);
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  const onSelect = useCallback(() => {
-    if (!emblaApi) {
-      return;
-    }
-
-    setActiveIndex(emblaApi.selectedScrollSnap());
-  }, [emblaApi]);
-
-  useEffect(() => {
-    if (!emblaApi) {
-      return;
-    }
-
-    onSelect();
-    emblaApi.on("select", onSelect);
-
-    return () => {
-      emblaApi.off("select", onSelect);
-    };
-  }, [emblaApi, onSelect]);
-
-  const scrollTo = useCallback(
-    (index: number) => emblaApi?.scrollTo(index),
-    [emblaApi],
-  );
-
   return (
-    <section className="border-border/50 border-t py-20 md:py-28">
-      <div className="mx-auto max-w-5xl px-6">
-        <SectionLabel label="In Action" heading="See it in action" />
+    <section className="py-14 md:py-20">
+      <div className="mx-auto max-w-6xl px-6">
+        <SectionLabel
+          label="Features"
+          heading="Everything you need to debug storage"
+        />
 
-        <div className="border-border bg-muted/30 mt-8 overflow-hidden rounded-2xl border">
-          <div ref={emblaRef} className="overflow-hidden">
-            <div className="-ml-6 flex">
-              {tabs.map((tab, index) => (
-                <div
-                  key={tab.id}
-                  className="min-w-0 flex-[0_0_100%] pl-6"
-                >
-                  <div className="grid items-center gap-8 p-6 md:grid-cols-2 md:p-10">
-                    <div
-                      className={cn(
-                        "transition-all delay-100 duration-500",
-                        activeIndex === index
-                          ? "translate-y-0 opacity-100"
-                          : "translate-y-2 opacity-0",
-                      )}
-                    >
-                      <div className="bg-accent/10 mb-4 inline-flex items-center gap-2 rounded-lg px-3 py-1.5 text-xs font-medium">
-                        <tab.icon size={14} className="text-accent" />
-                        <span className="text-accent">{tab.label}</span>
-                      </div>
-                      <h3 className="text-xl font-semibold tracking-tight md:text-2xl">
-                        {tab.title}
-                      </h3>
-                      <p className="text-muted-foreground mt-3 text-sm leading-relaxed md:text-base">
-                        {tab.description}
-                      </p>
-                    </div>
+        <div className="mt-12 grid gap-5 md:grid-cols-2">
+          <LargeCard item={{
+            id: "inspector",
+            label: "Inspector",
+            icon: Eye,
+            title: "Live Storage Inspector",
+            description:
+              "Browse all your storage data in a clean, organized interface. Edit values inline, search across keys, and see changes reflected instantly in the DevTools panel as you work.",
+          }} className="rounded-tl-3xl" />
 
-                    <div className="from-muted to-muted/80 text-muted-foreground flex aspect-4/3 items-center justify-center rounded-xl bg-linear-to-br">
-                      <div className="text-center">
-                        <div className="bg-accent/10 mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-xl">
-                          <tab.icon size={24} className="text-accent" />
-                        </div>
-                        <p className="text-sm font-medium">
-                          {tab.label} Screenshot
-                        </p>
-                        <p className="text-muted-foreground mt-1 text-xs">
-                          Replace with actual screenshot
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+          <LargeCard item={{
+            id: "snapshots",
+            label: "Snapshots",
+            icon: Camera,
+            title: "Save & Restore States",
+            description:
+              "Capture your entire storage state including Local storage, Session storage, and Cookies in a single snapshot. Restore it anytime with one click to recreate that exact state.",
+          }} className="rounded-tr-3xl" />
         </div>
 
-        <div className="mt-5 flex justify-center gap-2">
-          {tabs.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => scrollTo(index)}
-              className={cn(
-                "h-2 rounded-full transition-all duration-300",
-                activeIndex === index
-                  ? "bg-accent w-6"
-                  : "bg-muted-foreground/30 hover:bg-muted-foreground/50 w-2",
-              )}
-            />
-          ))}
+        <div className="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <SmallCard item={{
+            id: "decoding",
+            label: "Decoding",
+            icon: FileCode,
+            title: "Automatic Value Decoding",
+            description:
+              "StorageKit detects encoded values and shows them decoded. JSON pretty-printed, JWTs reveal payloads, Base64 decoded.",
+          }} className="rounded-bl-3xl" />
+          <SmallCard item={{
+            id: "storage",
+            label: "Storage",
+            icon: HardDrive,
+            title: "Storage Overview",
+            description:
+              "See item counts and size for Local, Session storage, and Cookies at a glance. Clear by type or wipe all in one action.",
+          }} />
+          <SmallCard item={{
+            id: "export-import",
+            label: "Export & Import",
+            icon: FileDown,
+            title: "Backup and Restore Snapshots",
+            description:
+              "Export snapshots to json for backup or sharing. Import to restore on another machine or after reinstalling.",
+          }} className="rounded-br-3xl" />
         </div>
       </div>
     </section>

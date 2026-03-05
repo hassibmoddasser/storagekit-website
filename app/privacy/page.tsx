@@ -9,7 +9,7 @@ export default function PrivacyPage() {
   return (
     <>
       <main className="mx-auto max-w-3xl px-6 pt-32 pb-16">
-        <article className="prose prose-base prose-neutral dark:prose-invert max-w-none">
+        <article className="prose prose-base prose-zinc dark:prose-invert max-w-none">
           <h1 className="mb-0">Privacy Policy</h1>
           <p className="text-muted-foreground mt-2 text-sm">
             Last updated: March 1, 2026

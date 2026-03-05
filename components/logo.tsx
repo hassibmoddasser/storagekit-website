@@ -23,7 +23,7 @@ export default function Logo() {
         height={28}
         className="rounded-lg"
       />
-      <span>
+      <span className="font-heading">
         Storage<span className="text-teal-400">Kit</span>
       </span>
     </Link>
