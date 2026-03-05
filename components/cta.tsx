@@ -4,7 +4,7 @@ export default function CTA() {
   return (
     <section className="py-14 md:py-20">
       <div className="mx-auto max-w-6xl px-6">
-        <div className="relative isolate overflow-hidden rounded-3xl border border-border bg-muted/30 px-6 py-16 sm:py-20 lg:px-8">
+        <div className="border-border bg-muted/30 relative isolate overflow-hidden rounded-3xl border px-6 py-16 sm:py-20 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-3xl font-semibold tracking-tight text-balance md:text-4xl">
               Ready to debug smarter?
@@ -18,7 +18,7 @@ export default function CTA() {
                 href="https://chrome.google.com/webstore"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-shine bg-teal-600 text-accent-foreground inline-flex py-2.5 items-center gap-2 rounded-lg px-4 text-sm font-semibold"
+                className="btn-shine text-accent-foreground inline-flex items-center gap-2 rounded-lg bg-teal-600 px-4 py-2.5 text-sm font-semibold"
               >
                 <Chrome size={18} />
                 Add to Chrome — It&apos;s Free

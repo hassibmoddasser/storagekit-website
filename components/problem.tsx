@@ -1,6 +1,6 @@
 export default function Problem() {
   return (
-    <section className="relative overflow-hidden bg-muted/40 py-14 md:py-20 rounded-4xl">
+    <section className="bg-muted/40 relative overflow-hidden rounded-4xl py-14 md:py-20">
       <div className="absolute inset-0 -z-10">
         <div className="bg-accent/5 absolute top-1/2 left-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl" />
       </div>

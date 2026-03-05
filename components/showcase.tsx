@@ -1,12 +1,6 @@
 import { cn } from "@/utils/cn";
-import {
-  Camera,
-  Eye,
-  FileCode,
-  FileDown,
-  HardDrive,
-} from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import { Camera, Eye, FileCode, FileDown, HardDrive } from "lucide-react";
 import SectionLabel from "./section-label";
 
 interface ShowcaseItem {
@@ -28,7 +22,7 @@ function LargeCard({
   return (
     <div
       className={cn(
-        "group card-shine border-border flex flex-col overflow-hidden rounded-lg border transition-colors card-shine bg-muted/30 hover:bg-muted/60",
+        "group card-shine border-border card-shine bg-muted/30 hover:bg-muted/60 flex flex-col overflow-hidden rounded-lg border transition-colors",
         className,
       )}
     >
@@ -58,7 +52,7 @@ function SmallCard({
   return (
     <div
       className={cn(
-        "group card-shine border-border flex flex-col overflow-hidden rounded-lg border transition-colors card-shine bg-muted/30 hover:bg-muted/60",
+        "group card-shine border-border card-shine bg-muted/30 hover:bg-muted/60 flex flex-col overflow-hidden rounded-lg border transition-colors",
         className,
       )}
     >
@@ -87,50 +81,64 @@ export default function Showcase() {
         />
 
         <div className="mt-12 grid gap-5 md:grid-cols-2">
-          <LargeCard item={{
-            id: "inspector",
-            label: "Inspector",
-            icon: Eye,
-            title: "Live Storage Inspector",
-            description:
-              "Browse all your storage data in a clean, organized interface. Edit values inline, search across keys, and see changes reflected instantly in the DevTools panel as you work.",
-          }} className="rounded-tl-3xl" />
+          <LargeCard
+            item={{
+              id: "inspector",
+              label: "Inspector",
+              icon: Eye,
+              title: "Live Storage Inspector",
+              description:
+                "Browse all your storage data in a clean, organized interface. Edit values inline, search across keys, and see changes reflected instantly in the DevTools panel as you work.",
+            }}
+            className="rounded-tl-3xl"
+          />
 
-          <LargeCard item={{
-            id: "snapshots",
-            label: "Snapshots",
-            icon: Camera,
-            title: "Save & Restore States",
-            description:
-              "Capture your entire storage state including Local storage, Session storage, and Cookies in a single snapshot. Restore it anytime with one click to recreate that exact state.",
-          }} className="rounded-tr-3xl" />
+          <LargeCard
+            item={{
+              id: "snapshots",
+              label: "Snapshots",
+              icon: Camera,
+              title: "Save & Restore States",
+              description:
+                "Capture your entire storage state including Local storage, Session storage, and Cookies in a single snapshot. Restore it anytime with one click to recreate that exact state.",
+            }}
+            className="rounded-tr-3xl"
+          />
         </div>
 
         <div className="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          <SmallCard item={{
-            id: "decoding",
-            label: "Decoding",
-            icon: FileCode,
-            title: "Automatic Value Decoding",
-            description:
-              "StorageKit detects encoded values and shows them decoded. JSON pretty-printed, JWTs reveal payloads, Base64 decoded.",
-          }} className="rounded-bl-3xl" />
-          <SmallCard item={{
-            id: "storage",
-            label: "Storage",
-            icon: HardDrive,
-            title: "Storage Overview",
-            description:
-              "See item counts and size for Local, Session storage, and Cookies at a glance. Clear by type or wipe all in one action.",
-          }} />
-          <SmallCard item={{
-            id: "export-import",
-            label: "Export & Import",
-            icon: FileDown,
-            title: "Backup and Restore Snapshots",
-            description:
-              "Export snapshots to json for backup or sharing. Import to restore on another machine or after reinstalling.",
-          }} className="rounded-br-3xl" />
+          <SmallCard
+            item={{
+              id: "decoding",
+              label: "Decoding",
+              icon: FileCode,
+              title: "Automatic Value Decoding",
+              description:
+                "StorageKit detects encoded values and shows them decoded. JSON pretty-printed, JWTs reveal payloads, Base64 decoded.",
+            }}
+            className="rounded-bl-3xl"
+          />
+          <SmallCard
+            item={{
+              id: "storage",
+              label: "Storage",
+              icon: HardDrive,
+              title: "Storage Overview",
+              description:
+                "See item counts and size for Local, Session storage, and Cookies at a glance. Clear by type or wipe all in one action.",
+            }}
+          />
+          <SmallCard
+            item={{
+              id: "export-import",
+              label: "Export & Import",
+              icon: FileDown,
+              title: "Backup and Restore Snapshots",
+              description:
+                "Export snapshots to json for backup or sharing. Import to restore on another machine or after reinstalling.",
+            }}
+            className="rounded-br-3xl"
+          />
         </div>
       </div>
     </section>

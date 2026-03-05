@@ -33,7 +33,9 @@ export default function Hero() {
             </span>
             <span className="font-medium text-white">5.0</span>
           </span>
-          <span className="text-muted-foreground group-hover:text-foreground transition-colors">On the Chrome Web Store</span>
+          <span className="text-muted-foreground group-hover:text-foreground transition-colors">
+            On the Chrome Web Store
+          </span>
         </a>
 
         <h1 className="mx-auto mt-8 max-w-3xl text-3xl leading-tight font-bold tracking-tight md:text-5xl md:leading-[1.15]">
@@ -51,14 +53,14 @@ export default function Hero() {
             href="https://chrome.google.com/webstore"
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-shine bg-teal-600 text-accent-foreground inline-flex py-2.5 items-center gap-2 rounded-lg px-3.5 text-sm font-semibold"
+            className="btn-shine text-accent-foreground inline-flex items-center gap-2 rounded-lg bg-teal-600 px-3.5 py-2.5 text-sm font-semibold"
           >
             <Chrome size={16} />
             Add to Chrome — It&apos;s Free
           </a>
           <Link
             href="/#features"
-            className="btn-shine border-border text-foreground hover:bg-muted inline-flex py-2.5 items-center rounded-lg border px-3.5 text-sm font-semibold transition-colors"
+            className="btn-shine border-border text-foreground hover:bg-muted inline-flex items-center rounded-lg border px-3.5 py-2.5 text-sm font-semibold transition-colors"
           >
             See Features
           </Link>
@@ -72,7 +74,7 @@ export default function Hero() {
               width={1560}
               height={1160}
               priority
-              className="w-full h-auto"
+              className="h-auto w-full"
             />
           </div>
         </div>

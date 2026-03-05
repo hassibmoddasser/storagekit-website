@@ -3,9 +3,9 @@ import { cn } from "@/utils/cn";
 import type { Metadata } from "next";
 import "./globals.css";
 
-import Header from "@/components/header";
-import Footer from "@/components/footer";
 import BackToTop from "@/components/back-to-top";
+import Footer from "@/components/footer";
+import Header from "@/components/header";
 
 export const metadata: Metadata = {
   title: {

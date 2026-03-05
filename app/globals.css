@@ -41,7 +41,9 @@ body {
   font-family: var(--font-geist-sans), system-ui, sans-serif;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   font-family: var(--font-space-grotesk), system-ui, sans-serif;
 }
 

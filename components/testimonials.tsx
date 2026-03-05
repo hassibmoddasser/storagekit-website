@@ -40,8 +40,7 @@ const testimonials = [
   },
   {
     name: "Omid Ibrahimy",
-    quote:
-      "I love how the storage inspection and snapshot come in one place.",
+    quote: "I love how the storage inspection and snapshot come in one place.",
   },
 ];
 
