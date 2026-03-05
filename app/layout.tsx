@@ -1,4 +1,5 @@
 import { geistSans, spaceGrotesk } from "@/config/fonts";
+import { siteConfig } from "@/config/site";
 import { cn } from "@/utils/cn";
 import type { Metadata } from "next";
 import "./globals.css";
@@ -10,12 +11,12 @@ import Header from "@/components/header";
 import ThemeProvider from "@/components/providers/theme-provider";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
   title: {
-    default: "StorageKit — The Missing DevTools Panel for Browser Storage",
+    default: siteConfig.title,
     template: "%s — StorageKit",
   },
-  description:
-    "Inspect, edit, and manage Local storage, Session storage, and Cookies in one clean, powerful Chrome DevTools panel.",
+  description: siteConfig.description,
   keywords: [
     "chrome extension",
     "web storage",
@@ -26,8 +27,50 @@ export const metadata: Metadata = {
     "developer tools",
     "devtools",
     "snapshots",
+    "browser storage",
+    "chrome devtools",
+    "storage manager",
+    "cookie editor",
+    "web development",
   ],
-  authors: [{ name: "Hassib Moddasser" }],
+  authors: [{ name: siteConfig.author.name, url: siteConfig.author.url }],
+  creator: siteConfig.author.name,
+  publisher: siteConfig.author.name,
+  formatDetection: {
+    email: false,
+    telephone: false,
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: siteConfig.url,
+    siteName: siteConfig.name,
+    title: siteConfig.title,
+    description: siteConfig.description,
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: siteConfig.title,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.title,
+    description: siteConfig.description,
+  },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+    apple: "/apple-touch-icon.png",
+  },
+  alternates: {
+    canonical: siteConfig.url,
+  },
 };
 
 export default function RootLayout({
