@@ -50,10 +50,12 @@ export default function Header() {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 border-b pt-[env(safe-area-inset-top)] pl-[env(safe-area-inset-left)] pr-[env(safe-area-inset-right)] transition-all duration-300",
-        scrolled
-          ? "header-blur border-border/50 bg-background/80"
-          : "border-transparent bg-transparent",
+        "absolute top-0 z-50 w-full border-b transition-all duration-300 md:fixed",
+        mobileOpen
+          ? "border-border/50 bg-background"
+          : scrolled
+            ? "border-border/50 bg-background/80 backdrop-blur-xl"
+            : "border-transparent bg-transparent",
       )}
     >
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
@@ -92,9 +94,14 @@ export default function Header() {
         </button>
       </div>
 
-      {mobileOpen && (
-        <div className="border-border bg-background border-t px-6 py-4 md:hidden">
-          <nav className="flex flex-col gap-4">
+      <div
+        className={cn(
+          "grid transition-[grid-template-rows] duration-300 ease-in-out md:hidden",
+          mobileOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
+        )}
+      >
+        <div className="overflow-hidden">
+          <nav className="flex flex-col gap-4 px-6 py-4">
             {navLinks.map((link) => (
               <a
                 key={link.href}
@@ -118,7 +125,7 @@ export default function Header() {
             </a>
           </nav>
         </div>
-      )}
+      </div>
     </header>
   );
 }

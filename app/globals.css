@@ -190,11 +190,6 @@ h3 {
   transform: translateX(100%);
 }
 
-.header-blur {
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
-  backdrop-filter: blur(24px) saturate(180%);
-}
-
 .shimmer-pill {
   position: relative;
   isolation: isolate;
