@@ -42,6 +42,15 @@ const testimonials = [
     name: "Omid Ibrahimy",
     quote: "I love how the storage inspection and snapshot come in one place.",
   },
+  {
+    name: "Sohrab Rokhshan",
+    quote:
+      "Very useful extension for developers. Clean interface and simple to use. Great work by the developer!",
+  },
+  {
+    name: "Code Studio",
+    quote: "Great, handy tool.",
+  },
 ];
 
 function TestimonialCard({
