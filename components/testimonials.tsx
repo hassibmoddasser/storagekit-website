@@ -48,7 +48,7 @@ const testimonials = [
       "Very useful extension for developers. Clean interface and simple to use. Great work by the developer!",
   },
   {
-    name: "Code Studio",
+    name: "Mohsen Amani",
     quote: "Great, handy tool.",
   },
 ];
