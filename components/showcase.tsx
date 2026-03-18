@@ -88,7 +88,7 @@ export default function Showcase() {
               icon: Eye,
               title: "Live Storage Inspector",
               description:
-                "Browse all your storage data in a clean, organized interface. Edit values inline, search across keys, and see changes reflected instantly in the DevTools panel as you work.",
+                "Browse all your storage data in a clean, organized interface. Create new entries, edit values inline, and explore nested JSON in an interactive tree without leaving the panel.",
             }}
             className="rounded-t-3xl md:rounded-tl-3xl md:rounded-tr-lg"
           />
@@ -114,7 +114,7 @@ export default function Showcase() {
               icon: FileCode,
               title: "Automatic Value Decoding",
               description:
-                "StorageKit detects encoded values and shows them decoded. JSON pretty-printed, JWTs reveal payloads, Base64 decoded.",
+                "Nested JSON opens as an interactive, expandable tree. JWT tokens are decoded inline with a visual badge. Numbers, booleans, and encoded values are auto-detected.",
             }}
             className="lg:rounded-bl-3xl"
           />
@@ -125,7 +125,7 @@ export default function Showcase() {
               icon: HardDrive,
               title: "Storage Overview",
               description:
-                "See item counts and size for Local, Session storage, and Cookies at a glance. Clear by type or wipe all in one action.",
+                "See item counts and storage size for localStorage, sessionStorage, and cookies at a glance. Create new entries or clear storage by type.",
             }}
           />
           <SmallCard
