@@ -6,7 +6,7 @@ export const navLinks = [
   { label: "Use Cases", href: "/#use-cases" },
   { label: "Testimonials", href: "/#testimonials" },
   { label: "FAQ", href: "/#faq" },
-  { label: "Contact", href: "mailto:info@hassib.co" },
+  { label: "Changelog", href: "/changelog" },
 ];
 
 export default function Header() {

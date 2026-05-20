@@ -1,4 +1,4 @@
-import { geistSans, spaceGrotesk } from "@/config/fonts";
+import { geistSans, jetbrainsMono, spaceGrotesk } from "@/config/fonts";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/utils/cn";
 import { GoogleAnalytics } from "@next/third-parties/google";
@@ -89,7 +89,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={cn(geistSans.variable, spaceGrotesk.variable, "antialiased")}
+        className={cn(
+          geistSans.variable,
+          spaceGrotesk.variable,
+          jetbrainsMono.variable,
+          "antialiased",
+        )}
       >
         {process.env.NODE_ENV === "production" &&
           process.env.GOOGLE_ANALYTICS_MEASUREMENT_ID && (

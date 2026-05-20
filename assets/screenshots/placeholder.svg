@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1c1c1f" />
+      <stop offset="1" stop-color="#0f0f12" />
+    </linearGradient>
+    <pattern id="dots" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.2" fill="#3f3f46" opacity="0.6" />
+    </pattern>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#bg)" />
+  <rect width="1600" height="1000" fill="url(#dots)" />
+  <g transform="translate(800 460)" stroke="#52525b" stroke-width="2.5" fill="none">
+    <rect x="-90" y="-65" width="180" height="130" rx="10" stroke-dasharray="8 6" />
+    <circle cx="-35" cy="-20" r="11" fill="#52525b" stroke="none" />
+    <path d="M-75 50 L-30 12 L0 32 L40 -10 L75 28 L75 60 L-75 60 Z" fill="#52525b" stroke="none" />
+  </g>
+  <text x="800" y="640" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="28" font-weight="500" fill="#a1a1aa" letter-spacing="0.05em">Screenshot placeholder</text>
+  <text x="800" y="680" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16" fill="#71717a" letter-spacing="0.05em">drop your asset here</text>
+</svg>

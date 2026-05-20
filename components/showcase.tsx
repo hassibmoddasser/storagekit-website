@@ -1,70 +1,64 @@
-import { cn } from "@/utils/cn";
-import type { LucideIcon } from "lucide-react";
-import { Camera, Eye, FileCode, FileDown, HardDrive } from "lucide-react";
-import SectionLabel from "./section-label";
+"use client";
 
-interface ShowcaseItem {
-  id: string;
-  label: string;
-  icon: LucideIcon;
+import { cn } from "@/utils/cn";
+import Image, { type StaticImageData } from "next/image";
+import { useRef } from "react";
+import SectionTag from "./primitives/section-tag";
+
+import placeholderImg from "@/assets/screenshots/placeholder.svg";
+
+interface FeatureCardProps {
+  className?: string;
+  imageSrc: StaticImageData;
+  imageAlt: string;
+  badge: string;
   title: string;
   description: string;
 }
 
-function LargeCard({
-  item,
+function FeatureCard({
   className,
-}: {
-  item: ShowcaseItem;
-  className?: string;
-}) {
-  const Icon = item.icon;
-  return (
-    <div
-      className={cn(
-        "group card-shine border-border card-shine bg-muted/30 hover:bg-muted/60 flex flex-col overflow-hidden rounded-lg border transition-colors",
-        className,
-      )}
-    >
-      <div className="p-8">
-        <div className="bg-accent/10 text-accent flex h-10 w-10 items-center justify-center rounded-lg">
-          <Icon size={20} />
-        </div>
-        <h3 className="mt-3 text-lg font-semibold tracking-tight">
-          {item.title}
-        </h3>
-        <p className="text-muted-foreground mt-2 text-sm leading-relaxed">
-          {item.description}
-        </p>
-      </div>
-    </div>
-  );
-}
+  imageSrc,
+  imageAlt,
+  badge,
+  title,
+  description,
+}: FeatureCardProps) {
+  const ref = useRef<HTMLDivElement>(null);
 
-function SmallCard({
-  item,
-  className,
-}: {
-  item: ShowcaseItem;
-  className?: string;
-}) {
-  const Icon = item.icon;
+  const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const el = ref.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    el.style.setProperty("--spot-x", `${e.clientX - rect.left}px`);
+    el.style.setProperty("--spot-y", `${e.clientY - rect.top}px`);
+  };
+
   return (
     <div
+      ref={ref}
+      onMouseMove={onMove}
       className={cn(
-        "group card-shine border-border card-shine bg-muted/30 hover:bg-muted/60 flex flex-col overflow-hidden rounded-lg border transition-colors",
+        "spotlight group border-border bg-muted/30 relative flex flex-col overflow-hidden rounded-2xl border transition-colors hover:bg-muted/50",
         className,
       )}
     >
-      <div className="p-8">
-        <div className="bg-accent/10 text-accent flex h-10 w-10 items-center justify-center rounded-lg">
-          <Icon size={20} />
-        </div>
-        <h3 className="mt-3 text-lg font-semibold tracking-tight">
-          {item.title}
-        </h3>
-        <p className="text-muted-foreground mt-2 text-sm leading-relaxed">
-          {item.description}
+      <div className="relative flex-1 overflow-hidden">
+        <Image
+          src={imageSrc}
+          alt={imageAlt}
+          fill
+          sizes="(min-width: 1024px) 50vw, 100vw"
+          className="object-cover"
+        />
+      </div>
+      <div className="border-border/60 border-t p-5">
+        <span className="text-accent font-mono text-[10px] tracking-wider uppercase">
+          {badge}
+        </span>
+        <h3 className="mt-1 text-base font-semibold tracking-tight">{title}</h3>
+        <p className="text-muted-foreground mt-1.5 text-sm leading-relaxed">
+          {description}
         </p>
       </div>
     </div>
@@ -73,72 +67,103 @@ function SmallCard({
 
 export default function Showcase() {
   return (
-    <section className="py-14 md:py-20">
+    <section id="features" className="scroll-mt-24 py-16 md:py-24">
       <div className="mx-auto max-w-6xl px-6">
-        <SectionLabel
-          label="Features"
+        <SectionTag
+          kind="features"
+          label="what-you-get"
           heading="Everything you need to debug storage"
+          description="A complete toolkit — not just a re-skin of the Application panel."
         />
 
-        <div className="mt-12 grid gap-5 md:grid-cols-2">
-          <LargeCard
-            item={{
-              id: "inspector",
-              label: "Inspector",
-              icon: Eye,
-              title: "Live Storage Inspector",
-              description:
-                "Browse all your storage data in a clean, organized interface. Create new entries, edit values inline, and explore nested JSON in an interactive tree without leaving the panel.",
-            }}
-            className="rounded-t-3xl md:rounded-tl-3xl md:rounded-tr-lg"
+        <div className="mt-14 grid auto-rows-[16rem] gap-4 sm:grid-cols-2 lg:grid-cols-6 lg:grid-rows-[16rem_16rem_16rem]">
+          {/* Suggested filename: feature-inspector.png */}
+          <FeatureCard
+            badge="inspector"
+            title="Live Storage Inspector"
+            description="Browse all your storage in one organized panel. Create, edit, and explore nested JSON without leaving DevTools."
+            imageSrc={placeholderImg}
+            imageAlt="Live storage inspector"
+            className="lg:col-span-4 lg:row-span-2"
           />
 
-          <LargeCard
-            item={{
-              id: "snapshots",
-              label: "Snapshots",
-              icon: Camera,
-              title: "Save & Restore States",
-              description:
-                "Capture your entire storage state including Local storage, Session storage, and Cookies in a single snapshot. Restore it anytime with one click to recreate that exact state.",
-            }}
-            className="md:rounded-tr-3xl"
+          {/* Suggested filename: feature-snapshots.png */}
+          <FeatureCard
+            badge="snapshots"
+            title="Save & restore states"
+            description="One click captures every value. Restore later or share with a teammate."
+            imageSrc={placeholderImg}
+            imageAlt="Snapshots panel showing saved storage states"
+            className="lg:col-span-2"
+          />
+
+          {/* Suggested filename: feature-decode.png */}
+          <FeatureCard
+            badge="decoding"
+            title="Automatic value decoding"
+            description="JWT tokens, JSON trees, numbers, booleans — all detected and rendered properly."
+            imageSrc={placeholderImg}
+            imageAlt="Decoded JWT and JSON tree view"
+            className="lg:col-span-2"
+          />
+
+          {/* Suggested filename: feature-overview.png */}
+          <FeatureCard
+            badge="overview"
+            title="Storage at a glance"
+            description="Item counts and bytes used per storage type — see usage before you debug."
+            imageSrc={placeholderImg}
+            imageAlt="Storage overview chart"
+            className="lg:col-span-2"
+          />
+
+          {/* Suggested filename: feature-search.png */}
+          <FeatureCard
+            badge="search"
+            title="Search keys & values"
+            description="Find that one flag instantly — fuzzy match across keys, values, and cookies."
+            imageSrc={placeholderImg}
+            imageAlt="Search results filtering storage entries"
+            className="lg:col-span-2"
+          />
+
+          {/* Suggested filename: feature-privacy.png */}
+          <FeatureCard
+            badge="privacy"
+            title="100% local. Forever."
+            description="Zero network calls, zero analytics. Your data never leaves your machine."
+            imageSrc={placeholderImg}
+            imageAlt="Privacy guarantee illustration"
+            className="lg:col-span-2"
+          />
+
+          {/* Suggested filename: feature-export-import.png */}
+          <FeatureCard
+            badge="portability"
+            title="Export & import as JSON"
+            description="Backup, share with teammates via GitHub or Slack, or restore your snapshots across machines — it's just a JSON file."
+            imageSrc={placeholderImg}
+            imageAlt="Exported snapshot JSON file"
+            className="sm:col-span-2 lg:col-span-6"
           />
         </div>
 
-        <div className="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          <SmallCard
-            item={{
-              id: "decoding",
-              label: "Decoding",
-              icon: FileCode,
-              title: "Automatic Value Decoding",
-              description:
-                "Nested JSON opens as an interactive, expandable tree. JWT tokens are decoded inline with a visual badge. Numbers, booleans, and encoded values are auto-detected.",
-            }}
-            className="lg:rounded-bl-3xl"
-          />
-          <SmallCard
-            item={{
-              id: "storage",
-              label: "Storage",
-              icon: HardDrive,
-              title: "Storage Overview",
-              description:
-                "See item counts and storage size for localStorage, sessionStorage, and cookies at a glance. Create new entries or clear storage by type.",
-            }}
-          />
-          <SmallCard
-            item={{
-              id: "export-import",
-              label: "Export & Import",
-              icon: FileDown,
-              title: "Backup and Restore Snapshots",
-              description:
-                "Export snapshots to json for backup or sharing. Import to restore on another machine or after reinstalling.",
-            }}
-            className="rounded-b-3xl lg:rounded-br-3xl lg:rounded-bl-lg"
-          />
+        {/* Subtle footer line of additional features */}
+        <div className="text-syntax-comment font-mono mt-10 grid grid-cols-2 gap-x-6 gap-y-2 text-center text-xs sm:flex sm:flex-wrap sm:justify-center">
+          {[
+            "inline editing",
+            "dark & light themes",
+            "domain filtering",
+            "duplicate key detection",
+            "cookie attribute editor",
+            "quota error handling",
+            "compact + dashboard layouts",
+          ].map((line) => (
+            <span key={line} className="flex items-center justify-center gap-2">
+              <span className="bg-accent/40 inline-block h-1 w-1 rounded-full" />
+              {line}
+            </span>
+          ))}
         </div>
       </div>
     </section>

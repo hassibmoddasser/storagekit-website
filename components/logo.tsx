@@ -19,12 +19,12 @@ export default function Logo() {
       <Image
         src={icon}
         alt="StorageKit"
-        width={28}
-        height={28}
-        className="rounded-lg"
+        width={26}
+        height={26}
+        className="rounded-md ring-1 ring-border/40 transition-transform group-hover:rotate-3"
       />
       <span className="font-heading">
-        Storage<span className="text-teal-400">Kit</span>
+        Storage<span className="text-accent">Kit</span>
       </span>
     </Link>
   );

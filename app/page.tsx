@@ -1,9 +1,12 @@
 import CTA from "@/components/cta";
 import FAQ from "@/components/faq";
 import Hero from "@/components/hero";
+import HowItWorks from "@/components/how-it-works";
 import Problem from "@/components/problem";
 import Showcase from "@/components/showcase";
 import Testimonials from "@/components/testimonials";
+import TrustStrip from "@/components/trust-strip";
+import UseCases from "@/components/use-cases";
 import { siteConfig } from "@/config/site";
 
 const jsonLd = {
@@ -43,8 +46,11 @@ export default function Home() {
       />
       <main>
         <Hero />
+        <TrustStrip />
         <Problem />
+        <HowItWorks />
         <Showcase />
+        <UseCases />
         <Testimonials />
         <FAQ />
         <CTA />

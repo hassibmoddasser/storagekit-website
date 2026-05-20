@@ -1,42 +1,91 @@
-import { Chrome } from "lucide-react";
+import { siteConfig } from "@/config/site";
+import { Chrome, Github } from "lucide-react";
+import Image from "next/image";
+
+import placeholderImg from "@/assets/screenshots/placeholder.svg";
 
 export default function CTA() {
   return (
-    <section className="py-14 md:py-20">
+    <section className="py-16 md:py-24">
       <div className="mx-auto max-w-6xl px-6">
-        <div className="border-border bg-muted/30 relative isolate overflow-hidden rounded-3xl border px-6 py-16 sm:py-20 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-semibold tracking-tight text-balance md:text-4xl">
-              Ready to debug smarter?
-            </h2>
-            <p className="text-muted-foreground mx-auto mt-6 max-w-xl text-lg leading-relaxed text-pretty">
-              Join developers who use StorageKit to save time debugging web
-              storage. Free, private, and open source.
-            </p>
-            <div className="mt-10 flex items-center justify-center gap-6">
-              <a
-                href="https://chromewebstore.google.com/detail/lnfhnhfnlkjemkgdcppdlijpdjdmnnjd?utm_source=item-share-cb"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-shine text-accent-foreground inline-flex items-center gap-2 rounded-lg bg-teal-600 px-4 py-2.5 text-sm font-semibold"
-              >
-                <Chrome size={18} />
-                Add to Chrome — It&apos;s Free
-              </a>
+        <div className="border-border bg-muted/30 relative isolate overflow-hidden rounded-3xl border px-6 py-16 sm:py-20 lg:px-12">
+          {/* Decorative grid */}
+          <div className="bg-grid mask-radial absolute inset-0 opacity-40" />
+
+          <div className="relative grid items-center gap-12 md:grid-cols-[1.1fr_1fr]">
+            <div className="text-center md:text-left">
+              <p className="text-syntax-comment font-mono text-xs">
+                <span className="text-syntax-punct">{"//"}</span> one more thing
+              </p>
+
+              <h2 className="font-heading mt-3 text-3xl font-semibold tracking-tight text-balance md:text-5xl">
+                Stop wrestling with{" "}
+                <span className="font-mono text-foreground/95 rounded-md bg-muted/60 px-2 text-[0.92em] tracking-tight">
+                  Application
+                </span>
+                .
+                <br className="hidden sm:block" /> Install StorageKit.
+              </h2>
+
+              <p className="text-muted-foreground mx-auto mt-5 max-w-xl text-base leading-relaxed text-pretty md:mx-0 md:text-lg">
+                Free, open-source, and fully local. Built by a developer who
+                spends way too much time inside DevTools.
+              </p>
+
+              <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row md:items-start md:justify-start">
+                <a
+                  href={siteConfig.links.chromeWebStore}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-shine text-accent-foreground inline-flex items-center gap-2 rounded-lg bg-teal-600 px-4 py-2.5 text-sm font-semibold shadow-lg shadow-teal-600/20 transition-transform hover:-translate-y-px dark:bg-teal-500 dark:shadow-teal-500/20"
+                >
+                  <Chrome size={18} />
+                  Add to Chrome — It&apos;s Free
+                </a>
+                <a
+                  href={siteConfig.links.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="border-border text-foreground hover:bg-muted inline-flex items-center gap-2 rounded-lg border px-4 py-2.5 text-sm font-semibold transition-colors"
+                >
+                  <Github size={16} />
+                  View source
+                </a>
+              </div>
+
+              <p className="text-syntax-comment font-mono mt-4 text-[11px]">
+                <span className="text-syntax-punct">$</span> npm install · nope.
+                Just one click.
+              </p>
+            </div>
+
+            {/* Suggested filename: cta-preview.png */}
+            <div className="relative mx-auto w-full max-w-md md:mx-0">
+              <div className="bg-accent/20 absolute -inset-4 -z-10 rounded-3xl blur-2xl" />
+              <div className="border-border bg-surface-elevated relative aspect-[4/3] overflow-hidden rounded-xl border shadow-2xl shadow-black/20 rotate-1 transition-transform hover:rotate-0">
+                <Image
+                  src={placeholderImg}
+                  alt="StorageKit panel preview"
+                  fill
+                  sizes="(min-width: 768px) 28rem, 100vw"
+                  className="object-cover"
+                />
+              </div>
             </div>
           </div>
 
+          {/* Big colored radial behind everything */}
           <svg
             viewBox="0 0 1024 1024"
             aria-hidden="true"
-            className="absolute top-1/2 left-1/2 -z-10 size-[64rem] -translate-x-1/2 [mask-image:radial-gradient(closest-side,white,transparent)]"
+            className="absolute top-1/2 left-1/2 -z-20 size-[64rem] -translate-x-1/2 [mask-image:radial-gradient(closest-side,white,transparent)]"
           >
             <circle
               r="512"
               cx="512"
               cy="512"
               fill="url(#cta-gradient)"
-              fillOpacity="0.15"
+              fillOpacity="0.18"
             />
             <defs>
               <radialGradient id="cta-gradient">
