@@ -1,5 +1,5 @@
 import { siteConfig } from "@/config/site";
-import { ArrowRight, Chrome, Github, Star } from "lucide-react";
+import { ArrowRight, Chrome, PanelRight, Star } from "lucide-react";
 import Image from "next/image";
 
 import heroImage from "@/assets/screenshots/hero.jpg";
@@ -24,7 +24,7 @@ export default function Hero() {
           rel="noopener noreferrer"
           className="shimmer-pill bg-background group inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs"
         >
-          <span className="flex items-center gap-0.5">
+          <span className="flex items-center gap-0.5" aria-hidden>
             {Array.from({ length: 5 }).map((_, i) => (
               <Star
                 key={i}
@@ -34,30 +34,27 @@ export default function Hero() {
             ))}
           </span>
           <span className="text-foreground font-medium">5.0</span>
-          <span className="bg-border h-3 w-px" />
+          <span className="bg-border h-3 w-px" aria-hidden />
           <span className="text-muted-foreground group-hover:text-foreground transition-colors">
-            On the Chrome Web Store
+            from {siteConfig.reviewCount} reviews
+            <span className="hidden sm:inline"> on the Chrome Web Store</span>
           </span>
           <ArrowRight
             size={12}
+            aria-hidden
             className="text-muted-foreground -ml-0.5 transition-transform group-hover:translate-x-0.5"
           />
         </a>
 
         {/* "Comment" line above headline — pure DevTools flair */}
-        <p className="text-syntax-comment font-mono mt-8 text-xs">
+        <p className="text-syntax-comment mt-8 font-mono text-xs" aria-hidden>
           <span className="text-syntax-punct">{"//"}</span> Built for developers
-          who spend their day inside DevTools
+          who spend their day in the browser
         </p>
 
         <h1 className="mx-auto mt-3 max-w-3xl text-4xl leading-[1.1] font-bold tracking-tight md:text-6xl md:leading-[1.05]">
-          The missing{" "}
-          <span className="font-mono text-foreground/95 inline-flex items-baseline rounded-md bg-muted/60 px-2 text-[0.9em] tracking-tight">
-            DevTools
-          </span>{" "}
-          panel for{" "}
           <span className="relative inline-block">
-            <span className="text-accent">browser storage</span>
+            <span className="text-accent-text-lg">Browser storage</span>
             <svg
               aria-hidden
               viewBox="0 0 240 12"
@@ -73,10 +70,14 @@ export default function Hero() {
               />
             </svg>
           </span>
+          , without opening{" "}
+          <span className="text-foreground/95 bg-muted/60 inline-flex items-baseline rounded-md px-2 font-mono text-[0.9em] tracking-tight">
+            DevTools
+          </span>
         </h1>
 
         <p className="text-muted-foreground mx-auto mt-7 max-w-xl text-base leading-relaxed md:text-lg">
-          Inspect, edit, and snapshot{" "}
+          A free Chrome extension to inspect, edit, and snapshot{" "}
           <code className="text-foreground font-mono text-[0.92em]">
             localStorage
           </code>
@@ -84,8 +85,7 @@ export default function Hero() {
           <code className="text-foreground font-mono text-[0.92em]">
             sessionStorage
           </code>
-          , and cookies in one clean, powerful panel — built right into Chrome
-          DevTools.
+          , and cookies — in a panel that docks right beside your page.
         </p>
 
         {/* CTA cluster */}
@@ -94,25 +94,25 @@ export default function Hero() {
             href={siteConfig.links.chromeWebStore}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-shine text-accent-foreground inline-flex items-center gap-2 rounded-lg bg-teal-600 px-4 py-2.5 text-sm font-semibold shadow-lg shadow-teal-600/20 transition-transform hover:-translate-y-px dark:bg-teal-500 dark:shadow-teal-500/20"
+            className="btn-shine text-accent-foreground bg-accent-fill inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold shadow-lg shadow-teal-600/20 transition-transform hover:-translate-y-px dark:shadow-teal-500/20"
           >
-            <Chrome size={16} />
+            <Chrome size={16} aria-hidden />
             Add to Chrome — It&apos;s Free
           </a>
           <a
-            href={siteConfig.links.github}
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#features"
             className="btn-shine border-border bg-background/40 text-foreground hover:bg-muted inline-flex items-center gap-2 rounded-lg border px-4 py-2.5 text-sm font-semibold backdrop-blur-sm transition-colors"
           >
-            <Github size={16} />
-            Star on GitHub
+            <PanelRight size={16} aria-hidden />
+            See what it does
           </a>
         </div>
 
-        <p className="text-syntax-comment font-mono mt-4 text-[11px]">
-          <span className="text-syntax-punct">&gt;</span> Installs in 10 seconds
-          · No signup · 100% local
+        <p className="text-syntax-comment mt-4 font-mono text-[11px]">
+          <span className="text-syntax-punct" aria-hidden>
+            &gt;
+          </span>{" "}
+          Installs in 10 seconds · No signup · 100% local
         </p>
 
         {/* Product showcase */}
@@ -121,13 +121,13 @@ export default function Hero() {
           <div className="bg-accent/20 absolute -inset-x-20 top-1/4 -z-10 h-2/3 blur-3xl" />
 
           <BrowserFrame
-            url="example.com — DevTools · StorageKit"
-            showDevTools
+            url="storagekit.dev"
+            label="side panel"
             className="mx-auto max-w-5xl"
           >
             <Image
               src={heroImage}
-              alt="StorageKit Chrome DevTools panel"
+              alt="The StorageKit panel showing the storage tree beside a decoded JWT value"
               width={1560}
               height={1160}
               priority

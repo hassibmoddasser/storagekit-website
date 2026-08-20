@@ -26,6 +26,7 @@ export default function SectionTag({
       )}
     >
       <p
+        aria-hidden
         className={cn(
           "text-syntax-comment font-mono text-xs",
           align === "center" && "flex items-center justify-center gap-1",

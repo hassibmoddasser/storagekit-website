@@ -2,7 +2,7 @@
 
 import { siteConfig } from "@/config/site";
 import { cn } from "@/utils/cn";
-import { Github, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { navLinks } from "./header";
@@ -17,6 +17,15 @@ export default function MobileHeader() {
     return () => {
       document.body.style.overflow = "";
     };
+  }, [open]);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
   }, [open]);
 
   const handleSectionLinkClick = useCallback(
@@ -42,6 +51,7 @@ export default function MobileHeader() {
             className="text-muted-foreground hover:text-foreground inline-flex items-center justify-center rounded-md p-2"
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
+            aria-controls="mobile-menu"
           >
             {open ? <X size={20} /> : <Menu size={20} />}
           </button>
@@ -60,11 +70,13 @@ export default function MobileHeader() {
 
       {/* Slide-down panel */}
       <div
+        id="mobile-menu"
+        inert={!open}
         className={cn(
           "bg-background border-border/60 fixed top-14 right-0 left-0 z-40 border-b transition-all duration-300 md:hidden",
           open
             ? "translate-y-0 opacity-100"
-            : "pointer-events-none -translate-y-2 opacity-0",
+            : "invisible -translate-y-2 opacity-0",
         )}
       >
         <nav className="flex flex-col gap-1 px-5 py-4">
@@ -90,24 +102,15 @@ export default function MobileHeader() {
             );
           })}
 
-          <div className="border-border/60 mt-3 flex items-center justify-between border-t pt-4">
+          <div className="border-border/60 mt-3 flex items-center border-t pt-4">
             <ThemeToggle />
-            <a
-              href={siteConfig.links.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="View source on GitHub"
-              className="text-muted-foreground hover:text-foreground inline-flex items-center justify-center p-2 transition-colors"
-            >
-              <Github size={18} />
-            </a>
           </div>
 
           <a
             href={siteConfig.links.chromeWebStore}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-shine text-accent-foreground mt-3 inline-flex h-10 items-center justify-center rounded-lg bg-teal-600 text-sm font-semibold dark:bg-teal-500"
+            className="btn-shine text-accent-foreground bg-accent-fill mt-3 inline-flex h-10 items-center justify-center rounded-lg text-sm font-semibold"
           >
             Add to Chrome
           </a>

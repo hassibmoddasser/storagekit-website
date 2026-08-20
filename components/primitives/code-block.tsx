@@ -33,8 +33,7 @@ const highlightClass: Record<NonNullable<CodeLine["highlight"]>, string> = {
   add: "bg-accent/10 before:bg-accent before:content-['+'] before:absolute before:left-1 before:text-accent before:text-xs",
   remove:
     "bg-rose-500/10 before:bg-rose-500 before:content-['-'] before:absolute before:left-1 before:text-rose-500 before:text-xs",
-  active:
-    "bg-accent/5 ring-1 ring-inset ring-accent/30",
+  active: "bg-accent/5 ring-1 ring-inset ring-accent/30",
 };
 
 interface CodeBlockProps {
@@ -84,7 +83,7 @@ export default function CodeBlock({
       )}
       <pre
         className={cn(
-          "font-mono overflow-x-auto p-4 text-[12.5px] leading-relaxed",
+          "overflow-x-auto p-4 font-mono text-[12.5px] leading-relaxed",
           bodyClassName,
         )}
       >
@@ -93,18 +92,18 @@ export default function CodeBlock({
             <div
               key={i}
               className={cn(
-                "relative flex items-start gap-3 -mx-4 px-4 py-0.5",
+                "relative -mx-4 flex items-start gap-3 px-4 py-0.5",
                 line.muted && "opacity-50",
                 line.highlight && highlightClass[line.highlight],
               )}
             >
               {showLineNumbers && (
-                <span className="text-syntax-comment/60 w-5 shrink-0 select-none text-right">
+                <span className="text-syntax-comment w-5 shrink-0 text-right select-none">
                   {i + 1}
                 </span>
               )}
               {line.prefix && (
-                <span className="text-accent shrink-0">{line.prefix}</span>
+                <span className="text-accent-text shrink-0">{line.prefix}</span>
               )}
               <span className={cn(line.strike && "line-through")}>
                 {line.tokens.map((tok, j) => (

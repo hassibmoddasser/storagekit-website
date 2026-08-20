@@ -2,7 +2,6 @@
 
 import { siteConfig } from "@/config/site";
 import { cn } from "@/utils/cn";
-import { Github } from "lucide-react";
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { navLinks } from "./header";
@@ -71,19 +70,10 @@ export default function DesktopHeader() {
         <div className="flex items-center gap-2">
           <ThemeToggle />
           <a
-            href={siteConfig.links.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="View source on GitHub"
-            className="border-border/70 text-muted-foreground hover:text-foreground hover:border-border inline-flex h-9 items-center justify-center rounded-lg border px-3 text-sm transition-colors"
-          >
-            <Github size={16} />
-          </a>
-          <a
             href={siteConfig.links.chromeWebStore}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-shine text-accent-foreground inline-flex h-9 items-center rounded-lg bg-teal-600 px-4 text-sm font-medium transition-opacity hover:opacity-90 dark:bg-teal-500"
+            className="btn-shine text-accent-foreground bg-accent-fill inline-flex h-9 items-center rounded-lg px-4 text-sm font-medium transition-opacity hover:opacity-90"
           >
             Add to Chrome
           </a>

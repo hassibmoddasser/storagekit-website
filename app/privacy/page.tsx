@@ -1,3 +1,4 @@
+import { siteConfig } from "@/config/site";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -8,7 +9,7 @@ export const metadata: Metadata = {
 export default function PrivacyPage() {
   return (
     <>
-      <main className="mx-auto max-w-3xl px-6 pt-32 pb-16">
+      <main id="main" className="mx-auto max-w-3xl px-6 pt-32 pb-16">
         <article className="prose prose-base prose-zinc dark:prose-invert max-w-none">
           <h1 className="mb-0">Privacy Policy</h1>
           <p className="text-muted-foreground mt-2 text-sm">
@@ -87,8 +88,8 @@ export default function PrivacyPage() {
 
           <h2>Contact</h2>
           <p>
-            If you have questions about this privacy policy, please open an
-            issue on the project&apos;s GitHub repository.
+            If you have questions about this privacy policy, email{" "}
+            <a href={siteConfig.links.contact}>info@hassib.co</a>.
           </p>
         </article>
       </main>

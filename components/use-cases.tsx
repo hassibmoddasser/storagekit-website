@@ -30,29 +30,36 @@ const cases: UseCase[] = [
       "One click restores the entire session",
     ],
     code: {
-      title: "$ workflow",
-      lang: "sh",
+      title: "admin-session.json",
+      lang: "json",
       lines: [
+        { tokens: [{ t: "punct", v: "{" }] },
         {
-          prefix: "$",
           tokens: [
-            { t: "ident", v: "snapshot.save" },
-            { t: "punct", v: "(" },
+            { t: "key", v: '  "name"' },
+            { t: "punct", v: ": " },
             { t: "string", v: '"admin-session"' },
-            { t: "punct", v: ")" },
+            { t: "punct", v: "," },
           ],
         },
-        { tokens: [{ t: "comment", v: "  → 14 items, 3.2 KB" }] },
         {
-          prefix: "$",
           tokens: [
-            { t: "ident", v: "snapshot.restore" },
-            { t: "punct", v: "(" },
-            { t: "string", v: '"admin-session"' },
-            { t: "punct", v: ")" },
+            { t: "key", v: '  "items"' },
+            { t: "punct", v: ": " },
+            { t: "number", v: "14" },
+            { t: "punct", v: "," },
+            { t: "comment", v: " // all three types" },
           ],
         },
-        { tokens: [{ t: "ident", v: "  ✓ restored. you're in." }] },
+        {
+          tokens: [
+            { t: "key", v: '  "size"' },
+            { t: "punct", v: ": " },
+            { t: "string", v: '"3.2 KB"' },
+          ],
+        },
+        { tokens: [{ t: "punct", v: "}" }] },
+        { tokens: [{ t: "comment", v: "// restore it after any logout" }] },
       ],
     },
   },
@@ -157,7 +164,7 @@ const cases: UseCase[] = [
     icon: Users,
     tab: "Share with teammates",
     headline: "Reproduce a bug in one message",
-    body: 'Export the entire storage state as JSON, drop it in Slack, and your teammate gets the exact same broken setup on their machine.',
+    body: "Export the entire storage state as JSON, drop it in Slack, and your teammate gets the exact same broken setup on their machine.",
     steps: [
       "Hit the bug — snapshot the state",
       "Export → snapshot-bug-123.json",
@@ -203,6 +210,17 @@ export default function UseCases() {
   const current = cases.find((c) => c.id === active) ?? cases[0];
   const Icon = current.icon;
 
+  // Arrow-key navigation is expected inside a tablist (ARIA APG).
+  const onTabKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
+    const delta = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
+    if (!delta) return;
+    e.preventDefault();
+    const i = cases.findIndex((c) => c.id === active);
+    const next = cases[(i + delta + cases.length) % cases.length];
+    setActive(next.id);
+    document.getElementById(`usecase-tab-${next.id}`)?.focus();
+  };
+
   return (
     <section id="use-cases" className="scroll-mt-24 py-16 md:py-24">
       <div className="mx-auto max-w-6xl px-6">
@@ -226,8 +244,13 @@ export default function UseCases() {
               return (
                 <button
                   key={c.id}
+                  id={`usecase-tab-${c.id}`}
                   role="tab"
+                  type="button"
                   aria-selected={isActive}
+                  aria-controls={`usecase-panel-${c.id}`}
+                  tabIndex={isActive ? 0 : -1}
+                  onKeyDown={onTabKeyDown}
                   onClick={() => setActive(c.id)}
                   className={cn(
                     "relative inline-flex shrink-0 items-center gap-1.5 rounded-full px-3.5 py-1.5 text-xs font-medium transition-colors sm:text-sm",
@@ -236,7 +259,7 @@ export default function UseCases() {
                       : "text-muted-foreground hover:text-foreground",
                   )}
                 >
-                  <TabIcon size={13} />
+                  <TabIcon size={13} aria-hidden />
                   {c.tab}
                 </button>
               );
@@ -245,11 +268,17 @@ export default function UseCases() {
         </div>
 
         {/* Active case */}
-        <div className="mt-10 grid items-stretch gap-6 md:grid-cols-2">
+        <div
+          id={`usecase-panel-${current.id}`}
+          role="tabpanel"
+          aria-labelledby={`usecase-tab-${current.id}`}
+          tabIndex={0}
+          className="mt-10 grid items-start gap-6 md:grid-cols-2"
+        >
           <div className="border-border bg-muted/30 relative flex flex-col rounded-2xl border p-7">
             <div className="flex items-center gap-2">
-              <span className="bg-accent/10 text-accent inline-flex h-9 w-9 items-center justify-center rounded-lg">
-                <Icon size={16} />
+              <span className="bg-accent/10 text-accent-text inline-flex h-9 w-9 items-center justify-center rounded-lg">
+                <Icon size={16} aria-hidden />
               </span>
               <span className="text-syntax-comment font-mono text-[11px] tracking-wider uppercase">
                 use-case / {current.id}
@@ -266,7 +295,7 @@ export default function UseCases() {
             <ol className="border-border/60 mt-6 space-y-3 border-t pt-5 text-sm">
               {current.steps.map((s, i) => (
                 <li key={i} className="flex items-start gap-3">
-                  <span className="border-accent/40 text-accent font-mono mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full border text-[10px]">
+                  <span className="border-accent/40 text-accent-text mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full border font-mono text-[10px]">
                     {i + 1}
                   </span>
                   <span className="text-foreground/85">{s}</span>
@@ -279,7 +308,6 @@ export default function UseCases() {
             title={current.code.title}
             lang={current.code.lang}
             lines={current.code.lines}
-            className="min-h-[24rem]"
           />
         </div>
       </div>

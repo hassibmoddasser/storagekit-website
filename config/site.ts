@@ -1,16 +1,19 @@
 export const siteConfig = {
   name: "StorageKit",
   url: "https://www.storagekit.dev",
-  title: "StorageKit — The Missing DevTools Panel for Browser Storage",
+  title: "StorageKit — Browser Storage Without Opening DevTools",
   description:
-    "Inspect, edit, and manage Local storage, Session storage, and Cookies in one clean, powerful Chrome DevTools panel.",
+    "A free Chrome extension to inspect, edit, and snapshot localStorage, sessionStorage, and cookies — in a panel that docks right beside your page.",
+  version: "2.4.0",
+  rating: "5.0",
+  reviewCount: 10,
   author: {
     name: "Hassib Moddasser",
     url: "https://www.hassib.co",
   },
   links: {
     chromeWebStore:
-      "https://chromewebstore.google.com/detail/lnfhnhfnlkjemkgdcppdlijpdjdmnnjd?utm_source=item-share-cb",
-    github: "https://github.com/hassibmoddasser/storagekit-extension",
+      "https://chromewebstore.google.com/detail/lnfhnhfnlkjemkgdcppdlijpdjdmnnjd?utm_source=storagekit.dev&utm_medium=website",
+    contact: "mailto:info@hassib.co",
   },
 } as const;

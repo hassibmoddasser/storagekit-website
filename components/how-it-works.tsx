@@ -1,4 +1,4 @@
-import { Camera, Chrome, MousePointer2 } from "lucide-react";
+import { Camera, Chrome, PanelRight } from "lucide-react";
 import CodeBlock from "./primitives/code-block";
 import SectionTag from "./primitives/section-tag";
 
@@ -6,80 +6,90 @@ const steps = [
   {
     n: "01",
     icon: Chrome,
-    title: "Install in 10 seconds",
+    title: "Install and pin it",
     description:
-      "One click on the Chrome Web Store. No signup, no setup, no permissions you didn't ask for.",
+      "One click on the Chrome Web Store. Chrome hides new extensions behind the puzzle-piece icon, so pin StorageKit once and it's always there.",
     code: {
-      title: "permissions.json",
+      title: "manifest.json",
       lang: "json",
       lines: [
         {
-          tokens: [{ t: "punct" as const, v: "{" }],
+          tokens: [
+            { t: "key" as const, v: '"permissions"' },
+            { t: "punct" as const, v: ": [" },
+          ],
         },
         {
           tokens: [
-            { t: "key" as const, v: '  "active_tab"' },
-            { t: "punct" as const, v: ": " },
-            { t: "boolean" as const, v: "true" },
+            { t: "string" as const, v: '  "activeTab"' },
+            { t: "punct" as const, v: ", " },
+            { t: "string" as const, v: '"cookies"' },
             { t: "punct" as const, v: "," },
           ],
         },
         {
           tokens: [
-            { t: "key" as const, v: '  "cookies"' },
-            { t: "punct" as const, v: ": " },
-            { t: "boolean" as const, v: "true" },
-            { t: "punct" as const, v: "," },
+            { t: "string" as const, v: '  "sidePanel"' },
+            { t: "punct" as const, v: "]," },
           ],
         },
         {
           tokens: [
-            { t: "key" as const, v: '  "storage"' },
-            { t: "punct" as const, v: ": " },
-            { t: "boolean" as const, v: "true" },
+            { t: "key" as const, v: '"host_permissions"' },
+            { t: "punct" as const, v: ": [" },
+            { t: "string" as const, v: '"<all_urls>"' },
+            { t: "punct" as const, v: "]" },
           ],
-        },
-        {
-          tokens: [{ t: "punct" as const, v: "}" }],
         },
         {
           tokens: [
-            { t: "comment" as const, v: "// that's it. nothing else." },
+            {
+              t: "comment" as const,
+              v: "// a content script reads the",
+            },
           ],
+        },
+        {
+          tokens: [{ t: "comment" as const, v: "// page you're debugging." }],
         },
       ],
     },
   },
   {
     n: "02",
-    icon: MousePointer2,
-    title: "Open the panel",
+    icon: PanelRight,
+    title: "Dock it beside your page",
     description:
-      "StorageKit lives inside Chrome DevTools as its own panel. Click. Browse. Edit inline. Move on.",
+      "Click the icon for a quick look, or open it in the side panel to keep it there. It follows you across tab switches and reloads.",
     code: {
-      title: "$ devtools",
-      lang: "sh",
+      title: "storagekit",
+      lang: "txt",
       lines: [
         {
-          prefix: "$",
           tokens: [
-            { t: "ident" as const, v: "devtools" },
-            { t: "punct" as const, v: " → " },
-            { t: "ident" as const, v: "StorageKit" },
+            { t: "ident" as const, v: "Local storage" },
+            { t: "punct" as const, v: "    " },
+            { t: "number" as const, v: "18" },
           ],
         },
         {
-          tokens: [{ t: "comment" as const, v: "  reading local storage..." }],
-        },
-        {
           tokens: [
-            { t: "comment" as const, v: "  reading session storage..." },
+            { t: "ident" as const, v: "Session storage" },
+            { t: "punct" as const, v: "  " },
+            { t: "number" as const, v: "3" },
           ],
         },
-        { tokens: [{ t: "comment" as const, v: "  reading cookies..." }] },
         {
           tokens: [
-            { t: "ident" as const, v: "  ✓ 23 items loaded" },
+            { t: "ident" as const, v: "Cookies" },
+            { t: "punct" as const, v: "          " },
+            { t: "number" as const, v: "2" },
+          ],
+        },
+        { tokens: [{ t: "comment" as const, v: "" }] },
+        {
+          tokens: [
+            { t: "comment" as const, v: "// live — refreshes with the page" },
           ],
         },
       ],
@@ -90,7 +100,7 @@ const steps = [
     icon: Camera,
     title: "Snapshot your state",
     description:
-      "Save your entire storage state with one click. Restore later, share with a teammate, or commit it to your repo.",
+      "Save your entire storage state with one click. Restore it after a logout, or export it as JSON to send to a teammate.",
     code: {
       title: "snapshot.json",
       lang: "json",
@@ -162,7 +172,7 @@ export default function HowItWorks() {
                   <span className="text-syntax-comment font-mono text-[11px] tracking-wider">
                     STEP {step.n}
                   </span>
-                  <span className="bg-accent/10 text-accent inline-flex h-8 w-8 items-center justify-center rounded-md">
+                  <span className="bg-accent/10 text-accent-text inline-flex h-8 w-8 items-center justify-center rounded-md">
                     <Icon size={16} />
                   </span>
                 </div>

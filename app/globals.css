@@ -11,14 +11,18 @@
   --border: var(--color-zinc-200);
   --accent: var(--color-teal-500);
   --accent-foreground: white;
+  /* Text/fill split — teal-500 as text is only 2.42:1 on white */
+  --accent-text: var(--color-teal-700);
+  --accent-text-lg: var(--color-teal-600);
+  --accent-fill: var(--color-teal-700);
 
   /* Syntax-highlighting palette — used as design language across cards, badges, code mocks */
-  --syntax-key: var(--color-sky-600);
-  --syntax-string: var(--color-amber-600);
-  --syntax-number: var(--color-violet-600);
-  --syntax-boolean: var(--color-rose-600);
-  --syntax-comment: var(--color-zinc-400);
-  --syntax-punct: var(--color-zinc-500);
+  --syntax-key: var(--color-sky-800);
+  --syntax-string: var(--color-amber-800);
+  --syntax-number: var(--color-violet-700);
+  --syntax-boolean: var(--color-rose-700);
+  --syntax-comment: var(--color-zinc-600);
+  --syntax-punct: var(--color-zinc-600);
 
   /* Surface elevation for "device frame" mocks */
   --surface: var(--color-zinc-50);
@@ -34,6 +38,9 @@
   --color-border: var(--border);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+  --color-accent-text: var(--accent-text);
+  --color-accent-text-lg: var(--accent-text-lg);
+  --color-accent-fill: var(--accent-fill);
   --color-syntax-key: var(--syntax-key);
   --color-syntax-string: var(--syntax-string);
   --color-syntax-number: var(--syntax-number);
@@ -56,13 +63,16 @@
   --border: var(--color-zinc-800);
   --accent: var(--color-teal-400);
   --accent-foreground: var(--color-zinc-950);
+  --accent-text: var(--color-teal-400);
+  --accent-text-lg: var(--color-teal-400);
+  --accent-fill: var(--color-teal-500);
 
   --syntax-key: var(--color-sky-400);
   --syntax-string: var(--color-amber-300);
   --syntax-number: var(--color-violet-400);
   --syntax-boolean: var(--color-rose-400);
-  --syntax-comment: var(--color-zinc-500);
-  --syntax-punct: var(--color-zinc-500);
+  --syntax-comment: var(--color-zinc-400);
+  --syntax-punct: var(--color-zinc-400);
 
   --surface: var(--color-zinc-900);
   --surface-elevated: var(--color-zinc-950);
@@ -93,8 +103,8 @@ kbd,
 pre,
 samp,
 .font-mono {
-  font-family: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo,
-    monospace;
+  font-family:
+    var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
 /* Selection color */
@@ -104,49 +114,6 @@ samp,
 }
 
 /* ---------- Animations ---------- */
-
-@keyframes fade-in-up {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-fade-in-up {
-  animation: fade-in-up 0.6s ease-out forwards;
-}
-
-.animate-fade-in-up-delay-1 {
-  animation: fade-in-up 0.6s ease-out 0.1s forwards;
-  opacity: 0;
-}
-
-.animate-fade-in-up-delay-2 {
-  animation: fade-in-up 0.6s ease-out 0.2s forwards;
-  opacity: 0;
-}
-
-.animate-fade-in-up-delay-3 {
-  animation: fade-in-up 0.6s ease-out 0.3s forwards;
-  opacity: 0;
-}
-
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-.animate-fade-in {
-  animation: fade-in 0.3s ease-out forwards;
-}
 
 @keyframes float-orb {
   0%,
@@ -174,43 +141,6 @@ samp,
 
 .animate-orb-3 {
   animation: float-orb 18s ease-in-out infinite 5s;
-}
-
-@keyframes blink {
-  0%,
-  49% {
-    opacity: 1;
-  }
-  50%,
-  100% {
-    opacity: 0;
-  }
-}
-
-.animate-blink {
-  animation: blink 1.05s steps(1) infinite;
-}
-
-@keyframes caret-bar {
-  0%,
-  49% {
-    opacity: 1;
-  }
-  50%,
-  100% {
-    opacity: 0;
-  }
-}
-
-.caret-bar::after {
-  content: "";
-  display: inline-block;
-  width: 0.5ch;
-  height: 1em;
-  margin-left: 1px;
-  background: currentColor;
-  vertical-align: text-bottom;
-  animation: caret-bar 1.05s steps(1) infinite;
 }
 
 @property --shimmer-angle {
@@ -245,30 +175,6 @@ samp,
 }
 
 .btn-shine:hover::after {
-  transform: translateX(100%);
-}
-
-.card-shine {
-  position: relative;
-  overflow: hidden;
-}
-
-.card-shine::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    120deg,
-    transparent 30%,
-    rgba(255, 255, 255, 0.08) 50%,
-    transparent 70%
-  );
-  transform: translateX(-100%);
-  transition: transform 0.6s ease;
-  pointer-events: none;
-}
-
-.card-shine:hover::after {
   transform: translateX(100%);
 }
 
@@ -328,53 +234,6 @@ samp,
   );
 }
 
-/* Corner-bracket card — purely decorative L-shaped corner accents */
-.bracket-card {
-  position: relative;
-}
-
-.bracket-card::before,
-.bracket-card::after {
-  content: "";
-  position: absolute;
-  width: 14px;
-  height: 14px;
-  border-color: var(--accent);
-  border-style: solid;
-  border-width: 0;
-  opacity: 0.6;
-}
-
-.bracket-card::before {
-  top: -1px;
-  left: -1px;
-  border-top-width: 1px;
-  border-left-width: 1px;
-}
-
-.bracket-card::after {
-  bottom: -1px;
-  right: -1px;
-  border-bottom-width: 1px;
-  border-right-width: 1px;
-}
-
-/* Subtle horizontal scan-line texture — adds depth to dark surfaces */
-.scanlines::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: repeating-linear-gradient(
-    0deg,
-    transparent 0,
-    transparent 3px,
-    color-mix(in oklab, var(--foreground) 2%, transparent) 3px,
-    color-mix(in oklab, var(--foreground) 2%, transparent) 4px
-  );
-  pointer-events: none;
-  border-radius: inherit;
-}
-
 /* Cursor-tracking spotlight (controlled via JS-set CSS vars on hover) */
 .spotlight {
   position: relative;
@@ -413,48 +272,6 @@ samp,
   background: color-mix(in oklab, var(--foreground) 18%, transparent);
 }
 
-/* Reveal on scroll */
-@keyframes reveal {
-  from {
-    opacity: 0;
-    transform: translateY(16px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.reveal {
-  animation: reveal 0.7s ease-out both;
-}
-
-/* Marching ants border (subtle "running" dashed border) */
-@keyframes march {
-  to {
-    background-position: 200px 0, -200px 100%, 0 -200px, 100% 200px;
-  }
-}
-
-.marching-ants {
-  background:
-    linear-gradient(90deg, var(--accent) 50%, transparent 0) repeat-x,
-    linear-gradient(90deg, var(--accent) 50%, transparent 0) repeat-x,
-    linear-gradient(0deg, var(--accent) 50%, transparent 0) repeat-y,
-    linear-gradient(0deg, var(--accent) 50%, transparent 0) repeat-y;
-  background-size:
-    6px 1px,
-    6px 1px,
-    1px 6px,
-    1px 6px;
-  background-position:
-    0 0,
-    0 100%,
-    0 0,
-    100% 0;
-  animation: march 12s linear infinite;
-}
-
 /* Accordion (FAQ) — content-visibility for smooth open/close */
 details.acc summary {
   list-style: none;
@@ -485,4 +302,17 @@ details.acc[open] .acc-body {
 
 details.acc .acc-body > div {
   overflow: hidden;
+}
+
+/* ---------- Reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

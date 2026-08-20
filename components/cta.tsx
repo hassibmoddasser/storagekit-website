@@ -1,8 +1,8 @@
 import { siteConfig } from "@/config/site";
-import { Chrome, Github } from "lucide-react";
+import { Chrome } from "lucide-react";
 import Image from "next/image";
 
-import placeholderImg from "@/assets/screenshots/placeholder.svg";
+import ctaImg from "@/assets/screenshots/hero.jpg";
 
 export default function CTA() {
   return (
@@ -19,17 +19,17 @@ export default function CTA() {
               </p>
 
               <h2 className="font-heading mt-3 text-3xl font-semibold tracking-tight text-balance md:text-5xl">
-                Stop wrestling with{" "}
-                <span className="font-mono text-foreground/95 rounded-md bg-muted/60 px-2 text-[0.92em] tracking-tight">
-                  Application
+                Keep your storage{" "}
+                <span className="text-foreground/95 bg-muted/60 rounded-md px-2 font-mono text-[0.92em] tracking-tight">
+                  open
                 </span>
                 .
                 <br className="hidden sm:block" /> Install StorageKit.
               </h2>
 
               <p className="text-muted-foreground mx-auto mt-5 max-w-xl text-base leading-relaxed text-pretty md:mx-0 md:text-lg">
-                Free, open-source, and fully local. Built by a developer who
-                spends way too much time inside DevTools.
+                Free, fully local, and no signup. Built by a developer who got
+                tired of digging through the Application panel.
               </p>
 
               <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row md:items-start md:justify-start">
@@ -37,35 +37,30 @@ export default function CTA() {
                   href={siteConfig.links.chromeWebStore}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-shine text-accent-foreground inline-flex items-center gap-2 rounded-lg bg-teal-600 px-4 py-2.5 text-sm font-semibold shadow-lg shadow-teal-600/20 transition-transform hover:-translate-y-px dark:bg-teal-500 dark:shadow-teal-500/20"
+                  className="btn-shine text-accent-foreground bg-accent-fill inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold shadow-lg shadow-teal-600/20 transition-transform hover:-translate-y-px dark:shadow-teal-500/20"
                 >
-                  <Chrome size={18} />
+                  <Chrome size={18} aria-hidden />
                   Add to Chrome — It&apos;s Free
                 </a>
                 <a
-                  href={siteConfig.links.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="/changelog"
                   className="border-border text-foreground hover:bg-muted inline-flex items-center gap-2 rounded-lg border px-4 py-2.5 text-sm font-semibold transition-colors"
                 >
-                  <Github size={16} />
-                  View source
+                  What&apos;s new in {siteConfig.version}
                 </a>
               </div>
 
-              <p className="text-syntax-comment font-mono mt-4 text-[11px]">
-                <span className="text-syntax-punct">$</span> npm install · nope.
-                Just one click.
+              <p className="text-syntax-comment mt-4 font-mono text-[11px]">
+                No signup · No config · Works on any site you can open
               </p>
             </div>
 
-            {/* Suggested filename: cta-preview.png */}
             <div className="relative mx-auto w-full max-w-md md:mx-0">
               <div className="bg-accent/20 absolute -inset-4 -z-10 rounded-3xl blur-2xl" />
-              <div className="border-border bg-surface-elevated relative aspect-[4/3] overflow-hidden rounded-xl border shadow-2xl shadow-black/20 rotate-1 transition-transform hover:rotate-0">
+              <div className="border-border relative aspect-[4/3] rotate-1 overflow-hidden rounded-xl border bg-zinc-950 shadow-2xl shadow-black/20 transition-transform hover:rotate-0">
                 <Image
-                  src={placeholderImg}
-                  alt="StorageKit panel preview"
+                  src={ctaImg}
+                  alt="The StorageKit panel with a storage key selected and its JSON value formatted"
                   fill
                   sizes="(min-width: 768px) 28rem, 100vw"
                   className="object-cover"

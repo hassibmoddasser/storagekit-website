@@ -21,7 +21,7 @@ export default async function ChangelogPage({
 
   if (v && release) {
     return (
-      <main className="mx-auto max-w-3xl px-6 pt-32 pb-16">
+      <main id="main" className="mx-auto max-w-3xl px-6 pt-32 pb-16">
         <article className="prose prose-base prose-zinc dark:prose-invert max-w-none">
           <p className="text-accent mb-0 text-sm font-semibold">
             StorageKit {v}
@@ -35,7 +35,7 @@ export default async function ChangelogPage({
 
           <div className="mt-10">{release.content}</div>
 
-          <hr className="border-t border-border/50" />
+          <hr className="border-border/50 border-t" />
           <p className="text-sm">
             <Link
               href="/changelog"
@@ -50,7 +50,7 @@ export default async function ChangelogPage({
   }
 
   return (
-    <main className="mx-auto max-w-3xl px-6 pt-32 pb-16">
+    <main id="main" className="mx-auto max-w-3xl px-6 pt-32 pb-16">
       <article className="prose prose-base prose-zinc dark:prose-invert max-w-none">
         <h1 className="mb-0">Changelog</h1>
         <p className="text-muted-foreground mt-2 text-base">

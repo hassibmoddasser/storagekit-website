@@ -7,14 +7,11 @@ const beforeSteps = [
   "Click »Application«",
   "Expand »Local Storage«",
   "Find the key",
-  "Decode JSON in your head",
-  "Edit. Refresh. Repeat.",
+  "Decode the JWT by hand",
+  "Lose it all on the next login",
 ];
 
-const afterSteps = [
-  "Open StorageKit",
-  "It's already there.",
-];
+const afterSteps = ["Open the side panel", "It stays open while you work."];
 
 export default function Problem() {
   return (
@@ -28,7 +25,7 @@ export default function Problem() {
           kind="problem"
           label="the-old-way"
           heading="Debugging storage shouldn't slow you down"
-          description="You shouldn't need eight clicks and a mental JWT decoder just to flip a feature flag."
+          description="The Application panel can read your storage. It can't decode a JWT, search inside values, or save a state you can restore later."
         />
 
         <div className="mt-14 grid gap-6 md:grid-cols-2">
@@ -36,13 +33,13 @@ export default function Problem() {
           <div className="border-border bg-background relative flex flex-col overflow-hidden rounded-2xl border p-6">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <span className="bg-rose-500/10 text-rose-500 dark:text-rose-400 inline-flex h-7 w-7 items-center justify-center rounded-md">
+                <span className="inline-flex h-7 w-7 items-center justify-center rounded-md bg-rose-500/10 text-rose-500 dark:text-rose-400">
                   <MousePointerClick size={14} />
                 </span>
-                <h3 className="text-base font-semibold">DevTools way</h3>
+                <h3 className="text-base font-semibold">Application panel</h3>
               </div>
               <span className="text-syntax-comment font-mono text-[11px]">
-                ~8 clicks
+                built in
               </span>
             </div>
 
@@ -50,9 +47,9 @@ export default function Problem() {
               {beforeSteps.map((step, i) => (
                 <li
                   key={i}
-                  className="text-muted-foreground font-mono flex items-start gap-2.5"
+                  className="text-muted-foreground flex items-start gap-2.5 font-mono"
                 >
-                  <span className="text-syntax-comment min-w-[1.5rem] select-none text-right tabular-nums">
+                  <span className="text-syntax-comment min-w-[1.5rem] text-right tabular-nums select-none">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <span className="text-foreground/80">{step}</span>
@@ -68,7 +65,10 @@ export default function Problem() {
                 lines={[
                   {
                     tokens: [
-                      { t: "comment", v: "// ugh, where's that token again..." },
+                      {
+                        t: "comment",
+                        v: "// ugh, where's that token again...",
+                      },
                     ],
                   },
                   {
@@ -87,7 +87,10 @@ export default function Problem() {
                   },
                   {
                     tokens: [
-                      { t: "comment", v: "// VM12345: SyntaxError: Unexpected token" },
+                      {
+                        t: "comment",
+                        v: "// VM12345: SyntaxError: Unexpected token",
+                      },
                     ],
                   },
                 ]}
@@ -101,21 +104,20 @@ export default function Problem() {
             <div className="bg-accent/[0.07] pointer-events-none absolute inset-0 -z-10" />
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <span className="bg-accent/10 text-accent inline-flex h-7 w-7 items-center justify-center rounded-md">
+                <span className="bg-accent/10 text-accent-text inline-flex h-7 w-7 items-center justify-center rounded-md">
                   <Sparkles size={14} />
                 </span>
-                <h3 className="text-base font-semibold">StorageKit way</h3>
+                <h3 className="text-base font-semibold">StorageKit</h3>
               </div>
-              <span className="text-accent font-mono text-[11px]">1 click</span>
+              <span className="text-accent-text font-mono text-[11px]">
+                side panel
+              </span>
             </div>
 
             <ol className="mt-5 space-y-2.5 text-sm">
               {afterSteps.map((step, i) => (
-                <li
-                  key={i}
-                  className="font-mono flex items-start gap-2.5"
-                >
-                  <span className="text-syntax-comment min-w-[1.5rem] select-none text-right tabular-nums">
+                <li key={i} className="flex items-start gap-2.5 font-mono">
+                  <span className="text-syntax-comment min-w-[1.5rem] text-right tabular-nums select-none">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <span className="text-foreground/90">{step}</span>
@@ -126,9 +128,9 @@ export default function Problem() {
             <ul className="mt-5 space-y-2 text-sm">
               {[
                 "Inline editing — no JSON.parse roulette",
-                "JWTs decoded automatically",
-                "Snapshot a state, restore it later",
-                "Search across keys and values",
+                "JWTs decoded automatically, algorithm and all",
+                "Snapshot a state, restore it after logout",
+                "Search inside values, not just key names",
               ].map((line) => (
                 <li
                   key={line}
@@ -136,7 +138,7 @@ export default function Problem() {
                 >
                   <ArrowRight
                     size={14}
-                    className="text-accent mt-1 shrink-0"
+                    className="text-accent-text mt-1 shrink-0"
                   />
                   <span>{line}</span>
                 </li>

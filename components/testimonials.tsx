@@ -1,8 +1,6 @@
-"use client";
-
+import { siteConfig } from "@/config/site";
 import { cn } from "@/utils/cn";
 import { Quote, Star } from "lucide-react";
-import Marquee from "react-fast-marquee";
 import SectionTag from "./primitives/section-tag";
 
 const testimonials = [
@@ -54,6 +52,10 @@ const testimonials = [
   },
 ];
 
+const FEATURED = "Mohammad Hojjat Mahdave";
+
+const supporting = testimonials.filter((t) => t.name !== FEATURED);
+
 const palette = [
   "from-teal-500/30 to-sky-500/30",
   "from-violet-500/30 to-fuchsia-500/30",
@@ -97,15 +99,20 @@ function TestimonialCard({
   testimonial: (typeof testimonials)[number];
 }) {
   return (
-    <article className="border-border bg-muted/30 hover:bg-muted/50 group mx-3 flex w-80 shrink-0 flex-col justify-between gap-3 rounded-xl border p-5 transition-colors">
+    <article className="border-border bg-muted/30 hover:bg-muted/50 flex w-full flex-col justify-between gap-3 rounded-xl border p-5 transition-colors">
       <div>
         <div className="flex items-center justify-between">
-          <div className="flex gap-0.5">
+          <div className="flex gap-0.5" aria-label="Rated 5 out of 5">
             {Array.from({ length: 5 }).map((_, i) => (
-              <Star key={i} size={11} className="fill-amber-400 text-amber-400" />
+              <Star
+                key={i}
+                size={11}
+                aria-hidden
+                className="fill-amber-400 text-amber-400"
+              />
             ))}
           </div>
-          <Quote size={14} className="text-muted-foreground/50" />
+          <Quote size={14} aria-hidden className="text-muted-foreground/50" />
         </div>
         <blockquote className="text-foreground/85 mt-3 text-sm leading-relaxed">
           &ldquo;{testimonial.quote}&rdquo;
@@ -118,7 +125,7 @@ function TestimonialCard({
           <p className="text-foreground truncate text-xs font-medium">
             {testimonial.name}
           </p>
-          <p className="text-syntax-comment font-mono truncate text-[10px]">
+          <p className="text-syntax-comment truncate font-mono text-[10px]">
             via Chrome Web Store
           </p>
         </div>
@@ -129,17 +136,13 @@ function TestimonialCard({
 
 export default function Testimonials() {
   return (
-    <section
-      id="testimonials"
-      className="scroll-mt-24 py-16 md:py-24"
-      style={{ overflowAnchor: "none" }}
-    >
+    <section id="testimonials" className="scroll-mt-24 py-16 md:py-24">
       <div className="mx-auto max-w-6xl px-6">
         <SectionTag
           kind="reviews"
           label="from-the-web-store"
           heading="Loved by developers"
-          description="5.0/5 across every review on the Chrome Web Store."
+          description={`${siteConfig.rating} from all ${siteConfig.reviewCount} reviews on the Chrome Web Store.`}
         />
 
         {/* Featured pull-quote */}
@@ -147,6 +150,7 @@ export default function Testimonials() {
           <div className="bg-accent/10 absolute -top-6 -left-6 h-20 w-20 rounded-full blur-2xl" />
           <Quote
             size={36}
+            aria-hidden
             className="text-accent/40 absolute top-6 right-6"
           />
           <blockquote className="font-heading text-foreground relative text-xl leading-[1.5] font-medium md:text-2xl">
@@ -154,10 +158,10 @@ export default function Testimonials() {
             value. A handy tool for inspecting browser storage.&rdquo;
           </blockquote>
           <figcaption className="mt-6 flex items-center gap-3">
-            <Avatar name="Mohammad Hojjat Mahdave" />
+            <Avatar name={FEATURED} />
             <div>
               <div className="text-foreground text-sm font-medium">
-                Mohammad Hojjat Mahdave
+                {FEATURED}
               </div>
               <div className="text-syntax-comment font-mono text-[11px]">
                 ★ 5.0 · Chrome Web Store
@@ -167,31 +171,14 @@ export default function Testimonials() {
         </figure>
       </div>
 
-      <div className="mt-12 space-y-5">
-        <Marquee
-          speed={40}
-          pauseOnHover
-          gradient
-          gradientColor="var(--background)"
-          gradientWidth={80}
-        >
-          {testimonials.map((t) => (
-            <TestimonialCard key={t.name} testimonial={t} />
+      <div className="mx-auto mt-12 max-w-6xl px-6">
+        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {supporting.map((t) => (
+            <li key={t.name} className="flex">
+              <TestimonialCard testimonial={t} />
+            </li>
           ))}
-        </Marquee>
-
-        <Marquee
-          speed={40}
-          pauseOnHover
-          direction="right"
-          gradient
-          gradientColor="var(--background)"
-          gradientWidth={80}
-        >
-          {[...testimonials].reverse().map((t) => (
-            <TestimonialCard key={t.name} testimonial={t} />
-          ))}
-        </Marquee>
+        </ul>
       </div>
     </section>
   );

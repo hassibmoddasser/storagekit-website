@@ -34,7 +34,9 @@ export const metadata: Metadata = {
     "debugging",
     "developer tools",
     "devtools",
+    "side panel",
     "snapshots",
+    "localStorage editor",
     "browser storage",
     "chrome devtools",
     "storage manager",
@@ -49,25 +51,24 @@ export const metadata: Metadata = {
     telephone: false,
   },
   openGraph: {
+    // No title/description/url here — Next then falls back to each page's own
+    // resolved metadata instead of stamping the homepage onto every route.
     type: "website",
     locale: "en_US",
-    url: siteConfig.url,
+    // Relative, so each route reports its own og:url.
+    url: "./",
     siteName: siteConfig.name,
-    title: siteConfig.title,
-    description: siteConfig.description,
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: siteConfig.title,
+        alt: siteConfig.name,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: siteConfig.title,
-    description: siteConfig.description,
   },
   icons: {
     icon: [
@@ -77,7 +78,9 @@ export const metadata: Metadata = {
     apple: "/apple-touch-icon.png",
   },
   alternates: {
-    canonical: siteConfig.url,
+    // Relative canonical resolves per route against metadataBase, so each
+    // page self-references instead of pointing at the homepage.
+    canonical: "./",
   },
 };
 
@@ -87,7 +90,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
           geistSans.variable,
@@ -104,6 +107,13 @@ export default function RootLayout({
           )}
 
         <ThemeProvider>
+          <a
+            href="#main"
+            className="focus-visible:bg-background focus-visible:text-foreground focus-visible:border-border sr-only focus-visible:not-sr-only focus-visible:fixed focus-visible:top-4 focus-visible:left-4 focus-visible:z-[60] focus-visible:rounded-lg focus-visible:border focus-visible:px-4 focus-visible:py-2 focus-visible:text-sm focus-visible:font-semibold"
+          >
+            Skip to content
+          </a>
+
           <div className="bg-background overflow-x-hidden rounded-t-4xl md:rounded-t-none">
             <Header />
             {children}

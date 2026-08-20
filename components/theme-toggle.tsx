@@ -27,7 +27,7 @@ export default function ThemeToggle() {
       <div className="border-border flex items-center gap-0.5 rounded-full border p-1">
         {themes.map(({ value, icon: Icon }) => (
           <span key={value} className="rounded-full p-1.5">
-            <Icon size={14} className="text-muted-foreground" />
+            <Icon size={14} aria-hidden className="text-muted-foreground" />
           </span>
         ))}
       </div>
@@ -41,6 +41,7 @@ export default function ThemeToggle() {
           key={value}
           onClick={() => setTheme(value)}
           aria-label={`Switch to ${label} theme`}
+          aria-pressed={theme === value}
           className={cn(
             "cursor-pointer rounded-full p-1.5 transition-colors",
             theme === value
@@ -48,7 +49,7 @@ export default function ThemeToggle() {
               : "text-muted-foreground hover:text-foreground",
           )}
         >
-          <Icon size={14} />
+          <Icon size={14} aria-hidden />
         </button>
       ))}
     </div>

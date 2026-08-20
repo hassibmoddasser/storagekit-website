@@ -3,6 +3,21 @@ import SectionTag from "./primitives/section-tag";
 
 const faqs = [
   {
+    question: "How is this different from Chrome's Application panel?",
+    answer:
+      "The Application panel can read and edit your storage, and for a quick look it's fine. StorageKit adds the parts it doesn't have: snapshots you can restore after a logout, automatic JWT decoding, a real nested-JSON editor, search that matches values and not just key names, and all three storage types in one list. It also stays docked beside your page instead of taking over half your window. Application still wins on IndexedDB and Cache Storage, which StorageKit doesn't cover yet.",
+  },
+  {
+    question: "Why does it need access to all websites?",
+    answer:
+      "Reading localStorage and sessionStorage requires a content script running in the page's own context, and that page could be any site you're debugging — so the manifest declares <all_urls>. Chrome shows this as “Read and change all your data on all websites” at install. StorageKit reads storage and cookies, and nothing else: there are no network calls anywhere in the code, so nothing it reads can leave your machine.",
+  },
+  {
+    question: "Where do I find it after installing?",
+    answer:
+      "Click the puzzle-piece icon in the Chrome toolbar and pin StorageKit — Chrome hides new extensions there by default. Then click the icon for a quick look, or choose “Open in side panel” to dock it next to your page. One caveat: any tab you had open before installing needs a refresh before the extension can read it.",
+  },
+  {
     question: "Is StorageKit free?",
     answer:
       "Yes — completely free. No premium tiers, no feature limits, no hidden costs.",
@@ -20,17 +35,12 @@ const faqs = [
   {
     question: "How are snapshots stored?",
     answer:
-      "Chrome's extension storage API persists them across sessions. You can also export them as JSON files for backup or sharing.",
+      "In the extension's own local storage, so they persist across sessions on this machine. They don't sync across devices, and clearing browser data clears them — so export anything you can't afford to lose as a JSON file.",
   },
   {
     question: "Can I use it on any website?",
     answer:
       "Yes — on any regular website. It can't access restricted browser pages (like the Chrome Web Store itself) due to browser security policies.",
-  },
-  {
-    question: "Is StorageKit open source?",
-    answer:
-      "Yes. The full source lives on GitHub under MIT — read it, audit it, fork it, contribute back. Link in the footer.",
   },
 ];
 
@@ -56,23 +66,24 @@ export default function FAQ() {
           kind="faq"
           label="answers"
           heading="Frequently asked questions"
-          description="Can't find what you're looking for? Open an issue on GitHub."
+          description="Everything worth knowing before you install."
         />
 
-        <div className="border-border bg-muted/30 mt-12 divide-y divide-border overflow-hidden rounded-2xl border">
+        <div className="border-border bg-muted/30 divide-border mt-12 divide-y overflow-hidden rounded-2xl border">
           {faqs.map((faq, i) => (
             <details key={i} className="acc group">
               <summary className="hover:bg-muted/60 flex items-start justify-between gap-4 px-5 py-4 transition-colors">
                 <div className="flex items-start gap-3">
-                  <span className="text-syntax-comment font-mono mt-0.5 w-6 shrink-0 text-xs tabular-nums">
+                  <span className="text-syntax-comment mt-0.5 w-6 shrink-0 font-mono text-xs tabular-nums">
                     Q{String(i + 1).padStart(2, "0")}
                   </span>
-                  <h3 className="text-foreground text-base font-medium tracking-tight">
+                  <span className="text-foreground text-base font-medium tracking-tight">
                     {faq.question}
-                  </h3>
+                  </span>
                 </div>
                 <ChevronRight
                   size={16}
+                  aria-hidden
                   className="acc-chevron text-muted-foreground mt-1 shrink-0"
                 />
               </summary>
