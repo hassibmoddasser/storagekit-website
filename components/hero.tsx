@@ -22,7 +22,7 @@ export default function Hero() {
           href={siteConfig.links.chromeWebStore}
           target="_blank"
           rel="noopener noreferrer"
-          className="shimmer-pill bg-background group inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs"
+          className="shimmer-pill bg-background group inline-flex items-center gap-2 rounded-full px-4 py-2.5 text-xs"
         >
           <span className="flex items-center gap-0.5" aria-hidden>
             {Array.from({ length: 5 }).map((_, i) => (
@@ -46,34 +46,11 @@ export default function Hero() {
           />
         </a>
 
-        {/* "Comment" line above headline — pure DevTools flair */}
-        <p className="text-syntax-comment mt-8 font-mono text-xs" aria-hidden>
-          <span className="text-syntax-punct">{"//"}</span> Built for developers
-          who spend their day in the browser
-        </p>
-
         <h1 className="mx-auto mt-3 max-w-3xl text-4xl leading-[1.1] font-bold tracking-tight md:text-6xl md:leading-[1.05]">
           <span className="relative inline-block">
             <span className="text-accent-text-lg">Browser storage</span>
-            <svg
-              aria-hidden
-              viewBox="0 0 240 12"
-              preserveAspectRatio="none"
-              className="text-accent absolute -bottom-1 left-0 h-2 w-full opacity-70"
-            >
-              <path
-                d="M2 7 C 60 3, 120 11, 238 5"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-              />
-            </svg>
           </span>
-          , without opening{" "}
-          <span className="text-foreground/95 bg-muted/60 inline-flex items-baseline rounded-md px-2 font-mono text-[0.9em] tracking-tight">
-            DevTools
-          </span>
+          , without opening DevTools
         </h1>
 
         <p className="text-muted-foreground mx-auto mt-7 max-w-xl text-base leading-relaxed md:text-lg">

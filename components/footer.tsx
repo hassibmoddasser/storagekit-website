@@ -112,7 +112,7 @@ export default function Footer() {
             · © {new Date().getFullYear()}
           </p>
           <p className="text-syntax-comment">
-            Made with too much coffee in Kabul.
+            Made with love far from home.
           </p>
         </div>
       </div>

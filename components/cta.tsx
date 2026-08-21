@@ -14,11 +14,7 @@ export default function CTA() {
 
           <div className="relative grid items-center gap-12 md:grid-cols-[1.1fr_1fr]">
             <div className="text-center md:text-left">
-              <p className="text-syntax-comment font-mono text-xs">
-                <span className="text-syntax-punct">{"//"}</span> one more thing
-              </p>
-
-              <h2 className="font-heading mt-3 text-3xl font-semibold tracking-tight text-balance md:text-5xl">
+              <h2 className="font-heading text-3xl font-semibold tracking-tight text-balance md:text-5xl">
                 Keep your storage{" "}
                 <span className="text-foreground/95 bg-muted/60 rounded-md px-2 font-mono text-[0.92em] tracking-tight">
                   open
@@ -57,7 +53,7 @@ export default function CTA() {
 
             <div className="relative mx-auto w-full max-w-md md:mx-0">
               <div className="bg-accent/20 absolute -inset-4 -z-10 rounded-3xl blur-2xl" />
-              <div className="border-border relative aspect-[4/3] rotate-1 overflow-hidden rounded-xl border bg-zinc-950 shadow-2xl shadow-black/20 transition-transform hover:rotate-0">
+              <div className="border-border relative aspect-4/3 rotate-1 overflow-hidden rounded-xl border bg-zinc-950 shadow-2xl shadow-black/20 transition-transform hover:rotate-0">
                 <Image
                   src={ctaImg}
                   alt="The StorageKit panel with a storage key selected and its JSON value formatted"
@@ -73,7 +69,7 @@ export default function CTA() {
           <svg
             viewBox="0 0 1024 1024"
             aria-hidden="true"
-            className="absolute top-1/2 left-1/2 -z-20 size-[64rem] -translate-x-1/2 [mask-image:radial-gradient(closest-side,white,transparent)]"
+            className="absolute top-1/2 left-1/2 -z-20 size-[64rem] -translate-x-1/2 mask-[radial-gradient(closest-side,white,transparent)]"
           >
             <circle
               r="512"
