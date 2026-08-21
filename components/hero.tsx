@@ -4,6 +4,7 @@ import Image from "next/image";
 
 import heroImage from "@/assets/screenshots/hero.jpg";
 import BrowserFrame from "./primitives/browser-frame";
+import ButtonLink from "./primitives/button";
 
 export default function Hero() {
   return (
@@ -33,7 +34,9 @@ export default function Hero() {
               />
             ))}
           </span>
-          <span className="text-foreground font-medium">5.0</span>
+          <span className="text-foreground font-medium">
+            {siteConfig.rating}
+          </span>
           <span className="bg-border h-3 w-px" aria-hidden />
           <span className="text-muted-foreground group-hover:text-foreground transition-colors">
             from {siteConfig.reviewCount} reviews
@@ -46,14 +49,12 @@ export default function Hero() {
           />
         </a>
 
-        <h1 className="mx-auto mt-3 max-w-3xl text-4xl leading-[1.1] font-bold tracking-tight md:text-6xl md:leading-[1.05]">
-          <span className="relative inline-block">
-            <span className="text-accent-text-lg">Browser storage</span>
-          </span>
-          , without opening DevTools
+        <h1 className="mx-auto mt-8 max-w-3xl text-4xl leading-[1.1] font-bold tracking-tight md:text-6xl md:leading-[1.05]">
+          <span className="text-accent-text-lg">Browser storage</span>, without
+          opening DevTools
         </h1>
 
-        <p className="text-muted-foreground mx-auto mt-7 max-w-xl text-base leading-relaxed md:text-lg">
+        <p className="text-muted-foreground mx-auto mt-6 max-w-xl text-base leading-relaxed md:text-lg">
           A free Chrome extension to inspect, edit, and snapshot{" "}
           <code className="text-foreground font-mono text-[0.92em]">
             localStorage
@@ -67,29 +68,18 @@ export default function Hero() {
 
         {/* CTA cluster */}
         <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <a
-            href={siteConfig.links.chromeWebStore}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-shine text-accent-foreground bg-accent-fill inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold shadow-lg shadow-teal-600/20 transition-transform hover:-translate-y-px dark:shadow-teal-500/20"
-          >
+          <ButtonLink href={siteConfig.links.chromeWebStore} external>
             <Chrome size={16} aria-hidden />
             Add to Chrome — It&apos;s Free
-          </a>
-          <a
-            href="#features"
-            className="btn-shine border-border bg-background/40 text-foreground hover:bg-muted inline-flex items-center gap-2 rounded-lg border px-4 py-2.5 text-sm font-semibold backdrop-blur-sm transition-colors"
-          >
+          </ButtonLink>
+          <ButtonLink href="#features" variant="secondary">
             <PanelRight size={16} aria-hidden />
             See what it does
-          </a>
+          </ButtonLink>
         </div>
 
-        <p className="text-syntax-comment mt-4 font-mono text-[11px]">
-          <span className="text-syntax-punct" aria-hidden>
-            &gt;
-          </span>{" "}
-          Installs in 10 seconds · No signup · 100% local
+        <p className="text-muted-foreground mt-4 text-xs">
+          Free forever · No signup · Nothing leaves your machine
         </p>
 
         {/* Product showcase */}

@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { ArrowRight, PanelRight, Pin, RefreshCw, Sparkles } from "lucide-react";
+import { ArrowRight, Sparkles } from "lucide-react";
 
-import SectionTag from "@/components/primitives/section-tag";
+import SectionHeading from "@/components/primitives/section-heading";
 import Showcase from "@/components/showcase";
 
 export const metadata: Metadata = {
@@ -17,17 +17,14 @@ export const metadata: Metadata = {
 
 const firstRun = [
   {
-    icon: Pin,
     title: "Pin the extension",
     body: "Chrome hides new extensions behind the puzzle-piece icon in the toolbar. Click it, then pin StorageKit so it's always one click away.",
   },
   {
-    icon: PanelRight,
     title: "Open the panel",
     body: "Click the StorageKit icon for a quick look, or choose “Open in side panel” to dock it beside your page while you work.",
   },
   {
-    icon: RefreshCw,
     title: "Refresh open tabs",
     body: "Tabs you had open before installing need one refresh before StorageKit can read their storage. New tabs work right away.",
   },
@@ -56,34 +53,26 @@ export default function WelcomePage() {
           </h1>
 
           <p className="text-muted-foreground mx-auto mt-6 max-w-xl text-base leading-relaxed md:text-lg">
-            You&apos;re one step from your storage. Here&apos;s how to open it.
+            Three quick things and it&apos;s docked beside your page.
           </p>
 
-          <ol className="mx-auto mt-12 grid max-w-4xl gap-4 text-left sm:grid-cols-3">
-            {firstRun.map((step, i) => {
-              const StepIcon = step.icon;
-              return (
-                <li
-                  key={step.title}
-                  className="border-border bg-muted/30 flex flex-col rounded-2xl border p-5"
+          <ol className="mx-auto mt-14 grid max-w-4xl gap-10 text-left sm:grid-cols-3 sm:gap-8">
+            {firstRun.map((step, i) => (
+              <li key={step.title} className="border-border/70 border-t pt-6">
+                <span
+                  aria-hidden
+                  className="font-heading text-accent-text-lg block text-5xl leading-none font-bold tracking-tighter tabular-nums"
                 >
-                  <div className="flex items-center justify-between">
-                    <span className="text-syntax-comment font-mono text-[11px] tracking-wider">
-                      STEP 0{i + 1}
-                    </span>
-                    <span className="bg-accent/10 text-accent-text inline-flex h-8 w-8 items-center justify-center rounded-md">
-                      <StepIcon size={16} aria-hidden />
-                    </span>
-                  </div>
-                  <h2 className="mt-4 text-base font-semibold tracking-tight">
-                    {step.title}
-                  </h2>
-                  <p className="text-muted-foreground mt-1.5 text-sm leading-relaxed">
-                    {step.body}
-                  </p>
-                </li>
-              );
-            })}
+                  0{i + 1}
+                </span>
+                <h2 className="mt-5 text-base font-semibold tracking-tight">
+                  {step.title}
+                </h2>
+                <p className="text-muted-foreground mt-2 text-sm leading-relaxed">
+                  {step.body}
+                </p>
+              </li>
+            ))}
           </ol>
         </div>
       </section>
@@ -93,11 +82,7 @@ export default function WelcomePage() {
       {/* Next steps */}
       <section className="py-14 md:py-20">
         <div className="mx-auto max-w-6xl px-6 text-center">
-          <SectionTag
-            kind="next"
-            label="ready-to-explore"
-            heading="What's next?"
-          />
+          <SectionHeading label="Ready to explore" heading="What's next?" />
 
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link

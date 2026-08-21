@@ -1,143 +1,23 @@
-import { Camera, Chrome, PanelRight } from "lucide-react";
-import CodeBlock from "./primitives/code-block";
-import SectionTag from "./primitives/section-tag";
+import SectionHeading from "./primitives/section-heading";
 
 const steps = [
   {
     n: "01",
-    icon: Chrome,
     title: "Install and pin it",
     description:
       "One click on the Chrome Web Store. Chrome hides new extensions behind the puzzle-piece icon, so pin StorageKit once and it's always there.",
-    code: {
-      title: "manifest.json",
-      lang: "json",
-      lines: [
-        {
-          tokens: [
-            { t: "key" as const, v: '"permissions"' },
-            { t: "punct" as const, v: ": [" },
-          ],
-        },
-        {
-          tokens: [
-            { t: "string" as const, v: '  "activeTab"' },
-            { t: "punct" as const, v: ", " },
-            { t: "string" as const, v: '"cookies"' },
-            { t: "punct" as const, v: "," },
-          ],
-        },
-        {
-          tokens: [
-            { t: "string" as const, v: '  "sidePanel"' },
-            { t: "punct" as const, v: "]," },
-          ],
-        },
-        {
-          tokens: [
-            { t: "key" as const, v: '"host_permissions"' },
-            { t: "punct" as const, v: ": [" },
-            { t: "string" as const, v: '"<all_urls>"' },
-            { t: "punct" as const, v: "]" },
-          ],
-        },
-        {
-          tokens: [
-            {
-              t: "comment" as const,
-              v: "// a content script reads the",
-            },
-          ],
-        },
-        {
-          tokens: [{ t: "comment" as const, v: "// page you're debugging." }],
-        },
-      ],
-    },
   },
   {
     n: "02",
-    icon: PanelRight,
     title: "Dock it beside your page",
     description:
       "Click the icon for a quick look, or open it in the side panel to keep it there. It follows you across tab switches and reloads.",
-    code: {
-      title: "storagekit",
-      lang: "txt",
-      lines: [
-        {
-          tokens: [
-            { t: "ident" as const, v: "Local storage" },
-            { t: "punct" as const, v: "    " },
-            { t: "number" as const, v: "18" },
-          ],
-        },
-        {
-          tokens: [
-            { t: "ident" as const, v: "Session storage" },
-            { t: "punct" as const, v: "  " },
-            { t: "number" as const, v: "3" },
-          ],
-        },
-        {
-          tokens: [
-            { t: "ident" as const, v: "Cookies" },
-            { t: "punct" as const, v: "          " },
-            { t: "number" as const, v: "2" },
-          ],
-        },
-        { tokens: [{ t: "comment" as const, v: "" }] },
-        {
-          tokens: [
-            { t: "comment" as const, v: "// live — refreshes with the page" },
-          ],
-        },
-      ],
-    },
   },
   {
     n: "03",
-    icon: Camera,
     title: "Snapshot your state",
     description:
       "Save your entire storage state with one click. Restore it after a logout, or export it as JSON to send to a teammate.",
-    code: {
-      title: "snapshot.json",
-      lang: "json",
-      lines: [
-        {
-          tokens: [
-            { t: "key" as const, v: '"name"' },
-            { t: "punct" as const, v: ": " },
-            { t: "string" as const, v: '"before-checkout"' },
-            { t: "punct" as const, v: "," },
-          ],
-        },
-        {
-          tokens: [
-            { t: "key" as const, v: '"created"' },
-            { t: "punct" as const, v: ": " },
-            { t: "number" as const, v: "1735689600" },
-            { t: "punct" as const, v: "," },
-          ],
-        },
-        {
-          tokens: [
-            { t: "key" as const, v: '"items"' },
-            { t: "punct" as const, v: ": " },
-            { t: "number" as const, v: "12" },
-            { t: "punct" as const, v: "," },
-          ],
-        },
-        {
-          tokens: [
-            { t: "key" as const, v: '"size"' },
-            { t: "punct" as const, v: ": " },
-            { t: "string" as const, v: '"2.4 KB"' },
-          ],
-        },
-      ],
-    },
   },
 ];
 
@@ -145,59 +25,32 @@ export default function HowItWorks() {
   return (
     <section className="relative py-16 md:py-24">
       <div className="mx-auto max-w-6xl px-6">
-        <SectionTag
-          kind="flow"
-          label="how-it-works"
+        <SectionHeading
+          label="Getting started"
           heading="Three steps. No friction."
           description="From install to first snapshot in under a minute."
         />
 
-        <div className="mt-14 grid gap-5 md:grid-cols-3">
-          {steps.map((step, idx) => {
-            const Icon = step.icon;
-            return (
-              <div
-                key={step.n}
-                className="border-border bg-muted/30 relative flex flex-col overflow-hidden rounded-2xl border p-6"
+        {/* Top rules instead of cards: the page is already full of boxes, and
+            the numeral is doing the work a border would otherwise do. */}
+        <ol className="mt-14 grid gap-10 md:grid-cols-3 md:gap-8">
+          {steps.map((step) => (
+            <li key={step.n} className="border-border/70 border-t pt-6">
+              <span
+                aria-hidden
+                className="font-heading text-accent-text-lg block text-5xl leading-none font-bold tracking-tighter tabular-nums md:text-6xl"
               >
-                {/* Step connector line (desktop only) */}
-                {idx < steps.length - 1 && (
-                  <div
-                    aria-hidden
-                    className="from-border absolute top-1/2 -right-3 hidden h-px w-6 bg-gradient-to-r to-transparent md:block"
-                  />
-                )}
-
-                <div className="flex items-center justify-between">
-                  <span className="text-syntax-comment font-mono text-[11px] tracking-wider">
-                    STEP {step.n}
-                  </span>
-                  <span className="bg-accent/10 text-accent-text inline-flex h-8 w-8 items-center justify-center rounded-md">
-                    <Icon size={16} />
-                  </span>
-                </div>
-
-                <h3 className="mt-4 text-lg font-semibold tracking-tight">
-                  {step.title}
-                </h3>
-                <p className="text-muted-foreground mt-1.5 text-sm leading-relaxed">
-                  {step.description}
-                </p>
-
-                <div className="mt-5">
-                  <CodeBlock
-                    title={step.code.title}
-                    lang={step.code.lang}
-                    lines={step.code.lines}
-                    showLineNumbers={false}
-                    className="text-[11.5px]"
-                    bodyClassName="p-3"
-                  />
-                </div>
-              </div>
-            );
-          })}
-        </div>
+                {step.n}
+              </span>
+              <h3 className="mt-5 text-lg font-semibold tracking-tight">
+                {step.title}
+              </h3>
+              <p className="text-muted-foreground mt-2 text-sm leading-relaxed">
+                {step.description}
+              </p>
+            </li>
+          ))}
+        </ol>
       </div>
     </section>
   );

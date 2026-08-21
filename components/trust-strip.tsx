@@ -20,11 +20,6 @@ export default function TrustStrip() {
       className="border-border/40 relative border-y py-6"
     >
       <div className="mx-auto max-w-6xl px-6">
-        <div className="text-syntax-comment mb-4 hidden text-center font-mono text-[11px] tracking-wider uppercase sm:block">
-          <span className="text-syntax-punct">{"//"}</span> trusted by
-          developers who care about their tools
-        </div>
-
         <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 sm:gap-x-4">
           {stats.map((s) => (
             <StatPill

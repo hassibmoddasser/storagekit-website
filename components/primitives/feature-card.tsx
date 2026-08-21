@@ -13,6 +13,12 @@ interface FeatureCardProps {
   description: string;
   priority?: boolean;
   sizes?: string;
+  /** Well aspect ratio. Match the source image so the crop never lands
+   *  halfway through a row of the UI. */
+  aspect?: string;
+  /** Crop anchor, for the one capture whose well is deliberately wider than
+   *  the source so the bottom rows fall away. */
+  imagePosition?: string;
 }
 
 export default function FeatureCard({
@@ -23,7 +29,9 @@ export default function FeatureCard({
   title,
   description,
   priority = false,
-  sizes = "(min-width: 1024px) 350px, (min-width: 640px) 50vw, 100vw",
+  sizes = "(min-width: 1024px) 360px, (min-width: 768px) 50vw, 100vw",
+  aspect = "aspect-3/2",
+  imagePosition = "object-center",
 }: FeatureCardProps) {
   const ref = useRef<HTMLDivElement>(null);
   const rect = useRef<DOMRect | null>(null);
@@ -54,15 +62,20 @@ export default function FeatureCard({
     >
       {/* The captures are of the panel's dark theme, so they sit in an inset
           well with its own frame — otherwise they read as holes in a light card. */}
-      <div className="bg-muted/60 relative flex-1 overflow-hidden p-2.5 sm:p-3">
-        <div className="ring-border/70 relative h-full w-full overflow-hidden rounded-lg bg-zinc-950 ring-1">
+      <div className="bg-muted/60 relative overflow-hidden p-2.5 sm:p-3">
+        <div
+          className={cn(
+            "ring-border/70 relative w-full overflow-hidden rounded-lg bg-zinc-950 ring-1",
+            aspect,
+          )}
+        >
           <Image
             src={imageSrc}
             alt={imageAlt}
             fill
             sizes={sizes}
             priority={priority}
-            className="object-cover object-left-top"
+            className={cn("object-cover", imagePosition)}
           />
         </div>
       </div>

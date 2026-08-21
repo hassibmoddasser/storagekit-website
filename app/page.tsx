@@ -1,8 +1,8 @@
+import Comparison from "@/components/comparison";
 import CTA from "@/components/cta";
 import FAQ from "@/components/faq";
 import Hero from "@/components/hero";
 import HowItWorks from "@/components/how-it-works";
-import Problem from "@/components/problem";
 import Showcase from "@/components/showcase";
 import Testimonials from "@/components/testimonials";
 import TrustStrip from "@/components/trust-strip";
@@ -52,9 +52,9 @@ export default function Home() {
       <main id="main">
         <Hero />
         <TrustStrip />
-        <Problem />
         <HowItWorks />
         <Showcase />
+        <Comparison />
         <UseCases />
         <Testimonials />
         <FAQ />

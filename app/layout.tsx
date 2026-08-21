@@ -114,7 +114,7 @@ export default function RootLayout({
             Skip to content
           </a>
 
-          <div className="bg-background overflow-x-hidden rounded-t-4xl md:rounded-t-none">
+          <div className="bg-background overflow-x-hidden">
             <Header />
             {children}
 

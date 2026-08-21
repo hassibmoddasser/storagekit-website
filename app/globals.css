@@ -15,6 +15,7 @@
   --accent-text: var(--color-teal-700);
   --accent-text-lg: var(--color-teal-600);
   --accent-fill: var(--color-teal-700);
+  --accent-fill-hover: var(--color-teal-800);
 
   /* Syntax-highlighting palette — used as design language across cards, badges, code mocks */
   --syntax-key: var(--color-sky-800);
@@ -41,6 +42,7 @@
   --color-accent-text: var(--accent-text);
   --color-accent-text-lg: var(--accent-text-lg);
   --color-accent-fill: var(--accent-fill);
+  --color-accent-fill-hover: var(--accent-fill-hover);
   --color-syntax-key: var(--syntax-key);
   --color-syntax-string: var(--syntax-string);
   --color-syntax-number: var(--syntax-number);
@@ -66,6 +68,7 @@
   --accent-text: var(--color-teal-400);
   --accent-text-lg: var(--color-teal-400);
   --accent-fill: var(--color-teal-500);
+  --accent-fill-hover: var(--color-teal-400);
 
   --syntax-key: var(--color-sky-400);
   --syntax-string: var(--color-amber-300);
@@ -80,16 +83,10 @@
 }
 
 body {
-  background: black;
+  background: var(--background);
   color: var(--foreground);
   font-family: var(--font-geist-sans), system-ui, sans-serif;
   font-feature-settings: "ss01", "cv11";
-}
-
-@media (min-width: 768px) {
-  body {
-    background: var(--background);
-  }
 }
 
 h1,
@@ -141,6 +138,31 @@ samp,
 
 .animate-orb-3 {
   animation: float-orb 18s ease-in-out infinite 5s;
+}
+
+/* Review marquee — two rows drifting in opposite directions. Each track holds
+   the list twice, so translating by half its width loops seamlessly. */
+@theme {
+  --animate-marquee: marquee 50s linear infinite;
+  --animate-marquee-reverse: marquee-reverse 50s linear infinite;
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes marquee-reverse {
+    from {
+      transform: translateX(-50%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
 }
 
 @property --shimmer-angle {
@@ -222,6 +244,17 @@ samp,
     color-mix(in oklab, var(--foreground) 6%, transparent) 1px,
     transparent 0
   );
+}
+
+/* Grid for the always-dark closing band. `.bg-grid` mixes from --foreground,
+   which is a dark ink in the light theme and would vanish there. */
+.bg-grid-invert {
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    rgb(255 255 255 / 0.07) 1px,
+    transparent 0
+  );
+  background-size: 24px 24px;
 }
 
 /* Soft radial mask — fades content to background at edges */

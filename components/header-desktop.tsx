@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { navLinks } from "./header";
 import Logo from "./logo";
+import ButtonLink from "./primitives/button";
 import ThemeToggle from "./theme-toggle";
 
 export default function DesktopHeader() {
@@ -34,7 +35,7 @@ export default function DesktopHeader() {
   return (
     <header
       className={cn(
-        "fixed top-0 z-50 hidden w-full border-b transition-all duration-300 md:block",
+        "fixed top-0 z-50 hidden w-full border-b transition-all duration-300 lg:block",
         scrolled
           ? "border-border/50 bg-background/80 backdrop-blur-xl"
           : "border-transparent bg-transparent",
@@ -69,14 +70,14 @@ export default function DesktopHeader() {
 
         <div className="flex items-center gap-2">
           <ThemeToggle />
-          <a
+          <ButtonLink
             href={siteConfig.links.chromeWebStore}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-shine text-accent-foreground bg-accent-fill inline-flex h-9 items-center rounded-lg px-4 text-sm font-medium transition-opacity hover:opacity-90"
+            external
+            size="sm"
+            className="font-medium shadow-none"
           >
             Add to Chrome
-          </a>
+          </ButtonLink>
         </div>
       </div>
     </header>

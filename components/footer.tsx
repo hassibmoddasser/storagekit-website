@@ -7,6 +7,7 @@ const sections = [
     title: "Product",
     links: [
       { label: "Features", href: "/#features" },
+      { label: "Compare", href: "/#compare" },
       { label: "Use cases", href: "/#use-cases" },
       { label: "Changelog", href: "/changelog" },
       {
@@ -100,7 +101,7 @@ export default function Footer() {
 
         <div className="border-border/40 text-muted-foreground mt-12 flex flex-col items-center justify-between gap-3 border-t pt-6 font-mono text-xs sm:flex-row">
           <p>
-            <span className="text-syntax-comment">{"//"}</span> Built by{" "}
+            Built by{" "}
             <a
               href={siteConfig.author.url}
               target="_blank"
@@ -111,9 +112,7 @@ export default function Footer() {
             </a>{" "}
             · © {new Date().getFullYear()}
           </p>
-          <p className="text-syntax-comment">
-            Made with love far from home.
-          </p>
+          <p className="text-syntax-comment">Made with love far from home.</p>
         </div>
       </div>
     </footer>

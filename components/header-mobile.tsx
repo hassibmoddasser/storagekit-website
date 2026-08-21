@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { navLinks } from "./header";
 import Logo from "./logo";
+import ButtonLink from "./primitives/button";
 import ThemeToggle from "./theme-toggle";
 
 export default function MobileHeader() {
@@ -43,7 +44,7 @@ export default function MobileHeader() {
 
   return (
     <>
-      <header className="bg-background/80 border-border/60 sticky top-0 z-50 w-full border-b backdrop-blur-xl md:hidden">
+      <header className="bg-background/80 border-border/60 sticky top-0 z-50 w-full border-b backdrop-blur-xl lg:hidden">
         <div className="flex h-14 items-center justify-between px-5">
           <Logo />
           <button
@@ -61,7 +62,7 @@ export default function MobileHeader() {
       {/* Backdrop */}
       <div
         className={cn(
-          "fixed inset-0 z-40 bg-black/40 backdrop-blur-sm transition-opacity duration-300 md:hidden",
+          "fixed inset-0 z-40 bg-black/40 backdrop-blur-sm transition-opacity duration-300 lg:hidden",
           open ? "opacity-100" : "pointer-events-none opacity-0",
         )}
         onClick={() => setOpen(false)}
@@ -73,7 +74,7 @@ export default function MobileHeader() {
         id="mobile-menu"
         inert={!open}
         className={cn(
-          "bg-background border-border/60 fixed top-14 right-0 left-0 z-40 border-b transition-all duration-300 md:hidden",
+          "bg-background border-border/60 fixed top-14 right-0 left-0 z-40 border-b transition-all duration-300 lg:hidden",
           open
             ? "translate-y-0 opacity-100"
             : "invisible -translate-y-2 opacity-0",
@@ -106,14 +107,13 @@ export default function MobileHeader() {
             <ThemeToggle />
           </div>
 
-          <a
+          <ButtonLink
             href={siteConfig.links.chromeWebStore}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-shine text-accent-foreground bg-accent-fill mt-3 inline-flex h-10 items-center justify-center rounded-lg text-sm font-semibold"
+            external
+            className="mt-3 h-10 w-full shadow-none"
           >
             Add to Chrome
-          </a>
+          </ButtonLink>
         </nav>
       </div>
     </>

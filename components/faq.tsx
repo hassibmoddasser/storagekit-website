@@ -1,5 +1,5 @@
 import { ChevronRight } from "lucide-react";
-import SectionTag from "./primitives/section-tag";
+import SectionHeading from "./primitives/section-heading";
 
 const faqs = [
   {
@@ -62,9 +62,8 @@ export default function FAQ() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <div className="mx-auto max-w-3xl px-6">
-        <SectionTag
-          kind="faq"
-          label="answers"
+        <SectionHeading
+          label="Answers"
           heading="Frequently asked questions"
           description="Everything worth knowing before you install."
         />
@@ -72,7 +71,7 @@ export default function FAQ() {
         <div className="border-border bg-muted/30 divide-border mt-12 divide-y overflow-hidden rounded-2xl border">
           {faqs.map((faq, i) => (
             <details key={i} className="acc group">
-              <summary className="hover:bg-muted/60 flex items-start justify-between gap-4 px-5 py-4 transition-colors">
+              <summary className="hover:bg-muted/60 flex items-start justify-between gap-4 px-5 py-5 transition-colors">
                 <div className="flex items-start gap-3">
                   <span className="text-syntax-comment mt-0.5 w-6 shrink-0 font-mono text-xs tabular-nums">
                     Q{String(i + 1).padStart(2, "0")}
@@ -89,7 +88,7 @@ export default function FAQ() {
               </summary>
               <div className="acc-body">
                 <div>
-                  <p className="text-muted-foreground px-5 pb-5 pl-14 text-sm leading-relaxed">
+                  <p className="text-muted-foreground px-5 pt-1 pb-6 pl-14 text-[0.9375rem] leading-7">
                     {faq.answer}
                   </p>
                 </div>

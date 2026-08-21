@@ -4,7 +4,7 @@ import { cn } from "@/utils/cn";
 import { Bug, FlaskConical, KeyRound, Users } from "lucide-react";
 import { useState } from "react";
 import CodeBlock, { type CodeLine } from "./primitives/code-block";
-import SectionTag from "./primitives/section-tag";
+import SectionHeading from "./primitives/section-heading";
 
 interface UseCase {
   id: string;
@@ -35,16 +35,18 @@ const cases: UseCase[] = [
       lines: [
         { tokens: [{ t: "punct", v: "{" }] },
         {
+          indent: 2,
           tokens: [
-            { t: "key", v: '  "name"' },
+            { t: "key", v: '"name"' },
             { t: "punct", v: ": " },
             { t: "string", v: '"admin-session"' },
             { t: "punct", v: "," },
           ],
         },
         {
+          indent: 2,
           tokens: [
-            { t: "key", v: '  "items"' },
+            { t: "key", v: '"items"' },
             { t: "punct", v: ": " },
             { t: "number", v: "14" },
             { t: "punct", v: "," },
@@ -52,8 +54,9 @@ const cases: UseCase[] = [
           ],
         },
         {
+          indent: 2,
           tokens: [
-            { t: "key", v: '  "size"' },
+            { t: "key", v: '"size"' },
             { t: "punct", v: ": " },
             { t: "string", v: '"3.2 KB"' },
           ],
@@ -81,8 +84,9 @@ const cases: UseCase[] = [
       lines: [
         { tokens: [{ t: "punct", v: "{" }] },
         {
+          indent: 2,
           tokens: [
-            { t: "key", v: '  "exp"' },
+            { t: "key", v: '"exp"' },
             { t: "punct", v: ": " },
             { t: "number", v: "1735776000" },
             { t: "punct", v: "," },
@@ -90,16 +94,18 @@ const cases: UseCase[] = [
           ],
         },
         {
+          indent: 2,
           tokens: [
-            { t: "key", v: '  "role"' },
+            { t: "key", v: '"role"' },
             { t: "punct", v: ": " },
             { t: "string", v: '"admin"' },
             { t: "punct", v: "," },
           ],
         },
         {
+          indent: 2,
           tokens: [
-            { t: "key", v: '  "scopes"' },
+            { t: "key", v: '"scopes"' },
             { t: "punct", v: ": " },
             { t: "punct", v: "[" },
             { t: "string", v: '"read"' },
@@ -130,8 +136,9 @@ const cases: UseCase[] = [
       lines: [
         { tokens: [{ t: "punct", v: "{" }] },
         {
+          indent: 2,
           tokens: [
-            { t: "key", v: '  "new_checkout"' },
+            { t: "key", v: '"new_checkout"' },
             { t: "punct", v: ": " },
             { t: "boolean", v: "false" },
             { t: "punct", v: "," },
@@ -140,8 +147,9 @@ const cases: UseCase[] = [
           strike: true,
         },
         {
+          indent: 2,
           tokens: [
-            { t: "key", v: '  "new_checkout"' },
+            { t: "key", v: '"new_checkout"' },
             { t: "punct", v: ": " },
             { t: "boolean", v: "true" },
             { t: "punct", v: "," },
@@ -149,8 +157,9 @@ const cases: UseCase[] = [
           highlight: "add",
         },
         {
+          indent: 2,
           tokens: [
-            { t: "key", v: '  "variant"' },
+            { t: "key", v: '"variant"' },
             { t: "punct", v: ": " },
             { t: "string", v: '"B"' },
           ],
@@ -177,24 +186,27 @@ const cases: UseCase[] = [
       lines: [
         { tokens: [{ t: "punct", v: "{" }] },
         {
+          indent: 2,
           tokens: [
-            { t: "key", v: '  "name"' },
+            { t: "key", v: '"name"' },
             { t: "punct", v: ": " },
             { t: "string", v: '"checkout-bug-431"' },
             { t: "punct", v: "," },
           ],
         },
         {
+          indent: 2,
           tokens: [
-            { t: "key", v: '  "created"' },
+            { t: "key", v: '"created"' },
             { t: "punct", v: ": " },
             { t: "string", v: '"2026-05-20T14:21:00Z"' },
             { t: "punct", v: "," },
           ],
         },
         {
+          indent: 2,
           tokens: [
-            { t: "key", v: '  "items"' },
+            { t: "key", v: '"items"' },
             { t: "punct", v: ": " },
             { t: "number", v: "12" },
           ],
@@ -224,9 +236,8 @@ export default function UseCases() {
   return (
     <section id="use-cases" className="scroll-mt-24 py-16 md:py-24">
       <div className="mx-auto max-w-6xl px-6">
-        <SectionTag
-          kind="use-cases"
-          label="real-workflows"
+        <SectionHeading
+          label="Real workflows"
           heading="Made for the moments you debug most"
           description="Not just storage management — workflows for the things you actually do."
         />
@@ -273,17 +284,12 @@ export default function UseCases() {
           role="tabpanel"
           aria-labelledby={`usecase-tab-${current.id}`}
           tabIndex={0}
-          className="mt-10 grid items-start gap-6 md:grid-cols-2"
+          className="mt-10 grid gap-6 md:grid-cols-2"
         >
           <div className="border-border bg-muted/30 relative flex flex-col rounded-2xl border p-7">
-            <div className="flex items-center gap-2">
-              <span className="bg-accent/10 text-accent-text inline-flex h-9 w-9 items-center justify-center rounded-lg">
-                <Icon size={16} aria-hidden />
-              </span>
-              <span className="text-syntax-comment font-mono text-[11px] tracking-wider uppercase">
-                use-case / {current.id}
-              </span>
-            </div>
+            <span className="bg-accent/10 text-accent-text inline-flex h-9 w-9 items-center justify-center rounded-lg">
+              <Icon size={16} aria-hidden />
+            </span>
 
             <h3 className="font-heading mt-4 text-2xl font-semibold tracking-tight">
               {current.headline}
@@ -308,6 +314,7 @@ export default function UseCases() {
             title={current.code.title}
             lang={current.code.lang}
             lines={current.code.lines}
+            className="h-full"
           />
         </div>
       </div>
