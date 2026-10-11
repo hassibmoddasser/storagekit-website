@@ -4,10 +4,8 @@ import { cn } from "@/utils/cn";
 import { useRef } from "react";
 import ThemedScreenshot, { type ThemedSrc } from "./themed-screenshot";
 
-interface FeatureCardProps {
+type FeatureCardProps = {
   className?: string;
-  imageSrc: ThemedSrc;
-  imageAlt: string;
   badge: string;
   title: string;
   description: string;
@@ -19,20 +17,19 @@ interface FeatureCardProps {
   /** Crop anchor, for the one capture whose well is deliberately wider than
    *  the source so the bottom rows fall away. */
   imagePosition?: string;
-}
+} & ({ imageSrc: ThemedSrc; imageAlt: string } | { visual: React.ReactNode });
 
-export default function FeatureCard({
-  className,
-  imageSrc,
-  imageAlt,
-  badge,
-  title,
-  description,
-  priority = false,
-  sizes = "(min-width: 1024px) 360px, (min-width: 768px) 50vw, 100vw",
-  aspect = "aspect-3/2",
-  imagePosition = "object-center",
-}: FeatureCardProps) {
+export default function FeatureCard(props: FeatureCardProps) {
+  const {
+    className,
+    badge,
+    title,
+    description,
+    priority = false,
+    sizes = "(min-width: 1024px) 360px, (min-width: 768px) 50vw, 100vw",
+    aspect = "aspect-3/2",
+    imagePosition = "object-center",
+  } = props;
   const ref = useRef<HTMLDivElement>(null);
   const rect = useRef<DOMRect | null>(null);
 
@@ -67,13 +64,17 @@ export default function FeatureCard({
             aspect,
           )}
         >
-          <ThemedScreenshot
-            src={imageSrc}
-            alt={imageAlt}
-            sizes={sizes}
-            priority={priority}
-            className={imagePosition}
-          />
+          {"visual" in props ? (
+            props.visual
+          ) : (
+            <ThemedScreenshot
+              src={props.imageSrc}
+              alt={props.imageAlt}
+              sizes={sizes}
+              priority={priority}
+              className={imagePosition}
+            />
+          )}
         </div>
       </div>
       <div className="border-border/60 border-t p-5">

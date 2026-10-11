@@ -1,4 +1,4 @@
-import { ShieldCheck } from "lucide-react";
+import { Ban, Filter } from "lucide-react";
 
 import compareDark from "@/assets/screenshots/feature-compare-dark.jpg";
 import compareLight from "@/assets/screenshots/feature-compare-light.jpg";
@@ -10,8 +10,52 @@ import searchDark from "@/assets/screenshots/feature-search-dark.jpg";
 import searchLight from "@/assets/screenshots/feature-search-light.jpg";
 
 import FeatureCard from "./primitives/feature-card";
-import FeatureNote from "./primitives/feature-note";
 import SectionHeading from "./primitives/section-heading";
+
+function NetworkPanel() {
+  return (
+    <div
+      aria-hidden
+      className="absolute inset-0 flex flex-col text-[11px] leading-none"
+    >
+      <div className="border-border/70 text-muted-foreground flex h-8 shrink-0 items-center gap-4 border-b px-3">
+        <span>Elements</span>
+        <span>Console</span>
+        <span className="text-foreground flex h-full items-center shadow-[inset_0_-2px_0_var(--accent)]">
+          Network
+        </span>
+        <span>Application</span>
+      </div>
+      <div className="border-border/70 flex h-8 shrink-0 items-center gap-2.5 border-b px-3">
+        <span className="size-2.5 shrink-0 rounded-full bg-rose-500" />
+        <Ban size={12} className="text-muted-foreground shrink-0" />
+        <span className="bg-muted text-foreground flex h-5 min-w-0 flex-1 items-center gap-1.5 rounded px-2 font-mono text-[10.5px]">
+          <Filter size={10} className="text-muted-foreground shrink-0" />
+          storagekit
+        </span>
+      </div>
+      <div className="border-border/70 text-muted-foreground grid h-7 shrink-0 grid-cols-[1fr_3rem_2.5rem_2.5rem] items-center gap-2 border-b px-3">
+        <span>Name</span>
+        <span>Status</span>
+        <span>Type</span>
+        <span className="text-right">Size</span>
+      </div>
+      <div className="flex flex-1 flex-col items-center justify-center gap-2 px-6 text-center">
+        <span className="text-foreground text-xs font-medium">
+          Recording network activity…
+        </span>
+        <span className="text-muted-foreground">
+          No requests from StorageKit
+        </span>
+      </div>
+      <div className="border-border/70 text-muted-foreground flex h-7 shrink-0 items-center gap-2 border-t px-3 font-mono text-[10.5px]">
+        <span>0 requests</span>
+        <span className="text-border">|</span>
+        <span>0 B transferred</span>
+      </div>
+    </div>
+  );
+}
 
 export default function Showcase() {
   return (
@@ -67,12 +111,13 @@ export default function Showcase() {
             aspect="aspect-[76/80]"
           />
 
-          <FeatureNote
-            icon={ShieldCheck}
+          <FeatureCard
             badge="privacy"
             title="100% local. Forever."
             description="No network calls, no analytics, no account. Nothing it reads ever leaves your machine."
+            visual={<NetworkPanel />}
             className="lg:col-span-2"
+            aspect="aspect-[76/80]"
           />
         </div>
       </div>
