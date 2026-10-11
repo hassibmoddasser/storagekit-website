@@ -3,18 +3,15 @@ import { ArrowRight, Chrome, PanelRight, Star } from "lucide-react";
 import Image from "next/image";
 
 import heroImage from "@/assets/screenshots/hero.jpg";
+import HeroBackdrop from "./hero-backdrop";
 import BrowserFrame from "./primitives/browser-frame";
 import ButtonLink from "./primitives/button";
 
 export default function Hero() {
   return (
     <section className="relative pt-24 pb-16 md:pt-36 md:pb-24">
-      {/* Background — animated orbs + dotted grid */}
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
-        <div className="bg-grid mask-radial absolute inset-0 opacity-60" />
-        <div className="animate-orb-1 bg-accent/10 absolute -top-32 left-1/4 h-80 w-80 rounded-full blur-3xl" />
-        <div className="animate-orb-2 bg-accent/5 absolute -top-20 right-1/4 h-64 w-64 rounded-full blur-3xl" />
-        <div className="animate-orb-3 bg-accent/10 absolute top-40 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full blur-3xl" />
+        <HeroBackdrop />
       </div>
 
       <div className="relative z-10 mx-auto max-w-6xl px-6 text-center">
@@ -84,9 +81,6 @@ export default function Hero() {
 
         {/* Product showcase */}
         <div className="relative mt-16 md:mt-20">
-          {/* Glow under the frame */}
-          <div className="bg-accent/20 absolute -inset-x-20 top-1/4 -z-10 h-2/3 blur-3xl" />
-
           <BrowserFrame
             url="storagekit.dev"
             label="side panel"

@@ -106,7 +106,7 @@ export default function Footer() {
               href={siteConfig.author.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-foreground hover:text-accent font-medium transition-colors"
+              className="text-foreground hover:text-accent-text font-medium transition-colors"
             >
               {siteConfig.author.name}
             </a>{" "}

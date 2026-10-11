@@ -21,7 +21,7 @@ export default function StatPill({
         className,
       )}
     >
-      <Icon size={14} className="text-accent shrink-0" />
+      <Icon size={14} className="text-accent-text shrink-0" />
       <div className="flex items-baseline gap-1.5 text-xs">
         <span className="font-mono text-foreground font-semibold">{value}</span>
         <span className="text-muted-foreground">{label}</span>

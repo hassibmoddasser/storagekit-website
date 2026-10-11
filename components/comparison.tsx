@@ -123,7 +123,7 @@ const rows: Row[] = [
 ];
 
 const toneClass: Record<Tone, string> = {
-  good: "bg-teal-500/10 text-teal-700 dark:text-teal-300",
+  good: "bg-lime-500/10 text-lime-700 dark:text-lime-300",
   neutral: "bg-muted text-foreground/75",
   weak: "bg-rose-500/10 text-rose-700 dark:text-rose-300",
 };

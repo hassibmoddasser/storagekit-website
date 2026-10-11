@@ -9,13 +9,13 @@
   --muted: var(--color-zinc-100);
   --muted-foreground: var(--color-zinc-500);
   --border: var(--color-zinc-200);
-  --accent: var(--color-teal-500);
-  --accent-foreground: white;
-  /* Text/fill split — teal-500 as text is only 2.42:1 on white */
-  --accent-text: var(--color-teal-700);
-  --accent-text-lg: var(--color-teal-600);
-  --accent-fill: var(--color-teal-700);
-  --accent-fill-hover: var(--color-teal-800);
+  --accent: var(--color-lime-500);
+  --accent-foreground: var(--color-zinc-950);
+  /* Text/fill split — lime-500 as text is only 1.9:1 on white */
+  --accent-text: var(--color-lime-700);
+  --accent-text-lg: var(--color-lime-600);
+  --accent-fill: var(--color-lime-400);
+  --accent-fill-hover: var(--color-lime-300);
 
   /* Syntax-highlighting palette — used as design language across cards, badges, code mocks */
   --syntax-key: var(--color-sky-800);
@@ -63,12 +63,12 @@
   --muted: var(--color-zinc-900);
   --muted-foreground: var(--color-zinc-400);
   --border: var(--color-zinc-800);
-  --accent: var(--color-teal-400);
+  --accent: var(--color-lime-400);
   --accent-foreground: var(--color-zinc-950);
-  --accent-text: var(--color-teal-400);
-  --accent-text-lg: var(--color-teal-400);
-  --accent-fill: var(--color-teal-500);
-  --accent-fill-hover: var(--color-teal-400);
+  --accent-text: var(--color-lime-400);
+  --accent-text-lg: var(--color-lime-400);
+  --accent-fill: var(--color-lime-500);
+  --accent-fill-hover: var(--color-lime-400);
 
   --syntax-key: var(--color-sky-400);
   --syntax-string: var(--color-amber-300);
@@ -303,6 +303,32 @@ samp,
   height: 10px;
   border-radius: 9999px;
   background: color-mix(in oklab, var(--foreground) 18%, transparent);
+}
+
+/* Hero key field. Text renders from data-t so crawlers don't index it as copy. */
+.key-field [data-t]::before {
+  content: attr(data-t);
+}
+
+.key-write {
+  border-radius: 3px;
+  animation: key-write 7s ease-in-out infinite;
+}
+
+@keyframes key-write {
+  0%,
+  60%,
+  100% {
+    opacity: 0.35;
+    background-color: transparent;
+    box-shadow: none;
+  }
+  68%,
+  86% {
+    opacity: 1;
+    background-color: color-mix(in oklab, var(--accent) 16%, transparent);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent) 16%, transparent);
+  }
 }
 
 /* Accordion (FAQ) — content-visibility for smooth open/close */

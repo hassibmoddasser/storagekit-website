@@ -18,7 +18,7 @@ export default function CTA() {
           <div className="bg-grid-invert absolute inset-0" />
           {/* One soft pool, replacing the two overlapping glows that used to
               wash the whole card out. */}
-          <div className="absolute -bottom-32 -left-24 h-80 w-80 rounded-full bg-teal-500/[0.07] blur-3xl" />
+          <div className="absolute -bottom-32 -left-24 h-80 w-80 rounded-full bg-lime-500/[0.07] blur-3xl" />
 
           {/* Two columns only from lg. The button pair needs ~400px, which a
               half-width column does not have until then — below that it
@@ -26,7 +26,7 @@ export default function CTA() {
           <div className="relative grid items-center gap-10 lg:grid-cols-[1.15fr_1fr] lg:gap-14">
             <div className="text-center lg:text-left">
               <h2 className="text-3xl font-semibold tracking-tight text-balance text-white md:text-4xl">
-                Keep your storage <span className="text-teal-400">open</span>.
+                Keep your storage <span className="text-lime-400">open</span>.
               </h2>
 
               <p className="mx-auto mt-5 max-w-md text-base leading-relaxed text-pretty text-zinc-400 md:text-lg lg:mx-0">

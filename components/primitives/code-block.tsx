@@ -36,13 +36,13 @@ const tokenClass: Record<Token["t"], string> = {
    lives in a real gutter column below — as a pseudo-element it rendered as a
    coloured block, because its text and its background were the same colour. */
 const highlightClass: Record<NonNullable<CodeLine["highlight"]>, string> = {
-  add: "bg-teal-500/[0.09] shadow-[inset_2px_0_0_var(--color-teal-500)]",
+  add: "bg-lime-500/[0.09] shadow-[inset_2px_0_0_var(--color-lime-500)]",
   remove: "bg-rose-500/[0.09] shadow-[inset_2px_0_0_var(--color-rose-500)]",
   active: "bg-accent/5 ring-1 ring-inset ring-accent/30",
 };
 
 const markerClass: Record<NonNullable<CodeLine["highlight"]>, string> = {
-  add: "text-teal-600 dark:text-teal-400",
+  add: "text-lime-700 dark:text-lime-400",
   remove: "text-rose-600 dark:text-rose-400",
   active: "text-transparent",
 };
