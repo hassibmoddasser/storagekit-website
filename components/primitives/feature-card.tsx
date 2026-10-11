@@ -1,12 +1,12 @@
 "use client";
 
 import { cn } from "@/utils/cn";
-import Image, { type StaticImageData } from "next/image";
 import { useRef } from "react";
+import ThemedScreenshot, { type ThemedSrc } from "./themed-screenshot";
 
 interface FeatureCardProps {
   className?: string;
-  imageSrc: StaticImageData;
+  imageSrc: ThemedSrc;
   imageAlt: string;
   badge: string;
   title: string;
@@ -60,22 +60,19 @@ export default function FeatureCard({
         className,
       )}
     >
-      {/* The captures are of the panel's dark theme, so they sit in an inset
-          well with its own frame — otherwise they read as holes in a light card. */}
       <div className="bg-muted/60 relative overflow-hidden p-2.5 sm:p-3">
         <div
           className={cn(
-            "ring-border/70 relative w-full overflow-hidden rounded-lg bg-zinc-950 ring-1",
+            "ring-border/70 bg-surface relative w-full overflow-hidden rounded-lg ring-1",
             aspect,
           )}
         >
-          <Image
+          <ThemedScreenshot
             src={imageSrc}
             alt={imageAlt}
-            fill
             sizes={sizes}
             priority={priority}
-            className={cn("object-cover", imagePosition)}
+            className={imagePosition}
           />
         </div>
       </div>

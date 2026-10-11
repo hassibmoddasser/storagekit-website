@@ -10,22 +10,22 @@ const faqs = [
   {
     question: "Why does it need access to all websites?",
     answer:
-      "Reading localStorage and sessionStorage requires a content script running in the page's own context, and that page could be any site you're debugging — so the manifest declares <all_urls>. Chrome shows this as “Read and change all your data on all websites” at install. StorageKit reads storage and cookies, and nothing else: there are no network calls anywhere in the code, so nothing it reads can leave your machine.",
+      "Reading localStorage and sessionStorage requires a content script running in the page's own context, and that page could be any site you're debugging, so the manifest declares <all_urls>. Chrome shows this as “Read and change all your data on all websites” at install. StorageKit reads storage and cookies, and nothing else: there are no network calls anywhere in the code, so nothing it reads can leave your machine.",
   },
   {
     question: "Where do I find it after installing?",
     answer:
-      "Click the puzzle-piece icon in the Chrome toolbar and pin StorageKit — Chrome hides new extensions there by default. Then click the icon for a quick look, or choose “Open in side panel” to dock it next to your page. One caveat: any tab you had open before installing needs a refresh before the extension can read it.",
+      "Click the puzzle-piece icon in the Chrome toolbar and pin StorageKit, since Chrome hides new extensions there by default. Then click the icon for a quick look, or choose “Open in side panel” to dock it next to your page. One caveat: any tab you had open before installing needs a refresh before the extension can read it.",
   },
   {
     question: "Is StorageKit free?",
     answer:
-      "Yes — completely free. No premium tiers, no feature limits, no hidden costs.",
+      "Yes, completely free. No premium tiers, no feature limits, no hidden costs.",
   },
   {
     question: "Does it work on other browsers?",
     answer:
-      "It works on Chrome and all Chromium-based browsers — Edge, Brave, Arc, Opera, and the rest. Firefox and Safari aren't supported yet.",
+      "It works on Chrome and all Chromium-based browsers: Edge, Brave, Arc, Opera, and the rest. Firefox and Safari aren't supported yet.",
   },
   {
     question: "Is my data sent anywhere?",
@@ -35,12 +35,12 @@ const faqs = [
   {
     question: "How are snapshots stored?",
     answer:
-      "In the extension's own local storage, so they persist across sessions on this machine. They don't sync across devices, and clearing browser data clears them — so export anything you can't afford to lose as a JSON file.",
+      "In the extension's own local storage, so they persist across sessions on this machine. They don't sync across devices, and clearing browser data clears them, so export anything you can't afford to lose as a JSON file.",
   },
   {
     question: "Can I use it on any website?",
     answer:
-      "Yes — on any regular website. It can't access restricted browser pages (like the Chrome Web Store itself) due to browser security policies.",
+      "Yes, on any regular website. It can't access restricted browser pages (like the Chrome Web Store itself) due to browser security policies.",
   },
 ];
 

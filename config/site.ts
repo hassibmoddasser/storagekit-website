@@ -1,9 +1,9 @@
 export const siteConfig = {
   name: "StorageKit",
   url: "https://www.storagekit.dev",
-  title: "StorageKit — Browser Storage Without Opening DevTools",
+  title: "StorageKit: Browser Storage Without Opening DevTools",
   description:
-    "A free Chrome extension to inspect, edit, and snapshot localStorage, sessionStorage, and cookies — in a panel that docks right beside your page.",
+    "A free Chrome extension to inspect, edit, and snapshot localStorage, sessionStorage, and cookies, in a panel that docks right beside your page.",
   version: "2.4.0",
   rating: "5.0",
   reviewCount: 10,
@@ -17,3 +17,4 @@ export const siteConfig = {
     contact: "mailto:info@hassib.co",
   },
 } as const;
+

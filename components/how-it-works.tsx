@@ -17,7 +17,7 @@ const steps = [
     n: "03",
     title: "Snapshot your state",
     description:
-      "Save your entire storage state with one click. Restore it after a logout, or export it as JSON to send to a teammate.",
+      "Capture your entire storage state with one click. Compare it with the live page any time, restore it after a logout, or export it as JSON for a teammate.",
   },
 ];
 

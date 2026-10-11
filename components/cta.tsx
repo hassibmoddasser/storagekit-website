@@ -2,7 +2,7 @@ import { siteConfig } from "@/config/site";
 import { Chrome } from "lucide-react";
 import Image from "next/image";
 
-import ctaImg from "@/assets/screenshots/hero.jpg";
+import ctaImg from "@/assets/screenshots/feature-snapshots-dark.jpg";
 import ButtonLink from "./primitives/button";
 
 export default function CTA() {
@@ -42,7 +42,7 @@ export default function CTA() {
                   className="w-full sm:w-auto"
                 >
                   <Chrome size={18} aria-hidden />
-                  Add to Chrome — It&apos;s Free
+                  Add to Chrome, it&apos;s free
                 </ButtonLink>
                 <ButtonLink
                   href="/changelog"
@@ -60,14 +60,12 @@ export default function CTA() {
               </p>
             </div>
 
-            {/* Hidden on phones: at ~294px wide the panel UI is unreadable, and
-                the hero already shows this capture at the top of the page. */}
+            {/* Hidden on phones: at ~294px wide the panel UI is unreadable. */}
             <div className="mx-auto hidden w-full max-w-md sm:block lg:mx-0 lg:max-w-none">
-              {/* Native aspect, so the whole panel shows and nothing is cropped. */}
-              <div className="relative aspect-[1560/1160] overflow-hidden rounded-xl shadow-2xl ring-1 shadow-black/40 ring-white/10">
+              <div className="relative aspect-[160/94] overflow-hidden rounded-xl shadow-2xl ring-1 shadow-black/40 ring-white/10">
                 <Image
                   src={ctaImg}
-                  alt="The StorageKit panel with a storage key selected and its JSON value formatted"
+                  alt="Saved snapshots for a site beside one snapshot's changes compared with the live page"
                   fill
                   sizes="(min-width: 1024px) 460px, (min-width: 640px) 28rem, 0px"
                   className="object-cover"

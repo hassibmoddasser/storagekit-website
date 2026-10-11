@@ -1,11 +1,12 @@
 import { siteConfig } from "@/config/site";
 import { ArrowRight, Chrome, PanelRight, Star } from "lucide-react";
-import Image from "next/image";
 
-import heroImage from "@/assets/screenshots/hero.jpg";
+import heroDark from "@/assets/screenshots/hero-dark.jpg";
+import heroLight from "@/assets/screenshots/hero-light.jpg";
 import HeroBackdrop from "./hero-backdrop";
 import BrowserFrame from "./primitives/browser-frame";
 import ButtonLink from "./primitives/button";
+import ThemedScreenshot from "./primitives/themed-screenshot";
 
 export default function Hero() {
   return (
@@ -60,14 +61,14 @@ export default function Hero() {
           <code className="text-foreground font-mono text-[0.92em]">
             sessionStorage
           </code>
-          , and cookies — in a panel that docks right beside your page.
+          , and cookies, in a panel that docks right beside your page.
         </p>
 
         {/* CTA cluster */}
         <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <ButtonLink href={siteConfig.links.chromeWebStore} external>
             <Chrome size={16} aria-hidden />
-            Add to Chrome — It&apos;s Free
+            Add to Chrome, it&apos;s free
           </ButtonLink>
           <ButtonLink href="#features" variant="secondary">
             <PanelRight size={16} aria-hidden />
@@ -82,18 +83,18 @@ export default function Hero() {
         {/* Product showcase */}
         <div className="relative mt-16 md:mt-20">
           <BrowserFrame
-            url="storagekit.dev"
+            url="app.northwind.dev/dashboard"
             label="side panel"
             className="mx-auto max-w-5xl"
           >
-            <Image
-              src={heroImage}
-              alt="The StorageKit panel showing the storage tree beside a decoded JWT value"
-              width={1560}
-              height={1160}
-              priority
-              className="h-auto w-full"
-            />
+            <div className="relative aspect-[7/5]">
+              <ThemedScreenshot
+                src={{ light: heroLight, dark: heroDark }}
+                alt="A web app with the StorageKit side panel docked beside it, listing local storage with type icons, a JWT expiry, feature-flag toggles, and the snapshot bar"
+                sizes="(min-width: 1024px) 1024px, 100vw"
+                priority
+              />
+            </div>
           </BrowserFrame>
         </div>
       </div>

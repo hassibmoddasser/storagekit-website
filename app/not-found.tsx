@@ -12,7 +12,7 @@ export default function NotFound() {
 
         <div className="relative z-10 mx-auto max-w-2xl px-6 text-center">
           <p className="text-syntax-comment font-mono text-xs" aria-hidden>
-            <span className="text-syntax-punct">{"//"}</span> 404 — no such key
+            <span className="text-syntax-punct">{"//"}</span> 404: no such key
           </p>
 
           <h1 className="font-heading mt-4 text-4xl font-bold tracking-tight md:text-5xl">

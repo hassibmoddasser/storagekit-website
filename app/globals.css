@@ -17,11 +17,11 @@
   --accent-fill: var(--color-lime-400);
   --accent-fill-hover: var(--color-lime-300);
 
-  /* Syntax-highlighting palette — used as design language across cards, badges, code mocks */
-  --syntax-key: var(--color-sky-800);
-  --syntax-string: var(--color-amber-800);
-  --syntax-number: var(--color-violet-700);
-  --syntax-boolean: var(--color-rose-700);
+  /* Syntax palette ("Neon", matching the extension). Light values pass AA on white. */
+  --syntax-key: #007188;
+  --syntax-string: #417700;
+  --syntax-number: #743ed8;
+  --syntax-boolean: #bc1e72;
   --syntax-comment: var(--color-zinc-600);
   --syntax-punct: var(--color-zinc-600);
 
@@ -70,10 +70,10 @@
   --accent-fill: var(--color-lime-500);
   --accent-fill-hover: var(--color-lime-400);
 
-  --syntax-key: var(--color-sky-400);
-  --syntax-string: var(--color-amber-300);
-  --syntax-number: var(--color-violet-400);
-  --syntax-boolean: var(--color-rose-400);
+  --syntax-key: #5ee7f9;
+  --syntax-string: #a3eb23;
+  --syntax-number: #c4b2ff;
+  --syntax-boolean: #fb78b0;
   --syntax-comment: var(--color-zinc-400);
   --syntax-punct: var(--color-zinc-400);
 

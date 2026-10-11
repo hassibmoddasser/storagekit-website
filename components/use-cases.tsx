@@ -1,7 +1,14 @@
 "use client";
 
 import { cn } from "@/utils/cn";
-import { Bug, FlaskConical, KeyRound, Users } from "lucide-react";
+import {
+  Bug,
+  FlaskConical,
+  GitCompareArrows,
+  KeyRound,
+  SquareTerminal,
+  Users,
+} from "lucide-react";
 import { useState } from "react";
 import CodeBlock, { type CodeLine } from "./primitives/code-block";
 import SectionHeading from "./primitives/section-heading";
@@ -22,12 +29,12 @@ const cases: UseCase[] = [
     icon: KeyRound,
     tab: "Auth debugging",
     headline: "Switch accounts without re-logging in",
-    body: "Snapshot your authenticated state. Test as admin, restore as user, repeat. No log-in dance.",
+    body: "Snapshot your signed-in state. Test as admin, restore as a regular user, repeat. No log-in dance.",
     steps: [
-      "Log in as the user you want to capture",
-      "Click → Snapshot → name it",
+      "Sign in as the user you want to capture",
+      "Click Capture in the snapshot bar",
       "Switch accounts or log out",
-      "One click restores the entire session",
+      "Restore brings the whole session back",
     ],
     code: {
       title: "admin-session.json",
@@ -67,16 +74,68 @@ const cases: UseCase[] = [
     },
   },
   {
+    id: "compare",
+    icon: GitCompareArrows,
+    tab: "Find what changed",
+    headline: "Catch the key that broke it",
+    body: "Snapshot a working state, then compare it with the page after a deploy, a migration, or a bad login. StorageKit lists every key that appeared, disappeared, or changed.",
+    steps: [
+      "Capture a snapshot while everything works",
+      "Ship the change or reproduce the bug",
+      "Open the snapshot and switch to Changes",
+      "Open a changed key, or restore the snapshot",
+    ],
+    code: {
+      title: "Logged in as admin · 3 changes",
+      lang: "diff",
+      lines: [
+        { tokens: [{ t: "comment", v: "// snapshot vs live page" }] },
+        {
+          tokens: [
+            { t: "key", v: '"feature.betaSearch"' },
+            { t: "punct", v: ": " },
+            { t: "boolean", v: "true" },
+            { t: "comment", v: " // live: false" },
+          ],
+          highlight: "active",
+        },
+        {
+          tokens: [
+            { t: "key", v: '"visit_count"' },
+            { t: "punct", v: ": " },
+            { t: "string", v: '"39"' },
+            { t: "comment", v: " // live: 42" },
+          ],
+          highlight: "active",
+        },
+        {
+          tokens: [
+            { t: "key", v: '"utm"' },
+            { t: "punct", v: ": " },
+            { t: "string", v: '"utm_source=newsletter"' },
+          ],
+          highlight: "remove",
+          strike: true,
+        },
+        {
+          tokens: [
+            { t: "comment", v: "// only on the page: restore drops it" },
+          ],
+        },
+      ],
+    },
+  },
+  {
     id: "jwt",
     icon: Bug,
     tab: "JWT decoding",
     headline: "See what's in your token without leaving the page",
-    body: "Stop pasting tokens into jwt.io. StorageKit decodes JWTs inline with a visual badge and a clickable tree.",
+    body: "Stop pasting tokens into jwt.io. StorageKit decodes JWTs in place and counts down to expiry, right in the list.",
     steps: [
-      "Click any storage entry containing a JWT",
-      "Header & payload render as a tree",
-      "Inspect `iat`, `exp`, `role` at a glance",
-      "Copy any nested value with one click",
+      "Spot the key icon and time left in the list",
+      "Open it to see payload and header claims",
+      "Read `iat` and `exp` as real dates",
+      "Copy it back as a Bearer header",
     ],
     code: {
       title: "auth_token (decoded)",
@@ -123,11 +182,11 @@ const cases: UseCase[] = [
     icon: FlaskConical,
     tab: "A/B testing & flags",
     headline: "Flip a feature flag in 1 second",
-    body: "Edit the value in-place — no JSON.parse, no console.log dance. StorageKit re-encodes complex values on save.",
+    body: "Edit the value in place, no JSON.parse and no console.log. StorageKit re-encodes complex values on save.",
     steps: [
-      "Find your feature flag key (search helps)",
-      "Click → it expands as a tree",
-      "Toggle the boolean / change the variant",
+      "Press / and type the flag's name",
+      "Booleans flip right in the list",
+      "Or open it and edit the JSON tree",
       "Refresh the page",
     ],
     code: {
@@ -169,16 +228,63 @@ const cases: UseCase[] = [
     },
   },
   {
+    id: "copy",
+    icon: SquareTerminal,
+    tab: "Reproduce in code",
+    headline: "Turn any value into a line of code",
+    body: "Copy a value as setItem(), document.cookie, a Bearer header, or a cURL command. Paste it into a test, a ticket, or a terminal to get the same state back.",
+    steps: [
+      "Open the key you need",
+      "Pick a format under Copy as",
+      "Paste it into a test, ticket, or terminal",
+      "Anyone recreates the state in one line",
+    ],
+    code: {
+      title: "Copy as",
+      lang: "js",
+      lines: [
+        { tokens: [{ t: "comment", v: "// setItem()" }] },
+        {
+          tokens: [
+            { t: "ident", v: "localStorage.setItem" },
+            { t: "punct", v: "(" },
+            { t: "string", v: '"feature.newEditor"' },
+            { t: "punct", v: ", " },
+            { t: "string", v: '"true"' },
+            { t: "punct", v: ");" },
+          ],
+        },
+        { tokens: [{ t: "comment", v: "// Bearer header" }] },
+        {
+          tokens: [
+            { t: "key", v: "Authorization" },
+            { t: "punct", v: ": " },
+            { t: "string", v: "Bearer eyJhbGciOiJIUzI1NiJ9…" },
+          ],
+        },
+        { tokens: [{ t: "comment", v: "// cURL" }] },
+        {
+          prefix: "$",
+          tokens: [
+            { t: "ident", v: "curl --cookie " },
+            { t: "string", v: "'theme=dark'" },
+            { t: "string", v: " 'https://app.northwind.dev'" },
+          ],
+        },
+      ],
+    },
+  },
+  {
     id: "share",
     icon: Users,
     tab: "Share with teammates",
     headline: "Reproduce a bug in one message",
     body: "Export the entire storage state as JSON, drop it in Slack, and your teammate gets the exact same broken setup on their machine.",
     steps: [
-      "Hit the bug — snapshot the state",
-      "Export → snapshot-bug-123.json",
+      "Hit the bug and capture a snapshot",
+      "Export it as snapshot-bug-123.json",
       "Attach to your ticket or Slack thread",
-      "Teammate imports → repro in seconds",
+      "Teammate imports and restores in seconds",
     ],
     code: {
       title: "snapshot-bug-431.json",
@@ -239,7 +345,7 @@ export default function UseCases() {
         <SectionHeading
           label="Real workflows"
           heading="Made for the moments you debug most"
-          description="Not just storage management — workflows for the things you actually do."
+          description="Not just storage management, but workflows for the things you actually do."
         />
 
         {/* Tab bar — horizontally scrollable on mobile */}

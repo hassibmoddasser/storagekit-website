@@ -9,7 +9,7 @@ import Showcase from "@/components/showcase";
 export const metadata: Metadata = {
   title: { absolute: "Welcome to StorageKit" },
   description:
-    "You just installed StorageKit — here's how to open it and what you can do with it.",
+    "You just installed StorageKit. Here's how to open it and what you can do with it.",
   // Post-install landing page: useful to visitors arriving from the
   // extension, meaningless as a search result.
   robots: { index: false, follow: true },
