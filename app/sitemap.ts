@@ -6,7 +6,7 @@ import { siteConfig } from "@/config/site";
 // ignore the signal. Bump these when the page content actually changes.
 const HOME_UPDATED = new Date("2026-10-12");
 const CHANGELOG_UPDATED = new Date("2026-10-12");
-const PRIVACY_UPDATED = new Date("2026-03-01");
+const PRIVACY_UPDATED = new Date("2026-10-12");
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
