@@ -1,7 +1,203 @@
+import heroDark from "@/assets/screenshots/hero-dark.jpg";
+import heroLight from "@/assets/screenshots/hero-light.jpg";
+import BrowserFrame from "@/components/primitives/browser-frame";
+import ThemedScreenshot from "@/components/primitives/themed-screenshot";
+
 export const releases: Record<
   string,
   { tagline: string; content: React.ReactNode }
 > = {
+  "3.0.0": {
+    tagline: "A ground-up redesign that docks beside your page",
+    content: (
+      <>
+        <p>
+          StorageKit 3 is a ground-up redesign. One focused panel replaces the
+          compact and dashboard layouts, and it opens from the toolbar or docks
+          in the side panel beside your page. Your snapshots and theme carry
+          over.
+        </p>
+
+        <div className="not-prose my-8">
+          <BrowserFrame url="app.northwind.dev/dashboard" label="side panel">
+            <div className="relative aspect-[7/5]">
+              <ThemedScreenshot
+                src={{ light: heroLight, dark: heroDark }}
+                alt="The redesigned StorageKit panel docked beside a web app, listing local storage with type icons, a JWT expiry, feature-flag toggles, and the snapshot bar"
+                sizes="(min-width: 768px) 720px, 100vw"
+              />
+            </div>
+          </BrowserFrame>
+        </div>
+
+        <h3>Side Panel</h3>
+        <ul>
+          <li>
+            <strong>Dock it beside your page:</strong> choose{" "}
+            <samp>Open in side panel</samp> from the popup header, and
+            StorageKit stays open while you work
+          </li>
+          <li>
+            <strong>Follows your tabs:</strong> switching tabs or loading a page
+            refreshes the panel, and the header shows when it last synced
+          </li>
+        </ul>
+
+        <h3>Storage List</h3>
+        <ul>
+          <li>
+            <strong>All three storages in one list:</strong> grouped, with an
+            item count and size for each group
+          </li>
+          <li>
+            <strong>Search everything:</strong> one search across the keys and
+            values of all three storages. Press <kbd>/</kbd> to jump to it
+          </li>
+          <li>
+            <strong>Filter and sort:</strong> All, Local, Session, and Cookies
+            chips with match counts, and sorting by page order, name, or size.
+            Both are remembered
+          </li>
+          <li>
+            <strong>Smart previews:</strong> a type icon on every row. Booleans
+            toggle in place, JWTs show their time left, JSON shows its key
+            count, timestamps show relative time, and Base64 and URL-encoded
+            values show decoded
+          </li>
+          <li>
+            <strong>Group actions:</strong> add an item, copy a whole storage as
+            JSON, or clear it from its group header
+          </li>
+          <li>
+            <strong>Quicker adding:</strong> pick a storage, enter a key and
+            value, and press <kbd>⌘/Ctrl</kbd> + <kbd>Enter</kbd>. Existing keys
+            and broken JSON are flagged as you type
+          </li>
+          <li>
+            <strong>Insecure cookies flagged:</strong> a warning icon marks
+            cookies sent without the Secure flag on HTTPS pages
+          </li>
+        </ul>
+
+        <h3>Values</h3>
+        <ul>
+          <li>
+            <strong>JWT lifetime:</strong> Valid, Expiring soon, or Expired at a
+            glance, with a progress bar from issue to expiry and a live
+            countdown. Payload, Header, and Raw tabs show time claims as dates
+          </li>
+          <li>
+            <strong>Cookie attributes explained:</strong> plain-language hints
+            for SameSite, Secure, HttpOnly, and expiry, plus a warning when{" "}
+            <code>SameSite=None</code> lacks Secure
+          </li>
+          <li>
+            <strong>Copy as:</strong> copy a value as a <code>setItem()</code>{" "}
+            call, a <code>document.cookie</code> line, a cURL command, or an{" "}
+            <code>Authorization: Bearer</code> header for tokens
+          </li>
+          <li>
+            <strong>Keyboard navigation:</strong> <kbd>J</kbd> and <kbd>K</kbd>{" "}
+            step through keys, <kbd>Esc</kbd> goes back, and <kbd>⌘/Ctrl</kbd> +{" "}
+            <kbd>Enter</kbd> saves
+          </li>
+          <li>
+            <strong>Batched JSON edits:</strong> changes in the tree show next
+            to their old values, then save or discard together
+          </li>
+          <li>
+            <strong>Token countdown in JSON:</strong> JWTs nested inside JSON
+            show their time left when expanded
+          </li>
+        </ul>
+
+        <h3>Snapshots</h3>
+        <ul>
+          <li>
+            <strong>Snapshot dock:</strong> a bar under the list shows how many
+            snapshots the site has, when the latest was taken, and how many keys
+            changed since
+          </li>
+          <li>
+            <strong>One-click capture:</strong> snapshots are named
+            automatically, with a Rename action right in the confirmation
+          </li>
+          <li>
+            <strong>Compare with the live page:</strong> see which keys are only
+            in the snapshot, only on the page, or have a different value, before
+            you restore
+          </li>
+          <li>
+            <strong>Safer restore:</strong> restoring warns you when a snapshot
+            was taken on another site
+          </li>
+          <li>
+            <strong>Grouped by site:</strong> <samp>All sites</samp> lists
+            snapshots by domain, with the current site first
+          </li>
+          <li>
+            <strong>Same value screen:</strong> snapshot keys open in the same
+            screen as live storage, with search, editing, rename, and delete
+          </li>
+        </ul>
+
+        <h3>Other Improvements</h3>
+        <ul>
+          <li>
+            <strong>One menu:</strong> theme, What&apos;s new, Leave a review,
+            Report an issue, and Clear all site data now live in the header menu
+          </li>
+          <li>
+            <strong>New look:</strong> a new icon, a lime accent, neutral light
+            and dark themes, and new code colors
+          </li>
+          <li>
+            <strong>No font requests:</strong> fonts ship with the extension
+            instead of loading from Google Fonts
+          </li>
+          <li>
+            <strong>Clearer page states:</strong> a <samp>Reload page</samp>{" "}
+            button when a tab needs a refresh, and an explanation on pages
+            browsers block, like <code>chrome://</code>
+          </li>
+          <li>
+            <strong>Sharper toolbar icon:</strong> crisp at every size
+          </li>
+          <li>
+            <strong>Welcome page:</strong> a short getting-started page opens
+            after you install
+          </li>
+        </ul>
+
+        <h3>Removed</h3>
+        <ul>
+          <li>
+            Compact and dashboard layouts, replaced by one layout for the popup
+            and the side panel
+          </li>
+          <li>
+            The Settings panel: the theme switcher moved to the header menu, and
+            there&apos;s no layout left to choose
+          </li>
+          <li>
+            The Storage overview panel: counts and sizes now sit on each storage
+            group, and clearing moved to the group and header menus
+          </li>
+        </ul>
+
+        <h3>Permissions</h3>
+        <ul>
+          <li>
+            <code>sidePanel</code>: opens StorageKit in the side panel
+          </li>
+          <li>
+            <code>favicon</code>: shows site icons from the browser&apos;s local
+            cache, with no network requests
+          </li>
+        </ul>
+      </>
+    ),
+  },
   "2.4.0": {
     tagline: "JWT decoding and smoother editing",
     content: (

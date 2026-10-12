@@ -4,7 +4,7 @@ export const siteConfig = {
   title: "StorageKit: Browser Storage Without Opening DevTools",
   description:
     "A free Chrome extension to inspect, edit, and snapshot localStorage, sessionStorage, and cookies, in a panel that docks right beside your page.",
-  version: "2.4.0",
+  version: "3.0.0",
   rating: "5.0",
   reviewCount: 10,
   author: {

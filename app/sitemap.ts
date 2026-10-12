@@ -4,8 +4,8 @@ import { siteConfig } from "@/config/site";
 
 // Real content dates — a lastmod that equals build time teaches crawlers to
 // ignore the signal. Bump these when the page content actually changes.
-const HOME_UPDATED = new Date("2026-08-20");
-const CHANGELOG_UPDATED = new Date("2026-08-20");
+const HOME_UPDATED = new Date("2026-10-12");
+const CHANGELOG_UPDATED = new Date("2026-10-12");
 const PRIVACY_UPDATED = new Date("2026-03-01");
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -30,3 +30,4 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 }
+
