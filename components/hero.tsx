@@ -1,82 +1,101 @@
-import Image from "next/image";
-import Link from "next/link";
+import { siteConfig } from "@/config/site";
+import { ArrowRight, Chrome, PanelRight, Star } from "lucide-react";
 
-import { Chrome, Star } from "lucide-react";
-
-import heroImage from "@/assets/screenshots/hero.jpg";
+import heroDark from "@/assets/screenshots/hero-dark.jpg";
+import heroLight from "@/assets/screenshots/hero-light.jpg";
+import HeroBackdrop from "./hero-backdrop";
+import BrowserFrame from "./primitives/browser-frame";
+import ButtonLink from "./primitives/button";
+import ThemedScreenshot from "./primitives/themed-screenshot";
 
 export default function Hero() {
   return (
-    <section className="relative py-20 md:pt-40 md:pb-32">
-      <div className="pointer-events-none absolute inset-0 z-0">
-        <div className="animate-orb-1 bg-accent/5 absolute -top-32 left-1/4 h-80 w-80 rounded-full blur-3xl" />
-        <div className="animate-orb-2 bg-accent/5 absolute -top-20 right-1/4 h-64 w-64 rounded-full blur-3xl" />
-        <div className="animate-orb-3 bg-accent/5 absolute top-40 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full blur-3xl" />
+    <section className="relative pt-24 pb-16 md:pt-36 md:pb-24">
+      <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
+        <HeroBackdrop />
       </div>
 
       <div className="relative z-10 mx-auto max-w-6xl px-6 text-center">
+        {/* Rating pill */}
         <a
-          href="https://chromewebstore.google.com/detail/lnfhnhfnlkjemkgdcppdlijpdjdmnnjd?utm_source=item-share-cb"
+          href={siteConfig.links.chromeWebStore}
           target="_blank"
           rel="noopener noreferrer"
-          className="shimmer-pill bg-background group inline-flex flex-col items-center gap-1 rounded-full px-8 py-2.5 text-sm"
+          className="shimmer-pill bg-background group inline-flex items-center gap-2 rounded-full px-4 py-2.5 text-xs"
         >
-          <span className="flex items-center gap-1.5">
-            <span className="flex items-center gap-0.5">
-              {Array.from({ length: 5 }).map((_, i) => (
-                <Star
-                  key={i}
-                  size={14}
-                  className="fill-amber-400 text-amber-400"
-                />
-              ))}
-            </span>
-            <span className="font-medium text-white">5.0</span>
+          <span className="flex items-center gap-0.5" aria-hidden>
+            {Array.from({ length: 5 }).map((_, i) => (
+              <Star
+                key={i}
+                size={12}
+                className="fill-amber-400 text-amber-400"
+              />
+            ))}
           </span>
+          <span className="text-foreground font-medium">
+            {siteConfig.rating}
+          </span>
+          <span className="bg-border h-3 w-px" aria-hidden />
           <span className="text-muted-foreground group-hover:text-foreground transition-colors">
-            On the Chrome Web Store
+            from {siteConfig.reviewCount} reviews
+            <span className="hidden sm:inline"> on the Chrome Web Store</span>
           </span>
+          <ArrowRight
+            size={12}
+            aria-hidden
+            className="text-muted-foreground -ml-0.5 transition-transform group-hover:translate-x-0.5"
+          />
         </a>
 
-        <h1 className="mx-auto mt-8 max-w-3xl text-3xl leading-tight font-bold tracking-tight md:text-5xl md:leading-[1.15]">
-          The Missing DevTools Panel for{" "}
-          <span className="text-accent">Browser Storage</span>
+        <h1 className="mx-auto mt-8 max-w-3xl text-4xl leading-[1.1] font-bold tracking-tight md:text-6xl md:leading-[1.05]">
+          <span className="text-accent-text-lg">Browser storage</span>, without
+          opening DevTools
         </h1>
 
         <p className="text-muted-foreground mx-auto mt-6 max-w-xl text-base leading-relaxed md:text-lg">
-          Inspect, edit, and manage Local storage, Session storage, and Cookies
-          in one clean, powerful interface.
+          A free Chrome extension to inspect, edit, and snapshot{" "}
+          <code className="text-foreground font-mono text-[0.92em]">
+            localStorage
+          </code>
+          ,{" "}
+          <code className="text-foreground font-mono text-[0.92em]">
+            sessionStorage
+          </code>
+          , and cookies, in a panel that docks right beside your page.
         </p>
 
-        <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-          <a
-            href="https://chromewebstore.google.com/detail/lnfhnhfnlkjemkgdcppdlijpdjdmnnjd?utm_source=item-share-cb"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-shine text-accent-foreground inline-flex items-center gap-2 rounded-lg bg-teal-600 px-3.5 py-2.5 text-sm font-semibold"
-          >
-            <Chrome size={16} />
-            Add to Chrome — It&apos;s Free
-          </a>
-          <Link
-            href="/#features"
-            className="btn-shine border-border text-foreground hover:bg-muted inline-flex items-center rounded-lg border px-3.5 py-2.5 text-sm font-semibold transition-colors"
-          >
-            See Features
-          </Link>
+        {/* CTA cluster */}
+        <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <ButtonLink href={siteConfig.links.chromeWebStore} external>
+            <Chrome size={16} aria-hidden />
+            Add to Chrome, it&apos;s free
+          </ButtonLink>
+          <ButtonLink href="#features" variant="secondary">
+            <PanelRight size={16} aria-hidden />
+            See what it does
+          </ButtonLink>
         </div>
 
-        <div className="mt-16">
-          <div className="border-border bg-muted/50 mx-auto max-w-4xl overflow-hidden rounded-2xl border shadow-2xl">
-            <Image
-              src={heroImage}
-              alt="StorageKit Chrome DevTools panel"
-              width={1560}
-              height={1160}
-              priority
-              className="h-auto w-full"
-            />
-          </div>
+        <p className="text-muted-foreground mt-4 text-xs">
+          Free forever · No signup · Nothing leaves your machine
+        </p>
+
+        {/* Product showcase */}
+        <div className="relative mt-16 md:mt-20">
+          <BrowserFrame
+            url="app.northwind.dev/dashboard"
+            label="side panel"
+            className="mx-auto max-w-5xl"
+          >
+            <div className="relative aspect-[7/5]">
+              <ThemedScreenshot
+                src={{ light: heroLight, dark: heroDark }}
+                alt="A web app with the StorageKit side panel docked beside it, listing local storage with type icons, a JWT expiry, feature-flag toggles, and the snapshot bar"
+                sizes="(min-width: 1024px) 1024px, 100vw"
+                priority
+              />
+            </div>
+          </BrowserFrame>
         </div>
       </div>
     </section>

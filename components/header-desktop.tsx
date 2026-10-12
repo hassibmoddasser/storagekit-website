@@ -1,9 +1,13 @@
 "use client";
 
+import { siteConfig } from "@/config/site";
 import { cn } from "@/utils/cn";
+import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { navLinks } from "./header";
 import Logo from "./logo";
+import ButtonLink from "./primitives/button";
+import ThemeToggle from "./theme-toggle";
 
 export default function DesktopHeader() {
   const [scrolled, setScrolled] = useState(false);
@@ -31,36 +35,50 @@ export default function DesktopHeader() {
   return (
     <header
       className={cn(
-        "fixed top-0 z-50 hidden w-full border-b transition-all duration-300 md:block",
+        "fixed top-0 z-50 hidden w-full border-b transition-all duration-300 lg:block",
         scrolled
           ? "border-border/50 bg-background/80 backdrop-blur-xl"
           : "border-transparent bg-transparent",
       )}
     >
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
-        <Logo />
+        <div className="flex items-center gap-8">
+          <Logo />
 
-        <nav className="flex items-center gap-8">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              onClick={(e) => handleSectionLinkClick(e, link.href)}
-              className="text-muted-foreground hover:text-foreground text-sm transition-colors"
-            >
-              {link.label}
-            </a>
-          ))}
-        </nav>
+          <nav className="flex items-center gap-6">
+            {navLinks.map((link) => {
+              const isHash = link.href.startsWith("/#");
+              const Cmp = isHash ? "a" : Link;
+              return (
+                <Cmp
+                  key={link.href}
+                  href={link.href}
+                  {...(isHash
+                    ? {
+                        onClick: (e: React.MouseEvent<HTMLAnchorElement>) =>
+                          handleSectionLinkClick(e, link.href),
+                      }
+                    : {})}
+                  className="text-muted-foreground hover:text-foreground text-sm transition-colors"
+                >
+                  {link.label}
+                </Cmp>
+              );
+            })}
+          </nav>
+        </div>
 
-        <a
-          href="https://chromewebstore.google.com/detail/lnfhnhfnlkjemkgdcppdlijpdjdmnnjd?utm_source=item-share-cb"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="btn-shine text-accent-foreground inline-flex h-9 items-center rounded-lg bg-teal-600 px-4 text-sm font-medium transition-opacity hover:opacity-90"
-        >
-          Add to Chrome
-        </a>
+        <div className="flex items-center gap-2">
+          <ThemeToggle />
+          <ButtonLink
+            href={siteConfig.links.chromeWebStore}
+            external
+            size="sm"
+            className="font-medium shadow-none"
+          >
+            Add to Chrome
+          </ButtonLink>
+        </div>
       </div>
     </header>
   );

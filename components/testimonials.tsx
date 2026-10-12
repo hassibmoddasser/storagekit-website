@@ -1,8 +1,10 @@
 "use client";
 
-import { Star } from "lucide-react";
-import Marquee from "react-fast-marquee";
-import SectionLabel from "./section-label";
+import { siteConfig } from "@/config/site";
+import { cn } from "@/utils/cn";
+import { Pause, Play, Star } from "lucide-react";
+import { useState } from "react";
+import SectionHeading from "./primitives/section-heading";
 
 const testimonials = [
   {
@@ -53,64 +55,147 @@ const testimonials = [
   },
 ];
 
-function TestimonialCard({
+const rows = [testimonials.slice(0, 5), testimonials.slice(5)];
+
+const palette = [
+  "from-teal-500/30 to-sky-500/30",
+  "from-violet-500/30 to-fuchsia-500/30",
+  "from-amber-500/30 to-rose-500/30",
+  "from-emerald-500/30 to-lime-500/30",
+  "from-sky-500/30 to-indigo-500/30",
+];
+
+function initials(name: string) {
+  return name
+    .split(" ")
+    .map((p) => p[0])
+    .slice(0, 2)
+    .join("")
+    .toUpperCase();
+}
+
+function hashName(name: string) {
+  let h = 0;
+  for (let i = 0; i < name.length; i++) h = (h * 31 + name.charCodeAt(i)) >>> 0;
+  return h;
+}
+
+function ReviewCard({
   testimonial,
 }: {
   testimonial: (typeof testimonials)[number];
 }) {
+  const grad = palette[hashName(testimonial.name) % palette.length];
   return (
-    <div className="border-border bg-muted/30 mx-3 w-80 shrink-0 rounded-xl border p-5">
-      <div className="flex gap-0.5">
-        {Array.from({ length: 5 }).map((_, i) => (
-          <Star key={i} size={12} className="fill-accent text-accent" />
-        ))}
+    <li className="border-border bg-muted/30 mr-4 flex h-36 w-72 shrink-0 flex-col justify-between rounded-xl border p-4 sm:w-76">
+      <div>
+        <span className="sr-only">Rated 5 out of 5.</span>
+        <div className="flex gap-0.5" aria-hidden>
+          {Array.from({ length: 5 }).map((_, i) => (
+            <Star key={i} size={11} className="fill-amber-400 text-amber-400" />
+          ))}
+        </div>
+        <blockquote className="text-foreground/85 mt-2.5 line-clamp-3 text-sm leading-relaxed">
+          &ldquo;{testimonial.quote}&rdquo;
+        </blockquote>
       </div>
 
-      <blockquote className="text-muted-foreground mt-3 text-sm leading-relaxed">
-        &ldquo;{testimonial.quote}&rdquo;
-      </blockquote>
+      <div className="flex items-center gap-2.5">
+        <span
+          aria-hidden
+          className={cn(
+            "border-border/60 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full border bg-gradient-to-br text-[10px] font-semibold tracking-wider",
+            grad,
+          )}
+        >
+          {initials(testimonial.name)}
+        </span>
+        <p className="text-foreground truncate text-xs font-medium">
+          {testimonial.name}
+        </p>
+      </div>
+    </li>
+  );
+}
 
-      <p className="mt-3 text-xs font-medium">{testimonial.name}</p>
+/* Each card carries its own right margin rather than the track using `gap`,
+   so one copy of the list is exactly half the track and translating by -50%
+   loops without a seam. */
+function MarqueeRow({
+  items,
+  reverse = false,
+  paused,
+}: {
+  items: typeof testimonials;
+  reverse?: boolean;
+  paused: boolean;
+}) {
+  return (
+    <div className="overflow-hidden">
+      <div
+        className={cn(
+          "flex w-max motion-reduce:animate-none",
+          reverse ? "animate-marquee-reverse" : "animate-marquee",
+          paused && "[animation-play-state:paused]",
+        )}
+      >
+        <ul className="flex">
+          {items.map((t) => (
+            <ReviewCard key={t.name} testimonial={t} />
+          ))}
+        </ul>
+        <ul className="flex" aria-hidden>
+          {items.map((t) => (
+            <ReviewCard key={t.name} testimonial={t} />
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }
 
 export default function Testimonials() {
+  const [paused, setPaused] = useState(false);
+
   return (
-    <section
-      id="testimonials"
-      className="py-14 md:py-20"
-      style={{ overflowAnchor: "none" }}
-    >
+    <section id="testimonials" className="scroll-mt-24 py-16 md:py-24">
       <div className="mx-auto max-w-6xl px-6">
-        <SectionLabel label="Testimonials" heading="Loved by developers" />
+        <SectionHeading
+          label="From the Web Store"
+          heading="Loved by developers"
+          description={`${siteConfig.rating} from all ${siteConfig.reviewCount} reviews on the Chrome Web Store.`}
+        />
       </div>
 
-      <div className="mt-16 space-y-6">
-        <Marquee
-          speed={40}
-          pauseOnHover
-          gradient
-          gradientColor="var(--background)"
-          gradientWidth={80}
-        >
-          {testimonials.map((t) => (
-            <TestimonialCard key={t.name} testimonial={t} />
+      <div className="mx-auto mt-12 max-w-6xl px-6">
+        <div className="space-y-4 [mask-image:linear-gradient(to_right,transparent,black_6%,black_94%,transparent)]">
+          {rows.map((items, i) => (
+            <MarqueeRow
+              key={i}
+              items={items}
+              reverse={i === 1}
+              paused={paused}
+            />
           ))}
-        </Marquee>
+        </div>
 
-        <Marquee
-          speed={40}
-          pauseOnHover
-          direction="right"
-          gradient
-          gradientColor="var(--background)"
-          gradientWidth={80}
-        >
-          {[...testimonials].reverse().map((t) => (
-            <TestimonialCard key={t.name} testimonial={t} />
-          ))}
-        </Marquee>
+        {/* WCAG 2.2.2: motion that runs longer than five seconds needs a
+            control that does not depend on hovering. */}
+        <div className="mt-6 flex justify-center">
+          <button
+            type="button"
+            onClick={() => setPaused((p) => !p)}
+            aria-pressed={paused}
+            className="text-muted-foreground hover:text-foreground border-border/70 hover:bg-muted inline-flex cursor-pointer items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs transition-colors"
+          >
+            {paused ? (
+              <Play size={12} aria-hidden />
+            ) : (
+              <Pause size={12} aria-hidden />
+            )}
+            {paused ? "Resume reviews" : "Pause reviews"}
+          </button>
+        </div>
       </div>
     </section>
   );

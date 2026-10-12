@@ -1,9 +1,12 @@
+import Comparison from "@/components/comparison";
 import CTA from "@/components/cta";
 import FAQ from "@/components/faq";
 import Hero from "@/components/hero";
-import Problem from "@/components/problem";
+import HowItWorks from "@/components/how-it-works";
 import Showcase from "@/components/showcase";
 import Testimonials from "@/components/testimonials";
+import TrustStrip from "@/components/trust-strip";
+import UseCases from "@/components/use-cases";
 import { siteConfig } from "@/config/site";
 
 const jsonLd = {
@@ -13,7 +16,12 @@ const jsonLd = {
   description: siteConfig.description,
   url: siteConfig.url,
   applicationCategory: "DeveloperApplication",
-  operatingSystem: "Chrome",
+  applicationSubCategory: "Browser Extension",
+  operatingSystem: "Windows, macOS, Linux, ChromeOS",
+  browserRequirements: "Requires Google Chrome or another Chromium browser",
+  softwareVersion: siteConfig.version,
+  image: `${siteConfig.url}/og-image.png`,
+  screenshot: `${siteConfig.url}/og-image.png`,
   offers: {
     "@type": "Offer",
     price: "0",
@@ -21,10 +29,10 @@ const jsonLd = {
   },
   aggregateRating: {
     "@type": "AggregateRating",
-    ratingValue: "5.0",
+    ratingValue: siteConfig.rating,
     bestRating: "5",
     worstRating: "1",
-    ratingCount: "5",
+    ratingCount: String(siteConfig.reviewCount),
   },
   author: {
     "@type": "Person",
@@ -41,10 +49,13 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <main>
+      <main id="main">
         <Hero />
-        <Problem />
+        <TrustStrip />
+        <HowItWorks />
         <Showcase />
+        <Comparison />
+        <UseCases />
         <Testimonials />
         <FAQ />
         <CTA />

@@ -3,10 +3,10 @@ import MobileHeader from "./header-mobile";
 
 export const navLinks = [
   { label: "Features", href: "/#features" },
+  { label: "Compare", href: "/#compare" },
   { label: "Use Cases", href: "/#use-cases" },
-  { label: "Testimonials", href: "/#testimonials" },
   { label: "FAQ", href: "/#faq" },
-  { label: "Contact", href: "mailto:info@hassib.co" },
+  { label: "Changelog", href: "/changelog" },
 ];
 
 export default function Header() {
