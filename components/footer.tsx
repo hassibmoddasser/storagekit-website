@@ -23,6 +23,7 @@ const sections = [
       { label: "FAQ", href: "/#faq" },
       { label: "Privacy", href: "/privacy" },
       { label: "Contact", href: siteConfig.links.contact },
+      { label: "Sponsor", href: siteConfig.links.sponsor, external: true },
     ],
   },
 ];

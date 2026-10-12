@@ -15,6 +15,7 @@ export const siteConfig = {
     chromeWebStore:
       "https://chromewebstore.google.com/detail/lnfhnhfnlkjemkgdcppdlijpdjdmnnjd?utm_source=storagekit.dev&utm_medium=website",
     contact: "mailto:info@hassib.co",
+    sponsor: "https://github.com/sponsors/hassibmoddasser",
   },
 } as const;
 

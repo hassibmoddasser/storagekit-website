@@ -20,7 +20,7 @@ const faqs = [
   {
     question: "Is StorageKit free?",
     answer:
-      "Yes, completely free. No premium tiers, no feature limits, no hidden costs.",
+      "Yes, completely free. No premium tiers, no feature limits, no hidden costs. If it saves you time, you can support it with a one-time sponsorship on GitHub.",
   },
   {
     question: "Does it work on other browsers?",

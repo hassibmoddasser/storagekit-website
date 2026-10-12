@@ -4,6 +4,7 @@ import FAQ from "@/components/faq";
 import Hero from "@/components/hero";
 import HowItWorks from "@/components/how-it-works";
 import Showcase from "@/components/showcase";
+import Support from "@/components/support";
 import Testimonials from "@/components/testimonials";
 import TrustStrip from "@/components/trust-strip";
 import UseCases from "@/components/use-cases";
@@ -57,6 +58,7 @@ export default function Home() {
         <Comparison />
         <UseCases />
         <Testimonials />
+        <Support />
         <FAQ />
         <CTA />
       </main>
