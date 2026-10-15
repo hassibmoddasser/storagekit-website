@@ -2,13 +2,10 @@ import { siteConfig } from "@/config/site";
 import type { StoreRating } from "@/utils/store-rating";
 import { ArrowRight, PanelRight, Star } from "lucide-react";
 
-import heroDark from "@/assets/screenshots/hero-dark.jpg";
-import heroLight from "@/assets/screenshots/hero-light.jpg";
 import AddToBrowser, { UnsupportedNote } from "./add-to-browser";
 import HeroBackdrop from "./hero-backdrop";
-import BrowserFrame from "./primitives/browser-frame";
+import HeroBrowser from "./hero-browser";
 import ButtonLink from "./primitives/button";
-import ThemedScreenshot from "./primitives/themed-screenshot";
 import WorksIn from "./works-in";
 
 export default function Hero({ rating }: { rating: StoreRating }) {
@@ -83,20 +80,7 @@ export default function Hero({ rating }: { rating: StoreRating }) {
 
         {/* Product showcase */}
         <div className="relative mt-16 md:mt-20">
-          <BrowserFrame
-            url="app.northwind.dev/dashboard"
-            label="side panel"
-            className="mx-auto max-w-5xl"
-          >
-            <div className="relative aspect-[7/5]">
-              <ThemedScreenshot
-                src={{ light: heroLight, dark: heroDark }}
-                alt="A web app with the StorageKit side panel docked beside it, listing local storage with type icons, a JWT expiry, feature-flag toggles, and the snapshot bar"
-                sizes="(min-width: 1024px) 1024px, 100vw"
-                priority
-              />
-            </div>
-          </BrowserFrame>
+          <HeroBrowser />
         </div>
       </div>
     </section>
