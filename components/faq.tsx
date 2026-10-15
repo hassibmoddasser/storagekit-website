@@ -30,7 +30,7 @@ const faqs: {
   {
     question: "Does it work on other browsers?",
     answer:
-      "It works on Chrome and all Chromium-based browsers: Edge, Brave, Arc, Opera, and the rest. Firefox and Safari aren't supported yet.",
+      "It works on Chrome and all Chromium-based browsers: Edge, Brave, Arc, Opera, Vivaldi, and the rest. On Edge, the Chrome Web Store first shows an “Allow extensions from other stores” button. Click it once, then install as usual. Firefox and Safari aren't supported yet, but both are coming soon.",
   },
   {
     question: "Is my data sent anywhere?",

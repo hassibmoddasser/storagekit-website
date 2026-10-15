@@ -5,6 +5,7 @@ import { cn } from "@/utils/cn";
 import { Heart, Menu, X } from "lucide-react";
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
+import AddToBrowser from "./add-to-browser";
 import { navLinks } from "./header";
 import Logo from "./logo";
 import ButtonLink from "./primitives/button";
@@ -125,7 +126,7 @@ export default function MobileHeader() {
               external
               className="h-10 flex-1 shadow-none"
             >
-              Add to Chrome
+              <AddToBrowser />
             </ButtonLink>
           </div>
         </nav>

@@ -1,12 +1,14 @@
 import { siteConfig } from "@/config/site";
-import { ArrowRight, Chrome, PanelRight, Star } from "lucide-react";
+import { ArrowRight, PanelRight, Star } from "lucide-react";
 
 import heroDark from "@/assets/screenshots/hero-dark.jpg";
 import heroLight from "@/assets/screenshots/hero-light.jpg";
+import AddToBrowser, { UnsupportedNote } from "./add-to-browser";
 import HeroBackdrop from "./hero-backdrop";
 import BrowserFrame from "./primitives/browser-frame";
 import ButtonLink from "./primitives/button";
 import ThemedScreenshot from "./primitives/themed-screenshot";
+import WorksIn from "./works-in";
 
 export default function Hero() {
   return (
@@ -67,8 +69,7 @@ export default function Hero() {
         {/* CTA cluster */}
         <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <ButtonLink href={siteConfig.links.chromeWebStore} external>
-            <Chrome size={16} aria-hidden />
-            Add to Chrome, it&apos;s free
+            <AddToBrowser iconSize={16} suffix=", it's free" />
           </ButtonLink>
           <ButtonLink href="#features" variant="secondary">
             <PanelRight size={16} aria-hidden />
@@ -76,9 +77,10 @@ export default function Hero() {
           </ButtonLink>
         </div>
 
-        <p className="text-muted-foreground mt-4 text-xs">
-          Free forever · No signup · Nothing leaves your machine
-        </p>
+        <div className="mt-4 flex flex-col items-center gap-2.5">
+          <UnsupportedNote />
+          <WorksIn />
+        </div>
 
         {/* Product showcase */}
         <div className="relative mt-16 md:mt-20">

@@ -5,6 +5,7 @@ import { cn } from "@/utils/cn";
 import { Heart } from "lucide-react";
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
+import AddToBrowser from "./add-to-browser";
 import { navLinks } from "./header";
 import Logo from "./logo";
 import ButtonLink from "./primitives/button";
@@ -91,7 +92,7 @@ export default function DesktopHeader() {
             size="sm"
             className="font-medium shadow-none"
           >
-            Add to Chrome
+            <AddToBrowser />
           </ButtonLink>
         </div>
       </div>

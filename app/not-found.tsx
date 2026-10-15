@@ -1,5 +1,6 @@
+import AddToBrowser from "@/components/add-to-browser";
 import { siteConfig } from "@/config/site";
-import { ArrowRight, Chrome } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 export default function NotFound() {
@@ -38,8 +39,7 @@ export default function NotFound() {
               rel="noopener noreferrer"
               className="border-border text-foreground hover:bg-muted inline-flex items-center gap-2 rounded-lg border px-4 py-2.5 text-sm font-semibold transition-colors"
             >
-              <Chrome size={16} aria-hidden />
-              Add to Chrome
+              <AddToBrowser iconSize={16} />
             </a>
           </div>
 

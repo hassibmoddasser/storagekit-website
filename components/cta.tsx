@@ -1,8 +1,8 @@
 import { siteConfig } from "@/config/site";
-import { Chrome } from "lucide-react";
 import Image from "next/image";
 
 import ctaImg from "@/assets/screenshots/feature-snapshots-dark.jpg";
+import AddToBrowser from "./add-to-browser";
 import ButtonLink from "./primitives/button";
 
 export default function CTA() {
@@ -41,8 +41,7 @@ export default function CTA() {
                   onDark
                   className="w-full sm:w-auto"
                 >
-                  <Chrome size={18} aria-hidden />
-                  Add to Chrome, it&apos;s free
+                  <AddToBrowser iconSize={18} suffix=", it's free" />
                 </ButtonLink>
                 <ButtonLink
                   href="/changelog"
