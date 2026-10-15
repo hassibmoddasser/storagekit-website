@@ -1,7 +1,7 @@
 "use client";
 
-import { siteConfig } from "@/config/site";
 import { cn } from "@/utils/cn";
+import type { StoreRating } from "@/utils/store-rating";
 import { Pause, Play, Star } from "lucide-react";
 import { useState } from "react";
 import SectionHeading from "./primitives/section-heading";
@@ -154,7 +154,7 @@ function MarqueeRow({
   );
 }
 
-export default function Testimonials() {
+export default function Testimonials({ rating }: { rating: StoreRating }) {
   const [paused, setPaused] = useState(false);
 
   return (
@@ -163,7 +163,7 @@ export default function Testimonials() {
         <SectionHeading
           label="From the Web Store"
           heading="Loved by developers"
-          description={`${siteConfig.rating} from all ${siteConfig.reviewCount} reviews on the Chrome Web Store.`}
+          description={`${rating.value} from all ${rating.count} ratings on the Chrome Web Store.`}
         />
       </div>
 

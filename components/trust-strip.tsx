@@ -1,19 +1,19 @@
-import { siteConfig } from "@/config/site";
+import type { StoreRating } from "@/utils/store-rating";
 import { Radio, ShieldCheck, Sparkles, Star } from "lucide-react";
 import StatPill from "./primitives/stat-pill";
 
-const stats = [
-  {
-    icon: Star,
-    label: `from ${siteConfig.reviewCount} reviews`,
-    value: siteConfig.rating,
-  },
-  { icon: Radio, label: "network calls", value: "0" },
-  { icon: ShieldCheck, label: "tracking", value: "0" },
-  { icon: Sparkles, label: "forever free", value: "$0" },
-];
+export default function TrustStrip({ rating }: { rating: StoreRating }) {
+  const stats = [
+    {
+      icon: Star,
+      label: `from ${rating.count} ratings`,
+      value: rating.value,
+    },
+    { icon: Radio, label: "network calls", value: "0" },
+    { icon: ShieldCheck, label: "tracking", value: "0" },
+    { icon: Sparkles, label: "forever free", value: "$0" },
+  ];
 
-export default function TrustStrip() {
   return (
     <section
       aria-label="Trust signals"

@@ -1,4 +1,5 @@
 import { siteConfig } from "@/config/site";
+import type { StoreRating } from "@/utils/store-rating";
 import { ArrowRight, PanelRight, Star } from "lucide-react";
 
 import heroDark from "@/assets/screenshots/hero-dark.jpg";
@@ -10,7 +11,7 @@ import ButtonLink from "./primitives/button";
 import ThemedScreenshot from "./primitives/themed-screenshot";
 import WorksIn from "./works-in";
 
-export default function Hero() {
+export default function Hero({ rating }: { rating: StoreRating }) {
   return (
     <section className="relative pt-24 pb-16 md:pt-36 md:pb-24">
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
@@ -34,12 +35,10 @@ export default function Hero() {
               />
             ))}
           </span>
-          <span className="text-foreground font-medium">
-            {siteConfig.rating}
-          </span>
+          <span className="text-foreground font-medium">{rating.value}</span>
           <span className="bg-border h-3 w-px" aria-hidden />
           <span className="text-muted-foreground group-hover:text-foreground transition-colors">
-            from {siteConfig.reviewCount} reviews
+            from {rating.count} ratings
             <span className="hidden sm:inline"> on the Chrome Web Store</span>
           </span>
           <ArrowRight

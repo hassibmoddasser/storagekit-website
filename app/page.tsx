@@ -9,6 +9,7 @@ import Testimonials from "@/components/testimonials";
 import TrustStrip from "@/components/trust-strip";
 import UseCases from "@/components/use-cases";
 import { siteConfig } from "@/config/site";
+import { getStoreRating } from "@/utils/store-rating";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -28,13 +29,6 @@ const jsonLd = {
     price: "0",
     priceCurrency: "USD",
   },
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: siteConfig.rating,
-    bestRating: "5",
-    worstRating: "1",
-    ratingCount: String(siteConfig.reviewCount),
-  },
   author: {
     "@type": "Person",
     name: siteConfig.author.name,
@@ -43,7 +37,9 @@ const jsonLd = {
   installUrl: siteConfig.links.chromeWebStore,
 };
 
-export default function Home() {
+export default async function Home() {
+  const rating = await getStoreRating();
+
   return (
     <>
       <script
@@ -51,13 +47,13 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <main id="main">
-        <Hero />
-        <TrustStrip />
+        <Hero rating={rating} />
+        <TrustStrip rating={rating} />
         <HowItWorks />
         <Showcase />
         <Comparison />
         <UseCases />
-        <Testimonials />
+        <Testimonials rating={rating} />
         <Support />
         <FAQ />
         <CTA />
