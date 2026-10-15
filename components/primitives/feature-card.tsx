@@ -57,10 +57,10 @@ export default function FeatureCard(props: FeatureCardProps) {
         className,
       )}
     >
-      <div className="bg-muted/60 relative overflow-hidden p-2.5 sm:p-3">
+      <div className="px-4 pt-4 sm:px-5 sm:pt-5">
         <div
           className={cn(
-            "ring-border/70 bg-surface relative w-full overflow-hidden rounded-lg ring-1",
+            "ring-border/70 bg-surface relative w-full overflow-hidden rounded-xl shadow-sm ring-1",
             aspect,
           )}
         >
@@ -77,7 +77,7 @@ export default function FeatureCard(props: FeatureCardProps) {
           )}
         </div>
       </div>
-      <div className="border-border/60 border-t p-5">
+      <div className="p-4 sm:p-5">
         <span className="text-accent-text font-mono text-[10px] font-medium tracking-wider uppercase">
           {badge}
         </span>
