@@ -1,7 +1,4 @@
-import heroDark from "@/assets/screenshots/hero-dark.jpg";
-import heroLight from "@/assets/screenshots/hero-light.jpg";
-import BrowserFrame from "@/components/primitives/browser-frame";
-import ThemedScreenshot from "@/components/primitives/themed-screenshot";
+import HeroBrowser from "@/components/hero-browser";
 
 export const releases: Record<
   string,
@@ -19,15 +16,7 @@ export const releases: Record<
         </p>
 
         <div className="not-prose my-8">
-          <BrowserFrame url="app.northwind.dev/dashboard" label="side panel">
-            <div className="relative aspect-[7/5]">
-              <ThemedScreenshot
-                src={{ light: heroLight, dark: heroDark }}
-                alt="The redesigned StorageKit panel docked beside a web app, listing local storage with type icons, a JWT expiry, feature-flag toggles, and the snapshot bar"
-                sizes="(min-width: 768px) 720px, 100vw"
-              />
-            </div>
-          </BrowserFrame>
+          <HeroBrowser />
         </div>
 
         <h3>Side Panel</h3>
