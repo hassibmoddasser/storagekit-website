@@ -2,6 +2,7 @@
 
 import { siteConfig } from "@/config/site";
 import { cn } from "@/utils/cn";
+import { Heart } from "lucide-react";
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { navLinks } from "./header";
@@ -70,6 +71,20 @@ export default function DesktopHeader() {
 
         <div className="flex items-center gap-2">
           <ThemeToggle />
+          <ButtonLink
+            href="/#support"
+            onClick={(e) => handleSectionLinkClick(e, "/#support")}
+            variant="secondary"
+            size="sm"
+            className="group px-3 font-medium"
+          >
+            <Heart
+              size={15}
+              aria-hidden
+              className="text-pink-500 transition-colors group-hover:fill-pink-500"
+            />
+            Sponsor
+          </ButtonLink>
           <ButtonLink
             href={siteConfig.links.chromeWebStore}
             external

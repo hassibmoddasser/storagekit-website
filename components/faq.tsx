@@ -1,7 +1,11 @@
 import { ChevronRight } from "lucide-react";
 import SectionHeading from "./primitives/section-heading";
 
-const faqs = [
+const faqs: {
+  question: string;
+  answer: string;
+  link?: { text: string; href: string };
+}[] = [
   {
     question: "How is this different from Chrome's Application panel?",
     answer:
@@ -21,6 +25,7 @@ const faqs = [
     question: "Is StorageKit free?",
     answer:
       "Yes, completely free. No premium tiers, no feature limits, no hidden costs. If it saves you time, you can support it with a one-time sponsorship on GitHub.",
+    link: { text: "a one-time sponsorship on GitHub", href: "#support" },
   },
   {
     question: "Does it work on other browsers?",
@@ -89,7 +94,20 @@ export default function FAQ() {
               <div className="acc-body">
                 <div>
                   <p className="text-muted-foreground px-5 pt-1 pb-6 pl-14 text-[0.9375rem] leading-7">
-                    {faq.answer}
+                    {faq.link ? (
+                      <>
+                        {faq.answer.split(faq.link.text)[0]}
+                        <a
+                          href={faq.link.href}
+                          className="text-accent-text hover:text-accent-text/80 font-medium transition-colors"
+                        >
+                          {faq.link.text}
+                        </a>
+                        {faq.answer.split(faq.link.text)[1]}
+                      </>
+                    ) : (
+                      faq.answer
+                    )}
                   </p>
                 </div>
               </div>

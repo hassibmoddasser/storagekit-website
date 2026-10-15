@@ -2,7 +2,7 @@
 
 import { siteConfig } from "@/config/site";
 import { cn } from "@/utils/cn";
-import { Menu, X } from "lucide-react";
+import { Heart, Menu, X } from "lucide-react";
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { navLinks } from "./header";
@@ -107,13 +107,27 @@ export default function MobileHeader() {
             <ThemeToggle />
           </div>
 
-          <ButtonLink
-            href={siteConfig.links.chromeWebStore}
-            external
-            className="mt-3 h-10 w-full shadow-none"
-          >
-            Add to Chrome
-          </ButtonLink>
+          <div className="mt-3 flex gap-2">
+            <ButtonLink
+              href="/#support"
+              onClick={(e) => {
+                setOpen(false);
+                handleSectionLinkClick(e, "/#support");
+              }}
+              variant="secondary"
+              className="h-10 flex-1"
+            >
+              <Heart size={16} aria-hidden className="text-pink-500" />
+              Sponsor
+            </ButtonLink>
+            <ButtonLink
+              href={siteConfig.links.chromeWebStore}
+              external
+              className="h-10 flex-1 shadow-none"
+            >
+              Add to Chrome
+            </ButtonLink>
+          </div>
         </nav>
       </div>
     </>
